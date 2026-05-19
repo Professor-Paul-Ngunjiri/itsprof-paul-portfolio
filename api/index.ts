@@ -5,16 +5,17 @@ let serverEntry: any;
 async function getServerEntry() {
   if (!serverEntry) {
     try {
-      const mod = await import("../dist/server/index.js");
+      // Try to load the server entry from the built dist
+      const mod = await import("../dist/server/index.mjs");
       serverEntry = mod.default || mod;
-    } catch (e) {
-      try {
-        const mod = await import("../dist/server/server-entry.js");
-        serverEntry = mod.default || mod;
-      } catch (e2) {
-        console.error("Could not load server entry:", e, e2);
-        throw new Error("Failed to load server entry");
+      
+      // Verify it has a fetch method
+      if (!serverEntry || (typeof serverEntry !== "function" && typeof serverEntry.fetch !== "function")) {
+        throw new Error("Server entry does not have a valid fetch handler");
       }
+    } catch (error) {
+      console.error("Failed to load server entry:", error);
+      throw error;
     }
   }
   return serverEntry;
@@ -24,12 +25,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const server = await getServerEntry();
     
-    // Create a Request object from the Vercel request
+    // Create the URL
     const url = new URL(
       req.url || "/",
       `https://${req.headers.host || "localhost"}`
     );
     
+    // Prepare the body
     let body: BodyInit | undefined;
     if (req.method !== "GET" && req.method !== "HEAD") {
       if (typeof req.body === "string") {
@@ -41,43 +43,48 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
     }
 
+    // Create a standard Web Request
     const request = new Request(url, {
       method: req.method,
-      headers: new Headers(req.headers as HeadersInit),
-      body,
+      headers: new Headers(
+        Object.entries(req.headers).map(([k, v]) => [
+          k,
+          Array.isArray(v) ? v[0] : v || "",
+        ])
+      ),
+      body: body as any,
     });
 
-    // Call the server's fetch handler
-    const response = await server.fetch(request, {}, {});
+    // Call the server handler
+    let response: Response;
+    if (typeof server === "function") {
+      response = await server(request);
+    } else if (server.fetch) {
+      response = await server.fetch(request, {}, {});
+    } else {
+      throw new Error("Server is not callable");
+    }
 
-    // Set status
+    // Return the response
     res.status(response.status);
     
     // Copy headers
-    for (const [key, value] of response.headers) {
+    for (const [key, value] of response.headers.entries()) {
       res.setHeader(key, value);
     }
 
     // Send body
     if (response.body) {
-      const reader = response.body.getReader();
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          res.write(value);
-        }
-      } finally {
-        reader.releaseLock();
-      }
+      const buffer = await response.arrayBuffer();
+      res.send(Buffer.from(buffer));
+    } else {
+      res.end();
     }
-    
-    res.end();
   } catch (error) {
     console.error("Server error:", error);
-    res.status(500).json({ 
+    res.status(500).json({
       error: "Internal Server Error",
-      message: error instanceof Error ? error.message : String(error)
+      message: error instanceof Error ? error.message : String(error),
     });
   }
 }
