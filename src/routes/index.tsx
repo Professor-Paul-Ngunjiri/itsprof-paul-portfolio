@@ -41,11 +41,11 @@ function Index() {
               <span className="font-semibold text-foreground">ItsProf Paul</span> — Nairobi-based creative working at the intersection of mathematics, code and visual design. I build brands, websites, films and campaigns that move numbers.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/portfolio" className="group inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-elegant hover:shadow-glow transition-all">
+              <Link to="/portfolio" className="btn-hero-primary group">
                 View My Work
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
-              <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-6 py-3.5 text-sm font-semibold backdrop-blur hover:border-primary hover:text-primary transition-colors">
+              <Link to="/contact" className="btn-hero-outline">
                 Let's Build Together
               </Link>
             </div>
