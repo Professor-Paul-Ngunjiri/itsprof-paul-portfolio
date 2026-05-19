@@ -28,9 +28,9 @@ export function Typewriter() {
   }, [text, del, i, words]);
 
   return (
-    <span className="text-gradient-primary">
+    <span className="text-gradient-gold">
       {text}
-      <span className="cursor-blink text-primary">|</span>
+      <span className="cursor-blink" style={{ color: "oklch(0.85 0.18 80)" }}>|</span>
     </span>
   );
 }
