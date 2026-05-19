@@ -9,6 +9,7 @@ export default defineConfig({
   plugins: [
     TanStackRouterVite(),
     tanstackStart({
+     runtime: "node",
       server: { entry: "src/server.ts" },
     }),
     react(),
