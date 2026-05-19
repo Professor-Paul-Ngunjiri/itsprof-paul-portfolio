@@ -34,19 +34,19 @@ function About() {
         <div className="absolute inset-0 bg-mesh opacity-60 pointer-events-none" />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-up">
-            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ about</span>
+            <span className="hero-eyebrow">/ about</span>
             <h1 className="mt-3 font-display text-5xl lg:text-7xl font-bold tracking-tighter leading-[0.95]">
               I'm Paul.<br />
-              <span className="text-gradient-primary">Where mathematics</span> meets creativity.
+              <span className="text-gradient-gold">Where mathematics</span> meets creativity.
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-xl">
               A Nairobi-based multi-disciplinary creative with a Bachelor of Science in Mathematics & Computer Science — and four years of professional work that puts that degree to use every single day.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="/cv.pdf" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-elegant">
+              <a href="/cv.pdf" className="btn-hero-primary">
                 <Download className="h-4 w-4" /> Download my CV
               </a>
-              <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold hover:border-primary hover:text-primary transition-colors">
+              <Link to="/contact" className="btn-hero-outline">
                 Let's talk <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

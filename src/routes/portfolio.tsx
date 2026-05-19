@@ -27,14 +27,14 @@ function Portfolio() {
       <section className="relative bg-hero overflow-hidden">
         <div className="absolute inset-0 bg-mesh opacity-50" />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 text-center">
-          <span className="font-mono text-xs uppercase tracking-widest text-primary">/ portfolio</span>
+          <span className="hero-eyebrow">/ portfolio</span>
           <h1 className="mt-3 font-display text-5xl lg:text-7xl font-bold tracking-tighter">
-            My work <span className="text-gradient-primary">speaks for itself.</span>
+            My work <span className="text-gradient-gold">speaks for itself.</span>
           </h1>
           <p className="mt-5 max-w-2xl mx-auto text-lg text-muted-foreground">
             Browse 100+ projects across design, development, film and marketing. Each shipped, each measured, each held to a portfolio-grade bar.
           </p>
-          <Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-elegant">
+          <Link to="/contact" className="btn-hero-primary mt-8">
             Start a project <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

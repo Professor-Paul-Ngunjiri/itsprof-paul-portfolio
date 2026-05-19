@@ -39,18 +39,18 @@ function Contact() {
       <section className="relative bg-hero overflow-hidden">
         <div className="absolute inset-0 bg-mesh opacity-50" />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 text-center">
-          <span className="font-mono text-xs uppercase tracking-widest text-primary">/ contact</span>
+          <span className="hero-eyebrow">/ contact</span>
           <h1 className="mt-3 font-display text-5xl lg:text-7xl font-bold tracking-tighter">
-            Let's create something <span className="text-gradient-primary">extraordinary.</span>
+            Let's create something <span className="text-gradient-gold">extraordinary.</span>
           </h1>
           <p className="mt-5 max-w-2xl mx-auto text-lg text-muted-foreground">
             Tell me about your project. I typically respond within 24 hours, weekdays 8am–6pm EAT.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white shadow-elegant">
+            <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer" className="btn-hero-primary">
               <MessageCircle className="h-4 w-4" /> WhatsApp Paul
             </a>
-            <a href={`tel:${site.phone}`} className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold hover:border-primary">
+            <a href={`tel:${site.phone}`} className="btn-hero-outline">
               <Phone className="h-4 w-4" /> Call Paul
             </a>
           </div>

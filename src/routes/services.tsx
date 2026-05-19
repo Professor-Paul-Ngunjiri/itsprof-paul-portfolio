@@ -36,16 +36,16 @@ function Services() {
       <section className="relative bg-hero overflow-hidden">
         <div className="absolute inset-0 bg-mesh opacity-50" />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 text-center">
-          <span className="font-mono text-xs uppercase tracking-widest text-primary">/ services</span>
+          <span className="hero-eyebrow">/ services</span>
           <h1 className="mt-3 font-display text-5xl lg:text-7xl font-bold tracking-tighter">
-            End-to-end creative,<br /> <span className="text-gradient-primary">delivered with precision.</span>
+            End-to-end creative,<br /> <span className="text-gradient-gold">delivered with precision.</span>
           </h1>
           <p className="mt-5 max-w-2xl mx-auto text-lg text-muted-foreground">
             Fifteen disciplines, one creative — engineered with the same rigor a Mathematics & Computer Science degree teaches.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link to="/contact" className="rounded-full bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-elegant">Get a custom quote</Link>
-            <a href="#services" className="rounded-full border border-border px-6 py-3.5 text-sm font-semibold hover:border-primary">Explore all services</a>
+            <Link to="/contact" className="btn-hero-primary">Get a custom quote</Link>
+            <a href="#services" className="btn-hero-outline">Explore all services</a>
           </div>
         </div>
       </section>
