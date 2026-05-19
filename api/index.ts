@@ -6,7 +6,7 @@ async function getServerEntry() {
   if (!serverEntry) {
     try {
       // Try to load the server entry from the built dist
-      const mod = await import("../dist/server/index.mjs");
+      const mod = await import("../dist/server/server.js");
       serverEntry = mod.default || mod;
       
       // Verify it has a fetch method
