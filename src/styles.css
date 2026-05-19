@@ -80,9 +80,9 @@
   --ring: oklch(0.55 0.22 25);
 
   /* Composed tokens */
-  --gradient-hero: radial-gradient(ellipse at top left, oklch(0.55 0.22 25 / 0.22), transparent 55%),
-    radial-gradient(ellipse at bottom right, oklch(0.42 0.18 256 / 0.25), transparent 55%),
-    linear-gradient(180deg, oklch(0.99 0.005 80), oklch(0.96 0.01 80));
+  --gradient-hero: radial-gradient(ellipse at top left, oklch(0.42 0.18 256 / 0.55), transparent 60%),
+    radial-gradient(ellipse at bottom right, oklch(0.5 0.18 245 / 0.6), transparent 60%),
+    linear-gradient(135deg, oklch(0.32 0.16 258), oklch(0.42 0.18 256) 50%, oklch(0.28 0.14 260));
   --gradient-primary: linear-gradient(135deg, oklch(0.55 0.22 25), oklch(0.62 0.2 35));
   --gradient-blue: linear-gradient(135deg, oklch(0.42 0.18 256), oklch(0.5 0.18 245));
   --gradient-gold: linear-gradient(135deg, oklch(0.83 0.16 87), oklch(0.78 0.18 70));
