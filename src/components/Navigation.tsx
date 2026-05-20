@@ -19,12 +19,8 @@ export function Navigation() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/40">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8">
-        <Link to="/" className="flex items-center gap-2.5">
-          <img src={logo} alt="ItsProf Paul" className="h-10 w-10" />
-          <div className="hidden sm:block leading-tight">
-            <div className="font-display text-base font-bold tracking-tight">ItsProf Paul</div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Maths × Creativity</div>
-          </div>
+        <Link to="/" className="flex items-center">
+          <img src={logo} alt="ItsProf Paul" className="h-12 w-auto object-contain" />
         </Link>
 
         <div className="hidden lg:flex items-center gap-1">
