@@ -53,7 +53,7 @@ function About() {
           </div>
           <div className="relative">
             <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden border-2 border-border shadow-elegant">
-              <img src={aboutImg} alt="Paul Ngunjiri" className="h-full w-full object-cover" />
+              <img src={aboutImg} loading="eager" fetchPriority="high" decoding="async" alt="Paul Ngunjiri" className="h-full w-full object-cover" />
             </div>
           </div>
         </div>
@@ -158,7 +158,7 @@ function About() {
       {/* HUMAN SIDE */}
       <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24 grid lg:grid-cols-2 gap-12 items-center">
         <div className="aspect-square rounded-[2rem] overflow-hidden border border-border shadow-elegant">
-          <img src={portraitImg} alt="Paul Ngunjiri portrait" className="h-full w-full object-cover" />
+          <img src={portraitImg} loading="lazy" decoding="async" alt="Paul Ngunjiri portrait" className="h-full w-full object-cover" />
         </div>
         <div>
           <span className="font-mono text-xs uppercase tracking-widest text-primary">/ off-screen</span>

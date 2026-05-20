@@ -66,7 +66,7 @@ function Index() {
           <div className="lg:col-span-5 relative">
             <div className="absolute -inset-6 bg-gradient-primary rounded-[3rem] blur-3xl opacity-30 animate-float" aria-hidden />
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border-2 border-border shadow-elegant bg-gradient-blue">
-              <img src={heroImg} alt="Paul Ngunjiri — ItsProf Paul" className="h-full w-full object-cover object-top mix-blend-luminosity opacity-95" />
+              <img src={heroImg} loading="eager" fetchPriority="high" decoding="async" alt="Paul Ngunjiri — ItsProf Paul" className="h-full w-full object-cover object-top mix-blend-luminosity opacity-95" />
               <div className="absolute inset-0 bg-gradient-to-t from-secondary/40 via-transparent to-transparent" />
             </div>
             <div className="absolute -bottom-6 -left-6 rounded-2xl border border-border bg-background/95 backdrop-blur shadow-card p-4 max-w-[200px]">
@@ -165,7 +165,7 @@ function Index() {
           </div>
           <div className="relative">
             <div className="aspect-square rounded-[2rem] border-2 border-gold/30 overflow-hidden shadow-elegant">
-              <img src={workImg} alt="Paul Ngunjiri at work" className="h-full w-full object-cover" />
+              <img src={workImg} loading="lazy" decoding="async" alt="Paul Ngunjiri at work" className="h-full w-full object-cover" />
             </div>
             <div className="absolute -bottom-4 -right-4 bg-gold text-gold-foreground rounded-2xl p-5 shadow-elegant max-w-[220px] rotate-3">
               <div className="font-display text-2xl font-bold leading-none">∑ × ✦</div>
