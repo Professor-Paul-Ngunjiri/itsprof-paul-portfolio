@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles, Star, Linkedin, Instagram, Facebook, CheckCircle2 } from "lucide-react";
 import { site, services, processSteps, values, projects, testimonials } from "@/lib/site";
 import { Typewriter } from "@/components/Typewriter";
-import heroImg from "@/assets/paul-hero.png";
-import workImg from "@/assets/paul-work.png";
+import heroImg from "@/assets/paul-hero.webp";
+import workImg from "@/assets/paul-work.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
