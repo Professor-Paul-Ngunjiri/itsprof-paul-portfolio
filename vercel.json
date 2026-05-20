@@ -3,13 +3,12 @@
   "outputDirectory": "dist/client",
   "functions": {
     "api/index.ts": {
-      "runtime": "@vercel/node@3.2.31",
       "maxDuration": 30,
       "memory": 1024,
       "includeFiles": "dist/server/**"
     }
   },
   "rewrites": [
-    { "source": "/((?!assets/).*)", "destination": "/api" }
+    { "source": "/((?!assets/|favicon|logo|og-image|robots).*)", "destination": "/api" }
   ]
 }
