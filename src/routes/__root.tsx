@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -60,10 +61,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "ItsProf Paul — Paul Ngunjiri · Multi-disciplinary Creative in Nairobi" },
-      { name: "description", content: "Paul Ngunjiri (ItsProf Paul) is a Nairobi-based brand designer, web developer, photographer and digital marketer. Mathematics meets creativity." },
+      { name: "description", content: "Paul Ngunjiri (ItsProf Paul) — brands, websites, films and campaigns engineered to move numbers. Nairobi-based, world-class craft." },
       { name: "author", content: "Paul Ngunjiri" },
-      { property: "og:title", content: "ItsProf Paul — Where Mathematics Meets Creativity" },
-      { property: "og:description", content: "Branding, web, film and marketing engineered with the precision of a Mathematics & Computer Science degree." },
+      { property: "og:title", content: "ItsProf Paul — Brands, Websites, Films & Campaigns" },
+      { property: "og:description", content: "Multi-disciplinary creative engineered to move numbers." },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/og-image.png" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -74,7 +75,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/logo.svg", type: "image/svg+xml" },
       { rel: "apple-touch-icon", href: "/logo.svg" },
-      { rel: "canonical", href: "/" },
     ],
   }),
   shellComponent: RootShell,
@@ -99,10 +99,21 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const bare = pathname.startsWith("/terminal");
+
+  if (bare) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <Outlet />
+      </QueryClientProvider>
+    );
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <Navigation />
-      <main className="pt-16">
+      <main className="pt-20">
         <Outlet />
       </main>
       <Footer />
