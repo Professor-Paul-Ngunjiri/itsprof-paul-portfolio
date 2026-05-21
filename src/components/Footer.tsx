@@ -9,12 +9,12 @@ export function Footer() {
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
       <div className="mx-auto max-w-7xl px-5 lg:px-8 py-16 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center">
-            <img src={logo} alt="ItsProf Paul" className="h-20 w-auto object-contain" />
-          </div>
+          <Link to="/" className="inline-flex items-center">
+            <img src={logo} alt="ItsProf Paul" className="h-24 w-auto object-contain" />
+          </Link>
 
           <p className="mt-5 text-sm text-muted-foreground leading-relaxed">
-            Multi-disciplinary creative based in {site.location}. Branding, web, film, marketing — engineered with the precision of a Mathematics & Computer Science degree.
+            {site.tagline} Multi-disciplinary creative based in {site.location} — turning briefs into measurable business outcomes.
           </p>
           <div className="mt-5 flex gap-2">
             {[
@@ -44,7 +44,9 @@ export function Footer() {
           <h4 className="font-display text-sm font-bold uppercase tracking-widest text-muted-foreground">Services</h4>
           <ul className="mt-4 space-y-2 text-sm">
             {services.slice(0, 6).map((s) => (
-              <li key={s.slug}><Link to="/services" className="hover:text-primary">{s.name}</Link></li>
+              <li key={s.slug}>
+                <Link to="/services/$slug" params={{ slug: s.slug }} className="hover:text-primary">{s.name}</Link>
+              </li>
             ))}
           </ul>
         </div>
@@ -60,7 +62,7 @@ export function Footer() {
             href={`https://wa.me/${site.whatsapp}`}
             target="_blank"
             rel="noreferrer"
-            className="mt-5 inline-flex items-center rounded-full bg-gradient-primary px-4 py-2 text-xs font-semibold text-primary-foreground"
+            className="mt-5 inline-flex items-center rounded-full bg-gold px-4 py-2 text-xs font-semibold text-gold-foreground hover:opacity-90 transition-opacity"
           >
             WhatsApp Paul →
           </a>
@@ -70,7 +72,7 @@ export function Footer() {
       <div className="border-t border-border/60">
         <div className="mx-auto max-w-7xl px-5 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <div>© {new Date().getFullYear()} Paul Ngunjiri — ItsProf Paul. All Rights Reserved.</div>
-          <div className="font-mono">Built with mathematics in Nairobi 🇰🇪</div>
+          <div className="font-mono">Designed & engineered in Nairobi 🇰🇪</div>
         </div>
       </div>
     </footer>
