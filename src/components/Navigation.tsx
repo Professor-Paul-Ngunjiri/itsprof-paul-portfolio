@@ -17,10 +17,10 @@ export function Navigation() {
   const { theme, toggle } = useTheme();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/40">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border shadow-card">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8">
-        <Link to="/" className="flex items-center">
-          <img src={logo} alt="ItsProf Paul" className="h-16 md:h-20 w-auto object-contain" />
+        <Link to="/" className="flex items-center shrink-0">
+          <img src={logo} alt="ItsProf Paul" className="h-14 md:h-16 w-auto object-contain" />
         </Link>
 
         <div className="hidden lg:flex items-center gap-1">
@@ -53,7 +53,7 @@ export function Navigation() {
           </button>
           <Link
             to="/contact"
-            className="hidden md:inline-flex items-center rounded-full bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-card hover:shadow-glow transition-shadow"
+            className="hidden md:inline-flex items-center rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-gold-foreground shadow-card hover:opacity-90 transition-opacity"
           >
             Hire Me
           </Link>
@@ -68,7 +68,7 @@ export function Navigation() {
       </nav>
 
       {open && (
-        <div className="lg:hidden border-t border-border/40 bg-background/95 backdrop-blur">
+        <div className="lg:hidden border-t border-border bg-background">
           <div className="flex flex-col p-4 gap-1">
             {links.map((l) => (
               <Link
@@ -83,7 +83,7 @@ export function Navigation() {
             <Link to="/terminal" onClick={() => setOpen(false)} className="px-4 py-3 rounded-lg hover:bg-muted text-base font-mono">
               ▸ terminal
             </Link>
-            <Link to="/contact" onClick={() => setOpen(false)} className="mt-2 text-center rounded-full bg-gradient-primary px-5 py-3 text-sm font-semibold text-primary-foreground">
+            <Link to="/contact" onClick={() => setOpen(false)} className="mt-2 text-center rounded-full bg-gold px-5 py-3 text-sm font-semibold text-gold-foreground">
               Hire Me
             </Link>
           </div>
