@@ -40,7 +40,7 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServiceDetail() {
-  const { service: s } = Route.useLoaderData();
+  const { service: s } = Route.useLoaderData() as { service: typeof services[number] };
   const Icon = ICONS[s.icon as keyof typeof ICONS] ?? Sparkles;
 
   const related = services.filter((x) => x.slug !== s.slug && x.category === s.category).slice(0, 3);
