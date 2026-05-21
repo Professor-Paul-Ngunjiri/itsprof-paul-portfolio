@@ -20,7 +20,7 @@ export function Navigation() {
     <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/40">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8">
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="ItsProf Paul" className="h-12 w-auto object-contain" />
+          <img src={logo} alt="ItsProf Paul" className="h-16 md:h-20 w-auto object-contain" />
         </Link>
 
         <div className="hidden lg:flex items-center gap-1">
