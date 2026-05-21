@@ -1,17 +1,27 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles, Star, Linkedin, Instagram, Facebook, CheckCircle2 } from "lucide-react";
+import {
+  Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
+  Megaphone, Hash, LineChart, Package, PenTool, Printer, FileText,
+} from "lucide-react";
 import { site, services, processSteps, values, projects, testimonials } from "@/lib/site";
 import { Typewriter } from "@/components/Typewriter";
+import { ProjectCover } from "@/components/ProjectCover";
 import heroImg from "@/assets/paul-hero.webp";
 import workImg from "@/assets/paul-work.webp";
+
+const ICONS = {
+  Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
+  Megaphone, Hash, LineChart, Package, PenTool, Printer, Sparkles, FileText,
+} as const;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "ItsProf Paul — Paul Ngunjiri · Multi-disciplinary Creative in Nairobi" },
-      { name: "description", content: "Brand design, web development, photography, video and digital marketing — engineered with the precision of a Mathematics & Computer Science degree." },
-      { property: "og:title", content: "ItsProf Paul — Where Mathematics Meets Creativity" },
-      { property: "og:description", content: "Nairobi-based multi-disciplinary creative. 4+ years, 100+ projects, 15+ services." },
+      { name: "description", content: "Brands, websites, films and campaigns engineered to move numbers — by Paul Ngunjiri in Nairobi." },
+      { property: "og:title", content: "ItsProf Paul — Brands, Websites, Films & Campaigns" },
+      { property: "og:description", content: "Multi-disciplinary creative engineered to move numbers." },
     ],
   }),
   component: Index,
@@ -22,13 +32,12 @@ function Index() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden bg-hero">
-        <div className="absolute inset-0 bg-mesh pointer-events-none" aria-hidden />
-        <div className="relative mx-auto max-w-7xl px-5 lg:px-8 pt-16 pb-24 lg:pt-24 lg:pb-32 grid lg:grid-cols-12 gap-12 items-center">
+        <div className="relative mx-auto max-w-7xl px-5 lg:px-8 pt-16 pb-20 lg:pt-24 lg:pb-28 grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 animate-fade-up">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1.5 text-xs font-medium backdrop-blur">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 backdrop-blur px-3 py-1.5 text-xs font-medium">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-60 animate-ping" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-60 animate-ping" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
               </span>
               Available for new projects
             </span>
@@ -37,8 +46,8 @@ function Index() {
               <br />
               I am a <Typewriter />
             </h1>
-            <p className="mt-7 text-lg text-muted-foreground max-w-xl leading-relaxed">
-              <span className="font-semibold text-foreground">ItsProf Paul</span> — Nairobi-based creative working at the intersection of mathematics, code and visual design. I build brands, websites, films and campaigns that move numbers.
+            <p className="mt-7 text-lg text-white/85 max-w-xl leading-relaxed">
+              <span className="font-semibold text-white">ItsProf Paul</span> — {site.tagline} Based in Nairobi, working with brands across Africa and beyond.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/portfolio" className="btn-hero-primary group">
@@ -49,13 +58,13 @@ function Index() {
                 Let's Build Together
               </Link>
             </div>
-            <div className="mt-8 flex items-center gap-4 text-muted-foreground">
+            <div className="mt-8 flex items-center gap-4 text-white/70">
               {[
                 { i: Linkedin, h: site.socials.linkedin.url },
                 { i: Instagram, h: site.socials.instagram.url },
                 { i: Facebook, h: site.socials.facebook.url },
               ].map((s, i) => (
-                <a key={i} href={s.h} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
+                <a key={i} href={s.h} target="_blank" rel="noreferrer" className="hover:text-gold transition-colors">
                   <s.i className="h-5 w-5" />
                 </a>
               ))}
@@ -63,28 +72,31 @@ function Index() {
             </div>
           </div>
 
-          <div className="lg:col-span-5 relative">
-            <div className="absolute -inset-6 bg-gradient-primary rounded-[3rem] blur-3xl opacity-30 animate-float" aria-hidden />
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border-2 border-border shadow-elegant bg-gradient-blue">
-              <img src={heroImg} loading="eager" fetchPriority="high" decoding="async" alt="Paul Ngunjiri — ItsProf Paul" className="h-full w-full object-cover object-top mix-blend-luminosity opacity-95" />
-              <div className="absolute inset-0 bg-gradient-to-t from-secondary/40 via-transparent to-transparent" />
-            </div>
-            <div className="absolute -bottom-6 -left-6 rounded-2xl border border-border bg-background/95 backdrop-blur shadow-card p-4 max-w-[200px]">
+          <div className="lg:col-span-5 relative flex justify-center">
+            <img
+              src={heroImg}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              alt="Paul Ngunjiri — ItsProf Paul"
+              className="relative z-10 w-full max-w-md h-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+            />
+            <div className="absolute -bottom-2 -left-2 z-20 rounded-2xl border border-white/25 bg-white/95 backdrop-blur shadow-card p-4 max-w-[200px]">
               <div className="font-display text-3xl font-bold text-gradient-primary">{site.years}</div>
-              <div className="text-xs text-muted-foreground">years engineering creative work</div>
+              <div className="text-xs text-foreground/70">years engineering creative work</div>
             </div>
-            <div className="absolute -top-4 -right-4 rounded-2xl border border-border bg-background/95 backdrop-blur shadow-card p-4">
+            <div className="absolute -top-2 -right-2 z-20 rounded-2xl border border-white/25 bg-white/95 backdrop-blur shadow-card p-4">
               <div className="flex items-center gap-1">
                 {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-gold text-gold" />)}
               </div>
-              <div className="mt-1 text-xs font-medium">Rated by 50+ clients</div>
+              <div className="mt-1 text-xs font-medium text-foreground/80">Rated by 50+ clients</div>
             </div>
           </div>
         </div>
 
-        {/* Stats bar */}
-        <div className="relative border-t border-border/60 bg-background/40 backdrop-blur">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8 py-8 grid grid-cols-2 md:grid-cols-5 gap-6">
+        {/* Stats bar — sunshine bg, blue gradient text */}
+        <div className="relative bg-gradient-sunshine border-t border-white/30">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8 py-10 grid grid-cols-2 md:grid-cols-5 gap-6">
             {[
               { n: site.years, l: "Years experience" },
               { n: site.projects, l: "Projects delivered" },
@@ -93,8 +105,8 @@ function Index() {
               { n: site.countries, l: "Countries served" },
             ].map((s, i) => (
               <div key={i} className="text-center">
-                <div className="font-display text-3xl lg:text-4xl font-bold text-gradient-primary">{s.n}</div>
-                <div className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">{s.l}</div>
+                <div className="font-display text-4xl lg:text-5xl font-extrabold text-gradient-deep-blue">{s.n}</div>
+                <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-[oklch(0.28_0.16_260)]">{s.l}</div>
               </div>
             ))}
           </div>
@@ -107,30 +119,46 @@ function Index() {
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ services</span>
             <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">
-              Fifteen disciplines. <span className="text-gradient-primary">One signature.</span>
+              Sixteen disciplines. <span className="text-gradient-primary">One signature.</span>
             </h2>
           </div>
           <p className="text-muted-foreground max-w-md">
-            Each service is held to the same engineering standard: documented process, measurable outcomes, premium finish.
+            Tap any card to open a full breakdown — process, features, deliverables, pricing.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {services.map((s, i) => (
-            <Link
-              key={s.slug}
-              to="/services"
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 hover:border-primary transition-all duration-300 hover:-translate-y-1 shadow-card"
-            >
-              <div className="absolute top-0 right-0 h-24 w-24 rounded-full bg-gradient-primary opacity-0 group-hover:opacity-10 blur-2xl transition-opacity" />
-              <div className="font-mono text-xs text-muted-foreground">0{(i + 1).toString().padStart(2, "0")}</div>
-              <h3 className="mt-3 font-display text-xl font-semibold">{s.name}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-              <div className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                Explore <ArrowRight className="h-3 w-3" />
-              </div>
-            </Link>
-          ))}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {services.map((s, i) => {
+            const Icon = ICONS[s.icon as keyof typeof ICONS] ?? Sparkles;
+            return (
+              <Link
+                key={s.slug}
+                to="/services/$slug"
+                params={{ slug: s.slug }}
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 hover:border-primary transition-all duration-300 hover:-translate-y-1 shadow-card"
+              >
+                <div className="absolute top-0 right-0 h-24 w-24 rounded-full bg-gradient-primary opacity-0 group-hover:opacity-10 blur-2xl transition-opacity" />
+                <div className="flex items-start justify-between">
+                  <div className="rounded-xl bg-primary/10 p-2.5 group-hover:bg-primary/20 transition-colors">
+                    <Icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <div className="font-mono text-[10px] text-muted-foreground">0{(i + 1).toString().padStart(2, "0")}</div>
+                </div>
+                <h3 className="mt-4 font-display text-xl font-semibold">{s.name}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                <ul className="mt-3 space-y-1">
+                  {s.features.slice(0, 2).map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
+                      <CheckCircle2 className="h-3.5 w-3.5 mt-0.5 text-primary flex-shrink-0" /> {f}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-5 inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:gap-2 transition-all">
+                  Learn more <ArrowRight className="h-3 w-3" />
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
@@ -184,16 +212,24 @@ function Index() {
         </div>
         <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {processSteps.map((s) => (
-            <div key={s.n} className="rounded-2xl border border-border bg-card p-6 shadow-card hover:border-primary transition-colors">
-              <div className="font-mono text-3xl font-bold text-gradient-primary">{s.n}</div>
-              <h3 className="mt-4 font-display text-lg font-semibold">{s.title}</h3>
+            <div key={s.n} className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-card hover:border-primary hover:-translate-y-1 transition-all">
+              <div className="absolute -top-6 -right-6 h-24 w-24 rounded-full bg-gradient-primary opacity-0 group-hover:opacity-10 blur-2xl transition-opacity" />
+              <div className="font-mono text-4xl font-bold text-gradient-primary">{s.n}</div>
+              <h3 className="mt-3 font-display text-lg font-semibold">{s.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+              <ul className="mt-4 space-y-1.5 border-t border-border pt-4">
+                {s.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
+                    <CheckCircle2 className="h-3.5 w-3.5 mt-0.5 text-primary flex-shrink-0" /> {f}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
       </section>
 
-      {/* FEATURED WORK */}
+      {/* FEATURED WORK — 4 per row */}
       <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
         <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
           <div>
@@ -204,28 +240,16 @@ function Index() {
             Explore all projects <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map((p, i) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {projects.slice(0, 8).map((p) => (
             <Link
               to="/portfolio"
               key={p.slug}
-              className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-muted to-accent"
+              className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-border hover:-translate-y-1 transition-transform"
             >
-              <div className={`absolute inset-0 ${
-                i % 3 === 0 ? "bg-gradient-primary" : i % 3 === 1 ? "bg-gradient-blue" : "bg-gradient-gold"
-              } opacity-80 group-hover:opacity-100 transition-opacity`} />
-              <div className="absolute inset-0 bg-mesh opacity-30" />
-              <div className="absolute inset-0 p-6 flex flex-col justify-between text-primary-foreground">
-                <div className="inline-flex w-fit rounded-full bg-background/20 backdrop-blur px-3 py-1 text-[10px] font-mono uppercase tracking-widest">
-                  {p.category}
-                </div>
-                <div>
-                  <h3 className="font-display text-2xl font-bold leading-tight">{p.title}</h3>
-                  <p className="mt-2 text-sm opacity-90">{p.desc}</p>
-                  <div className="mt-4 inline-flex items-center gap-1 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                    View case study <ArrowRight className="h-3 w-3" />
-                  </div>
-                </div>
+              <ProjectCover title={p.title} category={p.category} hue={p.hue} className="h-full w-full" />
+              <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                <p className="text-xs text-white/90">{p.desc}</p>
               </div>
             </Link>
           ))}
@@ -295,7 +319,7 @@ function Index() {
               From a single logo to a full brand-and-launch system — let's get on a call and scope it out.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link to="/contact" className="rounded-full bg-background px-6 py-3.5 text-sm font-semibold text-foreground hover:bg-gold hover:text-gold-foreground transition-colors">
+              <Link to="/contact" className="rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground hover:opacity-90 transition-colors">
                 Start a project
               </Link>
               <Link to="/services" className="rounded-full border-2 border-primary-foreground/40 px-6 py-3.5 text-sm font-semibold hover:bg-primary-foreground/10 transition-colors">

@@ -1,38 +1,43 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { projects } from "@/lib/site";
+import { ProjectCover } from "@/components/ProjectCover";
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
     meta: [
-      { title: "Portfolio — ItsProf Paul · Brand, Web, Photo, Film, Marketing" },
-      { name: "description", content: "Selected projects by Paul Ngunjiri across branding, web, photography, video and digital marketing." },
+      { title: "Portfolio — ItsProf Paul · Brand, Web, Photo, Film, Marketing, Editorial" },
+      { name: "description", content: "Selected projects by Paul Ngunjiri across branding, web, photography, video, marketing, packaging and editorial documents." },
       { property: "og:title", content: "Portfolio — Paul Ngunjiri" },
-      { property: "og:description", content: "100+ projects across 15 disciplines." },
+      { property: "og:description", content: "100+ projects across 16 disciplines." },
     ],
     links: [{ rel: "canonical", href: "/portfolio" }],
   }),
   component: Portfolio,
 });
 
-const categories = ["All", "Branding", "Web Dev", "UI/UX", "Photography", "Video", "Marketing"];
-
 function Portfolio() {
   const [active, setActive] = useState("All");
+
+  const categories = useMemo(() => {
+    const set = new Set<string>(["All"]);
+    projects.forEach((p) => set.add(p.category));
+    return Array.from(set);
+  }, []);
+
   const filtered = active === "All" ? projects : projects.filter((p) => p.category === active);
 
   return (
     <>
       <section className="relative bg-hero overflow-hidden">
-        <div className="absolute inset-0 bg-mesh opacity-50" />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 text-center">
           <span className="hero-eyebrow">/ portfolio</span>
           <h1 className="mt-3 font-display text-5xl lg:text-7xl font-bold tracking-tighter">
             My work <span className="text-gradient-gold">speaks for itself.</span>
           </h1>
-          <p className="mt-5 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Browse 100+ projects across design, development, film and marketing. Each shipped, each measured, each held to a portfolio-grade bar.
+          <p className="mt-5 max-w-2xl mx-auto text-lg text-white/85">
+            Browse 100+ projects across design, development, film, marketing and editorial. Each shipped, each measured, each held to a portfolio-grade bar.
           </p>
           <Link to="/contact" className="btn-hero-primary mt-8">
             Start a project <ArrowRight className="h-4 w-4" />
@@ -57,23 +62,14 @@ function Portfolio() {
           ))}
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map((p, i) => (
-            <article key={p.slug} className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-border">
-              <div className={`absolute inset-0 ${
-                i % 4 === 0 ? "bg-gradient-primary" : i % 4 === 1 ? "bg-gradient-blue" : i % 4 === 2 ? "bg-gradient-gold" : "bg-secondary"
-              }`} />
-              <div className="absolute inset-0 bg-mesh opacity-30" />
-              <div className="absolute inset-0 p-6 flex flex-col justify-between text-primary-foreground">
-                <div className="inline-flex w-fit rounded-full bg-background/20 backdrop-blur px-3 py-1 text-[10px] font-mono uppercase tracking-widest">
-                  {p.category}
-                </div>
-                <div>
-                  <h3 className="font-display text-2xl font-bold">{p.title}</h3>
-                  <p className="mt-2 text-sm opacity-90">{p.desc}</p>
-                  <button className="mt-4 inline-flex items-center gap-1 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                    View case study <ArrowRight className="h-3 w-3" />
-                  </button>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {filtered.map((p) => (
+            <article key={p.slug} className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-border hover:-translate-y-1 transition-transform">
+              <ProjectCover title={p.title} category={p.category} hue={p.hue} className="h-full w-full" />
+              <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                <p className="text-xs text-white/90">{p.desc}</p>
+                <div className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-white">
+                  View case study <ArrowRight className="h-3 w-3" />
                 </div>
               </div>
             </article>
