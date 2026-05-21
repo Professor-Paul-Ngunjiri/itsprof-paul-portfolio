@@ -9,13 +9,10 @@ export function Footer() {
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
       <div className="mx-auto max-w-7xl px-5 lg:px-8 py-16 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-3">
-            <img src={logo} alt="ItsProf Paul" className="h-12 w-12" />
-            <div>
-              <div className="font-display text-lg font-bold">ItsProf Paul</div>
-              <div className="text-xs text-muted-foreground">Where Mathematics Meets Creativity</div>
-            </div>
+          <div className="flex items-center">
+            <img src={logo} alt="ItsProf Paul" className="h-20 w-auto object-contain" />
           </div>
+
           <p className="mt-5 text-sm text-muted-foreground leading-relaxed">
             Multi-disciplinary creative based in {site.location}. Branding, web, film, marketing — engineered with the precision of a Mathematics & Computer Science degree.
           </p>
