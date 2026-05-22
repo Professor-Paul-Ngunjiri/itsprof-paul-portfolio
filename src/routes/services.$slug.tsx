@@ -1,10 +1,10 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, notFound, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, Check, Clock, Tag, ArrowLeft, MessageCircle } from "lucide-react";
 import {
   Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
   Megaphone, Hash, LineChart, Package, PenTool, Printer, Sparkles, FileText,
 } from "lucide-react";
-import { services, site } from "@/lib/site";
+import { getSubServices, services, site } from "@/lib/site";
 
 const ICONS = {
   Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
@@ -41,9 +41,13 @@ export const Route = createFileRoute("/services/$slug")({
 
 function ServiceDetail() {
   const { service: s } = Route.useLoaderData() as { service: typeof services[number] };
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  if (pathname !== `/services/${s.slug}`) return <Outlet />;
+
   const Icon = ICONS[s.icon as keyof typeof ICONS] ?? Sparkles;
 
   const related = services.filter((x) => x.slug !== s.slug && x.category === s.category).slice(0, 3);
+  const subServices = getSubServices(s.slug);
 
   return (
     <>
@@ -66,7 +70,7 @@ function ServiceDetail() {
             <p className="mt-5 text-xl lg:text-2xl text-gradient-gold font-display">{s.tagline}</p>
             <p className="mt-5 text-base lg:text-lg max-w-2xl text-white/85 leading-relaxed">{s.hero}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/contact" className="btn-hero-primary">
+              <Link to="/contact" search={{ service: s.slug }} className="btn-hero-primary">
                 Request a quote <ArrowRight className="h-4 w-4" />
               </Link>
               <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer" className="btn-hero-outline">
@@ -89,12 +93,44 @@ function ServiceDetail() {
               <div className="mt-1 font-display text-2xl font-semibold">{s.timeline}</div>
             </div>
             <div className="h-px bg-white/15" />
-            <Link to="/contact" className="block w-full text-center rounded-full bg-gold px-5 py-3 text-sm font-semibold text-gold-foreground hover:opacity-90 transition-opacity">
+            <Link to="/contact" search={{ service: s.slug }} className="block w-full text-center rounded-full bg-gold px-5 py-3 text-sm font-semibold text-gold-foreground hover:opacity-90 transition-opacity">
               Get a custom quote
             </Link>
           </aside>
         </div>
       </section>
+
+      {subServices.length > 0 && (
+        <section className="mx-auto max-w-7xl px-5 lg:px-8 py-20">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-primary">/ specialist pages</span>
+              <h2 className="mt-2 font-display text-3xl lg:text-4xl font-bold">Choose the exact lane.</h2>
+            </div>
+            <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+              Every sub-service now has a focused page with scope, outcomes, package shape and next steps.
+            </p>
+          </div>
+          <div className="mt-9 grid md:grid-cols-3 gap-4">
+            {subServices.map((sub) => (
+              <Link
+                key={sub.slug}
+                to="/services/$slug/$subSlug"
+                params={{ slug: s.slug, subSlug: sub.slug }}
+                className="group rounded-2xl border border-border bg-card p-6 shadow-card transition-all hover:-translate-y-1 hover:border-primary"
+              >
+                <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{s.category}</div>
+                <h3 className="mt-3 font-display text-xl font-semibold">{sub.name}</h3>
+                <p className="mt-2 text-sm font-semibold text-primary">{sub.kicker}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{sub.summary}</p>
+                <div className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-primary transition-all group-hover:gap-3">
+                  Open page <ArrowRight className="h-3.5 w-3.5" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* FEATURES */}
       <section className="mx-auto max-w-7xl px-5 lg:px-8 py-20">
@@ -202,7 +238,7 @@ function ServiceDetail() {
         <div className="rounded-[2.5rem] bg-gradient-primary text-primary-foreground p-12 lg:p-16 text-center shadow-elegant">
           <h2 className="font-display text-3xl lg:text-5xl font-bold">Ready to start your {s.name.toLowerCase()} project?</h2>
           <p className="mt-4 max-w-xl mx-auto opacity-95">Book a free 30-minute discovery call — no pitch, just a real conversation about your project.</p>
-          <Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground">
+          <Link to="/contact" search={{ service: s.slug }} className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground">
             Start a project <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

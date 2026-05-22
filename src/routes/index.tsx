@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Sparkles, Star, Linkedin, Instagram, Facebook, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Sparkles, Star, Linkedin, Instagram, Facebook, CheckCircle2, Gauge, Layers3, ShieldCheck } from "lucide-react";
 import {
   Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
   Megaphone, Hash, LineChart, Package, PenTool, Printer, FileText,
@@ -14,6 +14,24 @@ const ICONS = {
   Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
   Megaphone, Hash, LineChart, Package, PenTool, Printer, Sparkles, FileText,
 } as const;
+
+const signatureSystems = [
+  {
+    icon: Layers3,
+    title: "One Creative Operating System",
+    desc: "Strategy, identity, content, code and launch work stay connected, so the project does not lose meaning between handoffs.",
+  },
+  {
+    icon: Gauge,
+    title: "Performance Built Into Craft",
+    desc: "Every page, campaign and visual system is shaped around speed, clarity, conversion and measurable business outcomes.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Premium Handoff Discipline",
+    desc: "Source files, usage notes, QA checks, launch lists and post-delivery support are treated as part of the work.",
+  },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -110,6 +128,31 @@ function Index() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-20">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-5">
+            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ signature system</span>
+            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">
+              Not a freelancer menu. A full creative engine.
+            </h2>
+          </div>
+          <p className="lg:col-span-5 lg:col-start-8 text-muted-foreground leading-relaxed">
+            The unique advantage here is integration: the brand strategist understands the code, the developer understands the campaign, and the filmmaker understands the conversion path.
+          </p>
+        </div>
+        <div className="mt-10 grid md:grid-cols-3 gap-5">
+          {signatureSystems.map((item) => (
+            <article key={item.title} className="rounded-2xl border border-border bg-card p-7 shadow-card">
+              <div className="inline-flex rounded-xl bg-primary/10 p-3">
+                <item.icon className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="mt-5 font-display text-xl font-semibold">{item.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
+            </article>
+          ))}
         </div>
       </section>
 

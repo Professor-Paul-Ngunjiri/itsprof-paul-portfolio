@@ -1,9 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { getSubServices, services } from "@/lib/site";
 
 const BASE_URL = "";
 
-const paths = ["/", "/about", "/portfolio", "/services", "/contact", "/terminal"];
+const staticPaths = ["/", "/about", "/portfolio", "/services", "/contact", "/terminal"];
+const servicePaths = services.flatMap((service) => [
+  `/services/${service.slug}`,
+  ...getSubServices(service.slug).map((sub) => `/services/${service.slug}/${sub.slug}`),
+]);
+const paths = [...staticPaths, ...servicePaths];
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {

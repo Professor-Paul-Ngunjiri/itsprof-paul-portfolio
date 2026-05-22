@@ -1,10 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import {
   Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
   Megaphone, Hash, LineChart, Package, PenTool, Printer, Sparkles, FileText,
 } from "lucide-react";
-import { services } from "@/lib/site";
+import { getSubServices, services } from "@/lib/site";
 
 const ICONS = {
   Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
@@ -40,6 +40,9 @@ const tiers = [
 ];
 
 function Services() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  if (pathname !== "/services") return <Outlet />;
+
   return (
     <>
       <section className="relative bg-hero overflow-hidden">
@@ -70,6 +73,7 @@ function Services() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((s, i) => {
             const Icon = ICONS[s.icon as keyof typeof ICONS] ?? Sparkles;
+            const subServices = getSubServices(s.slug);
             return (
               <Link
                 key={s.slug}
@@ -89,6 +93,13 @@ function Services() {
                 <h3 className="mt-5 font-display text-2xl font-bold leading-tight">{s.name}</h3>
                 <p className="mt-2 text-sm text-gradient-primary font-display font-semibold">{s.tagline}</p>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {subServices.map((sub) => (
+                    <span key={sub.slug} className="rounded-full border border-border bg-background/70 px-3 py-1 text-[11px] font-medium text-muted-foreground">
+                      {sub.name}
+                    </span>
+                  ))}
+                </div>
                 <ul className="mt-4 space-y-1.5">
                   {s.features.slice(0, 3).map((f) => (
                     <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">

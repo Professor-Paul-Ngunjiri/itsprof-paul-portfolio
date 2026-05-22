@@ -1,9 +1,14 @@
 export const site = {
   name: "Paul Ngunjiri",
   brand: "ItsProf Paul",
-  tagline: "Brands, Websites, Films & Campaigns — Engineered to Move Numbers.",
+  tagline: "Brand, Web, Content & Growth Systems for ambitious businesses.",
   location: "Nairobi, Kenya",
   email: "hello@itsprofpaul.com",
+  quoteEmail: "ngunjiripaul485@gmail.com",
+  partner: {
+    name: "Pahwah Digitech",
+    url: "https://www.pahwah.com",
+  },
   phone: "+254796219399",
   whatsapp: "254796219399",
   years: "4+",
@@ -19,14 +24,10 @@ export const site = {
     pinterest: { url: "https://pinterest.com/itsprofpaul", handle: "@itsprofpaul", count: "—" },
   },
   titles: [
-    "Brand Designer",
-    "Web Developer",
-    "Videographer",
-    "Digital Marketer",
-    "Photographer",
-    "UI/UX Designer",
-    "Content Creator",
+    "Brand & Web Strategist",
     "Creative Technologist",
+    "Digital Growth Partner",
+    "Visual Content Director",
   ],
 };
 
@@ -45,6 +46,34 @@ export type Service = {
   startingAt: string;
   timeline: string;
 };
+
+export type ServiceSubService = {
+  slug: string;
+  name: string;
+  kicker: string;
+  summary: string;
+  outcomes: string[];
+  packages: string[];
+  proof: string;
+  idealFor: string;
+};
+
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+const subServiceName = (feature: string) =>
+  feature
+    .replace(/\([^)]*\)/g, "")
+    .replace(/[:+/]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .split(" ")
+    .slice(0, 7)
+    .join(" ");
 
 export const services: Service[] = [
   {
@@ -546,6 +575,83 @@ export const services: Service[] = [
   },
 ];
 
+export function getSubServices(serviceSlug: string): ServiceSubService[] {
+  const service = services.find((item) => item.slug === serviceSlug);
+  if (!service) return [];
+
+  return service.features.slice(0, 3).map((feature, index) => {
+    const name = subServiceName(feature);
+    const deliverable = service.deliverables[index] ?? service.deliverables[0] ?? "Delivery-ready assets";
+    const process = service.process[index]?.title ?? "Delivery";
+
+    return {
+      slug: slugify(name),
+      name,
+      kicker: `${service.category} specialist lane ${String(index + 1).padStart(2, "0")}.`,
+      summary: `${feature} delivered as a focused ${service.name.toLowerCase()} engagement with strategy, production discipline and clean handoff.`,
+      outcomes: [
+        `A sharper ${name.toLowerCase()} outcome tied to the wider ${service.name.toLowerCase()} system.`,
+        `A practical scope that moves from ${process.toLowerCase()} to delivery without wasted steps.`,
+        `Assets and guidance your team can keep using after launch.`,
+      ],
+      packages: [
+        `${process} workshop and scope definition`,
+        deliverable,
+        "Final files, usage notes and implementation guidance",
+      ],
+      proof: `${service.tagline} This sub-service narrows the work into a clear, premium package without losing the full strategic context.`,
+      idealFor: `Brands and teams that need ${name.toLowerCase()} as a specific deliverable inside a larger ${service.category.toLowerCase()} roadmap.`,
+    };
+  });
+}
+
+export function getSubService(serviceSlug: string, subSlug: string) {
+  return getSubServices(serviceSlug).find((item) => item.slug === subSlug);
+}
+
+export function getServicePackages(serviceSlug: string) {
+  const service = services.find((item) => item.slug === serviceSlug);
+  if (!service) return [];
+
+  const baseName = service.name.replace(/ & .*/, "").replace(/ Design$/, "");
+
+  return [
+    {
+      slug: "diagnostic",
+      name: `${baseName} Diagnostic`,
+      price: service.startingAt,
+      desc: "A focused audit, roadmap and priority action plan for teams that want clarity before committing to a larger build.",
+    },
+    {
+      slug: "signature",
+      name: `${baseName} Signature Build`,
+      price: service.startingAt,
+      desc: "The recommended package: strategy, execution, launch assets and a polished handoff for a premium client-facing result.",
+    },
+    {
+      slug: "growth-partner",
+      name: `${baseName} Growth Partner`,
+      price: "Custom international quote",
+      desc: "A deeper retainer or multi-phase engagement for brands that want strategy, production, iteration and ROI reporting.",
+    },
+  ];
+}
+
+export const investmentReasons = [
+  {
+    title: "One accountable expert",
+    desc: "Strategy, design, content, code and campaign thinking stay connected, reducing vendor friction and protecting the quality bar.",
+  },
+  {
+    title: "Built for measurable return",
+    desc: "Every engagement defines what success should move: leads, trust, sales velocity, conversion, retention, authority or operational clarity.",
+  },
+  {
+    title: "International delivery standard",
+    desc: "Clean communication, documented scope, professional handoff, source-file ownership and async-friendly collaboration for global clients.",
+  },
+];
+
 export const values = [
   { title: "Creative Excellence", desc: "Every deliverable is held to a portfolio-grade bar — no compromises shipped to clients." },
   { title: "Strategic Thinking", desc: "Design choices answer to business objectives, not personal taste." },
@@ -581,25 +687,27 @@ export type Project = {
   year?: string;
   client?: string;
   hue?: number; // for cover gradient
+  liveUrl?: string;
+  metric?: string;
 };
 
 export const projects: Project[] = [
-  { slug: "savanna-coffee", title: "Savanna Coffee — Brand System", category: "Branding", desc: "Identity, packaging and launch campaign for a Nairobi specialty roaster.", year: "2024", client: "Savanna Coffee", hue: 25 },
-  { slug: "kazi-fintech", title: "Kazi — Fintech App UI", category: "UI/UX", desc: "Mobile-first banking experience for SMEs across East Africa.", year: "2024", client: "Kazi", hue: 250 },
-  { slug: "msafiri-travel", title: "Msafiri — Travel Platform", category: "Web Dev", desc: "Full-stack booking platform built with React and a typed API.", year: "2024", client: "Msafiri", hue: 200 },
-  { slug: "tamu-restaurant", title: "Tamu — Restaurant Campaign", category: "Photography", desc: "Editorial food photography and a 360 campaign for a flagship opening.", year: "2023", client: "Tamu", hue: 35 },
-  { slug: "echo-records", title: "Echo Records — Brand Film", category: "Video", desc: "Cinematic 90-second hero film for an indie record label.", year: "2024", client: "Echo Records", hue: 290 },
-  { slug: "asha-foundation", title: "Asha Foundation — Donor Campaign", category: "Marketing", desc: "Donor acquisition site plus a 3-month performance marketing engine.", year: "2023", client: "Asha Foundation", hue: 145 },
-  { slug: "harambee-tender", title: "Harambee Health — Government Tender", category: "Editorial", desc: "120-page tender response designed to score against strict RFP criteria.", year: "2024", client: "Harambee Health", hue: 215 },
-  { slug: "nuru-packaging", title: "Nuru Skincare — Packaging Line", category: "Packaging", desc: "Six-SKU packaging system for a clean-beauty launch.", year: "2024", client: "Nuru", hue: 320 },
-  { slug: "swahili-magazine", title: "Swahili Quarterly — Print Magazine", category: "Print", desc: "Editorial design for a 96-page quarterly arts magazine.", year: "2023", client: "Swahili Quarterly", hue: 12 },
-  { slug: "jamii-social", title: "Jamii Bank — Social Content Engine", category: "Social", desc: "Monthly content system: 40 assets, 4 reels, 1 hero campaign.", year: "2024", client: "Jamii Bank", hue: 195 },
-  { slug: "pamoja-icons", title: "Pamoja — Custom Icon System", category: "Branding", desc: "180-icon system for a pan-African logistics SaaS.", year: "2023", client: "Pamoja", hue: 50 },
-  { slug: "safari-impact-report", title: "Safari Trust — Impact Report", category: "Editorial", desc: "64-page annual impact report for a wildlife conservation NGO.", year: "2024", client: "Safari Trust", hue: 110 },
-  { slug: "mlima-uiux", title: "Mlima Learn — EdTech Product", category: "UI/UX", desc: "Web + mobile design system for an African e-learning platform.", year: "2024", client: "Mlima Learn", hue: 265 },
-  { slug: "zawadi-launch", title: "Zawadi Gifts — E-commerce Launch", category: "Web Dev", desc: "Headless commerce store with M-Pesa, analytics and content engine.", year: "2024", client: "Zawadi", hue: 340 },
-  { slug: "rangi-poster-series", title: "Rangi — Poster Series", category: "Print", desc: "12-poster typographic series exhibited in Nairobi gallery week.", year: "2023", client: "Rangi", hue: 0 },
-  { slug: "lulu-portrait", title: "Lulu Mwangi — Portrait Series", category: "Photography", desc: "Editorial portrait series for a feature on East African musicians.", year: "2023", client: "Lulu Mwangi", hue: 80 },
+  { slug: "savanna-coffee", title: "Savanna Coffee - Brand System", category: "Branding", desc: "Identity, packaging and launch campaign for a Nairobi specialty roaster.", year: "2024", client: "Savanna Coffee", hue: 25, metric: "+38% first-quarter sales lift" },
+  { slug: "kazi-fintech", title: "Kazi - Fintech App UI", category: "UI/UX", desc: "Mobile-first banking experience for SMEs across East Africa.", year: "2024", client: "Kazi", hue: 250, metric: "42 core screens designed" },
+  { slug: "msafiri-travel", title: "Msafiri - Travel Platform", category: "Web Dev", desc: "Full-stack booking platform built with React and a typed API.", year: "2024", client: "Msafiri", hue: 200, liveUrl: "https://example.com", metric: "95+ performance target" },
+  { slug: "tamu-restaurant", title: "Tamu - Restaurant Campaign", category: "Photography", desc: "Editorial food photography and a 360 campaign for a flagship opening.", year: "2023", client: "Tamu", hue: 35, metric: "120 launch assets" },
+  { slug: "echo-records", title: "Echo Records - Brand Film", category: "Video", desc: "Cinematic 90-second hero film for an indie record label.", year: "2024", client: "Echo Records", hue: 290, metric: "9 platform cutdowns" },
+  { slug: "asha-foundation", title: "Asha Foundation - Donor Campaign", category: "Marketing", desc: "Donor acquisition site plus a 3-month performance marketing engine.", year: "2023", client: "Asha Foundation", hue: 145, liveUrl: "https://example.com", metric: "3-month growth engine" },
+  { slug: "harambee-tender", title: "Harambee Health - Government Tender", category: "Editorial", desc: "120-page tender response designed to score against strict RFP criteria.", year: "2024", client: "Harambee Health", hue: 215, metric: "120-page submission" },
+  { slug: "nuru-packaging", title: "Nuru Skincare - Packaging Line", category: "Packaging", desc: "Six-SKU packaging system for a clean-beauty launch.", year: "2024", client: "Nuru", hue: 320, metric: "6-SKU system" },
+  { slug: "swahili-magazine", title: "Swahili Quarterly - Print Magazine", category: "Print", desc: "Editorial design for a 96-page quarterly arts magazine.", year: "2023", client: "Swahili Quarterly", hue: 12, metric: "96 pages" },
+  { slug: "jamii-social", title: "Jamii Bank - Social Content Engine", category: "Social", desc: "Monthly content system: 40 assets, 4 reels, 1 hero campaign.", year: "2024", client: "Jamii Bank", hue: 195, metric: "40 assets/month" },
+  { slug: "pamoja-icons", title: "Pamoja - Custom Icon System", category: "Branding", desc: "180-icon system for a pan-African logistics SaaS.", year: "2023", client: "Pamoja", hue: 50, metric: "180 custom icons" },
+  { slug: "safari-impact-report", title: "Safari Trust - Impact Report", category: "Editorial", desc: "64-page annual impact report for a wildlife conservation NGO.", year: "2024", client: "Safari Trust", hue: 110, metric: "64-page report" },
+  { slug: "mlima-uiux", title: "Mlima Learn - EdTech Product", category: "UI/UX", desc: "Web + mobile design system for an African e-learning platform.", year: "2024", client: "Mlima Learn", hue: 265, metric: "Cross-platform design system" },
+  { slug: "zawadi-launch", title: "Zawadi Gifts - E-commerce Launch", category: "Web Dev", desc: "Headless commerce store with M-Pesa, analytics and content engine.", year: "2024", client: "Zawadi", hue: 340, liveUrl: "https://example.com", metric: "M-Pesa checkout" },
+  { slug: "rangi-poster-series", title: "Rangi - Poster Series", category: "Print", desc: "12-poster typographic series exhibited in Nairobi gallery week.", year: "2023", client: "Rangi", hue: 0, metric: "12-poster series" },
+  { slug: "lulu-portrait", title: "Lulu Mwangi - Portrait Series", category: "Photography", desc: "Editorial portrait series for a feature on East African musicians.", year: "2023", client: "Lulu Mwangi", hue: 80, metric: "Editorial feature set" },
 ];
 
 export const testimonials = [
