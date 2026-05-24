@@ -42,7 +42,7 @@ function Contact() {
   const sent = search.sent === "1";
 
   const faqs = [
-    { q: "Can international clients work with you remotely?", a: "Yes. I work async with clear milestones, shared workspaces, recorded walkthroughs and scheduled review calls across time zones." },
+    { q: "Can international clients work with you remotely?", a: "Yes. I work async with clear milestones, shared workspaces, recorded walkthroughs and scheduled review calls across All time zones." },
     { q: "What makes a good brief?", a: "Clear goals, audience, timeline, budget range, existing assets and what success should improve: leads, sales, trust, speed, conversion or authority." },
     { q: "Can I upload a tender, brand guide or reference deck?", a: "Yes. Attach PDFs, documents, images or ZIP files directly in the brief form so I can understand the project faster." },
     { q: "Do you work on premium retainers?", a: "Yes. The Growth Partner package is designed for serious brands that need ongoing creative, web, content and campaign support." },
