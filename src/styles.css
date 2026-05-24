@@ -287,6 +287,10 @@
   .bg-gradient-primary { background: var(--gradient-primary); }
   .bg-gradient-blue { background: var(--gradient-blue); }
   .bg-gradient-gold { background: var(--gradient-gold); }
+  .bg-gradient-warm { background-image: linear-gradient(135deg, rgba(255, 91, 45, 0.96), rgba(245, 146, 47, 0.92)); }
+  .bg-gradient-cool { background-image: linear-gradient(180deg, rgba(6, 22, 65, 0.98), rgba(35, 120, 255, 0.94)); }
+  .bg-gradient-logo { background-image: linear-gradient(180deg, rgba(3, 20, 60, 0.98), rgba(35, 110, 255, 0.96)); }
+  .bg-gradient-logo-soft { background-image: linear-gradient(180deg, rgba(4, 15, 50, 0.94), rgba(46, 121, 250, 0.88)); }
   .bg-mesh { background: var(--gradient-mesh); filter: blur(80px); opacity: 0.55; }
   .shadow-elegant { box-shadow: var(--shadow-elegant); }
   .shadow-glow { box-shadow: var(--shadow-glow); }
@@ -298,6 +302,12 @@
     background-clip: text;
     color: transparent;
   }
+  /* Hide scrollbars when used for dropdowns */
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Ensure images don't get cropped unexpectedly */
+  img { max-width: 100%; height: auto; object-fit: contain; display: block; }
   .text-gradient-blue {
     background: var(--gradient-blue);
     -webkit-background-clip: text;

@@ -15,7 +15,7 @@ export const site = {
   projects: "100+",
   clients: "50+",
   services: "15+",
-  countries: "3",
+  countries: "",
   socials: {
     linkedin: { url: "https://linkedin.com/in/itsprofpaul", handle: "@itsprofpaul", count: "—" },
     instagram: { url: "https://instagram.com/itsprofpaul", handle: "@itsprofpaul", count: "—" },
@@ -24,10 +24,9 @@ export const site = {
     pinterest: { url: "https://pinterest.com/itsprofpaul", handle: "@itsprofpaul", count: "—" },
   },
   titles: [
-    "Brand & Web Strategist",
-    "Creative Technologist",
-    "Digital Growth Partner",
-    "Visual Content Director",
+    "Creative Director",
+    "Product & UI Designer",
+    "Web Engineer",
   ],
 };
 
@@ -689,25 +688,30 @@ export type Project = {
   hue?: number; // for cover gradient
   liveUrl?: string;
   metric?: string;
+  preview?: string;
+  previewAlt?: string;
 };
 
+const placeholder = (text: string) =>
+  `https://placehold.co/640x400/0b1120/ffffff/png?text=${encodeURIComponent(text)}`;
+
 export const projects: Project[] = [
-  { slug: "savanna-coffee", title: "Savanna Coffee - Brand System", category: "Branding", desc: "Identity, packaging and launch campaign for a Nairobi specialty roaster.", year: "2024", client: "Savanna Coffee", hue: 25, metric: "+38% first-quarter sales lift" },
-  { slug: "kazi-fintech", title: "Kazi - Fintech App UI", category: "UI/UX", desc: "Mobile-first banking experience for SMEs across East Africa.", year: "2024", client: "Kazi", hue: 250, metric: "42 core screens designed" },
-  { slug: "msafiri-travel", title: "Msafiri - Travel Platform", category: "Web Dev", desc: "Full-stack booking platform built with React and a typed API.", year: "2024", client: "Msafiri", hue: 200, liveUrl: "https://example.com", metric: "95+ performance target" },
-  { slug: "tamu-restaurant", title: "Tamu - Restaurant Campaign", category: "Photography", desc: "Editorial food photography and a 360 campaign for a flagship opening.", year: "2023", client: "Tamu", hue: 35, metric: "120 launch assets" },
-  { slug: "echo-records", title: "Echo Records - Brand Film", category: "Video", desc: "Cinematic 90-second hero film for an indie record label.", year: "2024", client: "Echo Records", hue: 290, metric: "9 platform cutdowns" },
-  { slug: "asha-foundation", title: "Asha Foundation - Donor Campaign", category: "Marketing", desc: "Donor acquisition site plus a 3-month performance marketing engine.", year: "2023", client: "Asha Foundation", hue: 145, liveUrl: "https://example.com", metric: "3-month growth engine" },
-  { slug: "harambee-tender", title: "Harambee Health - Government Tender", category: "Editorial", desc: "120-page tender response designed to score against strict RFP criteria.", year: "2024", client: "Harambee Health", hue: 215, metric: "120-page submission" },
-  { slug: "nuru-packaging", title: "Nuru Skincare - Packaging Line", category: "Packaging", desc: "Six-SKU packaging system for a clean-beauty launch.", year: "2024", client: "Nuru", hue: 320, metric: "6-SKU system" },
-  { slug: "swahili-magazine", title: "Swahili Quarterly - Print Magazine", category: "Print", desc: "Editorial design for a 96-page quarterly arts magazine.", year: "2023", client: "Swahili Quarterly", hue: 12, metric: "96 pages" },
-  { slug: "jamii-social", title: "Jamii Bank - Social Content Engine", category: "Social", desc: "Monthly content system: 40 assets, 4 reels, 1 hero campaign.", year: "2024", client: "Jamii Bank", hue: 195, metric: "40 assets/month" },
-  { slug: "pamoja-icons", title: "Pamoja - Custom Icon System", category: "Branding", desc: "180-icon system for a pan-African logistics SaaS.", year: "2023", client: "Pamoja", hue: 50, metric: "180 custom icons" },
-  { slug: "safari-impact-report", title: "Safari Trust - Impact Report", category: "Editorial", desc: "64-page annual impact report for a wildlife conservation NGO.", year: "2024", client: "Safari Trust", hue: 110, metric: "64-page report" },
-  { slug: "mlima-uiux", title: "Mlima Learn - EdTech Product", category: "UI/UX", desc: "Web + mobile design system for an African e-learning platform.", year: "2024", client: "Mlima Learn", hue: 265, metric: "Cross-platform design system" },
-  { slug: "zawadi-launch", title: "Zawadi Gifts - E-commerce Launch", category: "Web Dev", desc: "Headless commerce store with M-Pesa, analytics and content engine.", year: "2024", client: "Zawadi", hue: 340, liveUrl: "https://example.com", metric: "M-Pesa checkout" },
-  { slug: "rangi-poster-series", title: "Rangi - Poster Series", category: "Print", desc: "12-poster typographic series exhibited in Nairobi gallery week.", year: "2023", client: "Rangi", hue: 0, metric: "12-poster series" },
-  { slug: "lulu-portrait", title: "Lulu Mwangi - Portrait Series", category: "Photography", desc: "Editorial portrait series for a feature on East African musicians.", year: "2023", client: "Lulu Mwangi", hue: 80, metric: "Editorial feature set" },
+  { slug: "savanna-coffee", title: "Savanna Coffee - Brand System", category: "Branding", desc: "Identity, packaging and launch campaign for a Nairobi specialty roaster.", year: "2024", client: "Savanna Coffee", hue: 25, metric: "+38% first-quarter sales lift", preview: placeholder("Savanna Coffee"), previewAlt: "Savanna Coffee brand preview" },
+  { slug: "kazi-fintech", title: "Kazi - Fintech App UI", category: "UI/UX", desc: "Mobile-first banking experience for SMEs across East Africa.", year: "2024", client: "Kazi", hue: 250, metric: "42 core screens designed", preview: placeholder("Kazi Fintech"), previewAlt: "Kazi fintech app preview" },
+  { slug: "msafiri-travel", title: "Msafiri - Travel Platform", category: "Web Dev", desc: "Full-stack booking platform built with React and a typed API.", year: "2024", client: "Msafiri", hue: 200, liveUrl: "https://example.com", metric: "95+ performance target", preview: placeholder("Msafiri Travel"), previewAlt: "Msafiri travel site preview" },
+  { slug: "tamu-restaurant", title: "Tamu - Restaurant Campaign", category: "Photography", desc: "Editorial food photography and a 360 campaign for a flagship opening.", year: "2023", client: "Tamu", hue: 35, metric: "120 launch assets", preview: placeholder("Tamu Restaurant"), previewAlt: "Tamu restaurant campaign preview" },
+  { slug: "echo-records", title: "Echo Records - Brand Film", category: "Video", desc: "Cinematic 90-second hero film for an indie record label.", year: "2024", client: "Echo Records", hue: 290, metric: "9 platform cutdowns", preview: placeholder("Echo Records"), previewAlt: "Echo Records film preview" },
+  { slug: "asha-foundation", title: "Asha Foundation - Donor Campaign", category: "Marketing", desc: "Donor acquisition site plus a 3-month performance marketing engine.", year: "2023", client: "Asha Foundation", hue: 145, liveUrl: "https://example.com", metric: "3-month growth engine", preview: placeholder("Asha Foundation"), previewAlt: "Asha Foundation marketing preview" },
+  { slug: "harambee-tender", title: "Harambee Health - Government Tender", category: "Editorial", desc: "120-page tender response designed to score against strict RFP criteria.", year: "2024", client: "Harambee Health", hue: 215, metric: "120-page submission", preview: placeholder("Harambee Tender"), previewAlt: "Harambee tender document preview" },
+  { slug: "nuru-packaging", title: "Nuru Skincare - Packaging Line", category: "Packaging", desc: "Six-SKU packaging system for a clean-beauty launch.", year: "2024", client: "Nuru", hue: 320, metric: "6-SKU system", preview: placeholder("Nuru Packaging"), previewAlt: "Nuru skincare packaging preview" },
+  { slug: "swahili-magazine", title: "Swahili Quarterly - Print Magazine", category: "Print", desc: "Editorial design for a 96-page quarterly arts magazine.", year: "2023", client: "Swahili Quarterly", hue: 12, metric: "96 pages", preview: placeholder("Swahili Magazine"), previewAlt: "Swahili Quarterly magazine preview" },
+  { slug: "jamii-social", title: "Jamii Bank - Social Content Engine", category: "Social", desc: "Monthly content system: 40 assets, 4 reels, 1 hero campaign.", year: "2024", client: "Jamii Bank", hue: 195, metric: "40 assets/month", preview: placeholder("Jamii Social"), previewAlt: "Jamii Bank social content preview" },
+  { slug: "pamoja-icons", title: "Pamoja - Custom Icon System", category: "Branding", desc: "180-icon system for a pan-African logistics SaaS.", year: "2023", client: "Pamoja", hue: 50, metric: "180 custom icons", preview: placeholder("Pamoja Icons"), previewAlt: "Pamoja icon system preview" },
+  { slug: "safari-impact-report", title: "Safari Trust - Impact Report", category: "Editorial", desc: "64-page annual impact report for a wildlife conservation NGO.", year: "2024", client: "Safari Trust", hue: 110, metric: "64-page report", preview: placeholder("Safari Impact Report"), previewAlt: "Safari Trust report preview" },
+  { slug: "mlima-uiux", title: "Mlima Learn - EdTech Product", category: "UI/UX", desc: "Web + mobile design system for an African e-learning platform.", year: "2024", client: "Mlima Learn", hue: 265, metric: "Cross-platform design system", preview: placeholder("Mlima Learn"), previewAlt: "Mlima Learn product preview" },
+  { slug: "zawadi-launch", title: "Zawadi Gifts - E-commerce Launch", category: "Web Dev", desc: "Headless commerce store with M-Pesa, analytics and content engine.", year: "2024", client: "Zawadi", hue: 340, liveUrl: "https://example.com", metric: "M-Pesa checkout", preview: placeholder("Zawadi Launch"), previewAlt: "Zawadi Gifts e-commerce preview" },
+  { slug: "rangi-poster-series", title: "Rangi - Poster Series", category: "Print", desc: "12-poster typographic series exhibited in Nairobi gallery week.", year: "2023", client: "Rangi", hue: 0, metric: "12-poster series", preview: placeholder("Rangi Poster Series"), previewAlt: "Rangi poster series preview" },
+  { slug: "lulu-portrait", title: "Lulu Mwangi - Portrait Series", category: "Photography", desc: "Editorial portrait series for a feature on East African musicians.", year: "2023", client: "Lulu Mwangi", hue: 80, metric: "Editorial feature set", preview: placeholder("Lulu Portraits"), previewAlt: "Lulu portrait series preview" },
 ];
 
 export const testimonials = [

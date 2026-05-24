@@ -71,7 +71,7 @@ export function Navigation() {
             >
               Services <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
             </Link>
-            <div className="pointer-events-none absolute left-1/2 top-full w-[760px] -translate-x-1/2 translate-y-3 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+            <div className="pointer-events-none absolute left-1/2 top-full w-[760px] max-w-[92vw] -translate-x-1/2 translate-y-3 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
               <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-background shadow-elegant">
                 <div className="grid grid-cols-[0.9fr_1.6fr]">
                   <div className="bg-gradient-primary p-6 text-primary-foreground">
@@ -86,7 +86,7 @@ export function Navigation() {
                       Start a brief <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   </div>
-                  <div className="grid grid-cols-5 gap-2 p-4">
+                  <div className="grid grid-cols-5 gap-2 p-4 max-h-[58vh] overflow-auto scrollbar-hide">
                     {groupedServices.map(({ group, items }) => (
                       <div key={group} className="rounded-xl border border-border bg-card p-3">
                         <div className="text-[10px] font-bold uppercase tracking-widest text-primary">{group}</div>

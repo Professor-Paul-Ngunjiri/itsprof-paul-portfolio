@@ -37,10 +37,10 @@ function About() {
             <span className="hero-eyebrow">/ about</span>
             <h1 className="mt-3 font-display text-5xl lg:text-7xl font-bold tracking-tighter leading-[0.95]">
               I'm Paul.<br />
-              <span className="text-gradient-gold">Where mathematics</span> meets creativity.
+              <span className="text-gradient-gold">Mathematical rigour</span> meets creative craft.
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-xl">
-              A Nairobi-based multi-disciplinary creative with a Bachelor of Science in Mathematics & Computer Science — and four years of professional work that puts that degree to use every single day.
+              I blend a BSc in Mathematics & Computer Science with creative practice to build brands, products and campaigns that are both beautiful and measurable. My work focuses on clarity, performance and results — the kind clients notice in the first reporting cycle.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="/cv.pdf" className="btn-hero-primary">
@@ -52,26 +52,51 @@ function About() {
             </div>
           </div>
           <div className="relative">
-            <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden border-2 border-border shadow-elegant">
-              <img src={aboutImg} loading="eager" fetchPriority="high" decoding="async" alt="Paul Ngunjiri" className="h-full w-full object-cover" />
+            <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden border-2 border-border bg-muted/20 shadow-elegant">
+              <div className="flex h-full w-full items-center justify-center bg-muted/10 p-6">
+                <img src={aboutImg} loading="eager" fetchPriority="high" decoding="async" alt="Paul Ngunjiri" className="max-h-full max-w-full object-contain object-center" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* STORY */}
-      <section className="mx-auto max-w-4xl px-5 lg:px-8 py-24 prose prose-lg dark:prose-invert">
-        <span className="font-mono text-xs uppercase tracking-widest text-primary">/ story</span>
-        <h2 className="font-display text-4xl lg:text-5xl font-bold mt-2">From theorems to typography.</h2>
-        <p className="text-muted-foreground leading-relaxed">
-          I grew up obsessed with two things that most people think live in different rooms: numbers and beautiful images. I wanted to know why a graph could feel inevitable and why a typeface could feel like home. So I went and studied both — formally, in a Mathematics & Computer Science programme — and informally, in every spare hour I had behind a camera, a Wacom tablet and a code editor.
-        </p>
-        <p className="text-muted-foreground leading-relaxed">
-          Four years into building <strong className="text-foreground">ItsProf Paul</strong> as a professional practice, I've shipped over a hundred projects across fifteen disciplines for clients in Kenya, East Africa and beyond. Brands, websites, films, ad campaigns, photo books, packaging, motion reels — the work changes shape, but the underlying engine is always the same: a maths-trained mind asking <em>"what's the most elegant solution here?"</em>
-        </p>
-        <p className="text-muted-foreground leading-relaxed">
-          My degree isn't decoration on a CV. Linear algebra is in my grid systems. Probability shows up in the A/B tests I run on landing pages. Algorithmic thinking shapes my UX flows. Statistics turns campaign data into the next quarter's plan. The reason my work tends to feel both polished and effective is that it's never just an aesthetic decision — it's an engineered one.
-        </p>
+      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-start">
+          <div className="space-y-6">
+            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ story</span>
+            <h2 className="font-display text-4xl lg:text-5xl font-bold">From theorems to typography.</h2>
+            <p className="text-muted-foreground leading-relaxed text-lg">
+              I bring a disciplined, systems-driven approach to brand, web and campaign work. The training I received in Mathematics & Computer Science gives every decision a clearer logic, better performance and stronger long-term value.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              In the last four years, I’ve worked with ambitious brands across Kenya, East Africa and international markets. The work varies — identity, digital products, film, marketing systems — but the process is consistently grounded in research, strategic clarity and a launch-ready approach.
+            </p>
+          </div>
+
+          <div className="grid gap-5">
+            {[
+              {
+                title: "Systems-first creative",
+                text: "Every visual decision is backed by layout rules, scale systems and accessible structure.",
+              },
+              {
+                title: "Numbers that shape design",
+                text: "Metrics, tests and user data guide the details, so the outcome feels both beautiful and effective.",
+              },
+              {
+                title: "Handoff without friction",
+                text: "Deliverables are built for teams: design tokens, source files, launch guides and clarity at every step.",
+              },
+            ].map((card) => (
+              <div key={card.title} className="rounded-3xl border border-border bg-card p-6 shadow-card">
+                <h3 className="font-display text-xl font-semibold">{card.title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{card.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* MATHS × CREATIVITY */}
@@ -138,7 +163,7 @@ function About() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
           <div className="text-center mb-12">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ values</span>
-            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold">All fourteen, in plain English.</h2>
+            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold">Fourteen guiding principles, explained plainly.</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {values.map((v, i) => (
@@ -158,7 +183,7 @@ function About() {
       {/* HUMAN SIDE */}
       <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24 grid lg:grid-cols-2 gap-12 items-center">
         <div className="aspect-square rounded-[2rem] overflow-hidden border border-border shadow-elegant">
-          <img src={portraitImg} loading="lazy" decoding="async" alt="Paul Ngunjiri portrait" className="h-full w-full object-cover" />
+          <img src={portraitImg} loading="lazy" decoding="async" alt="Paul Ngunjiri portrait" className="h-full w-full object-contain" />
         </div>
         <div>
           <span className="font-mono text-xs uppercase tracking-widest text-primary">/ off-screen</span>

@@ -54,6 +54,11 @@ function Services() {
           <p className="mt-5 max-w-2xl mx-auto text-lg text-white/85">
             Sixteen disciplines, one creative — engineered with the same rigor a Mathematics & Computer Science degree teaches.
           </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/80">
+            {['Creative', 'Digital', 'Media', 'Growth', 'Editorial'].map((item) => (
+              <span key={item} className="rounded-full border border-white/20 bg-white/10 px-3 py-1">{item}</span>
+            ))}
+          </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link to="/contact" className="btn-hero-primary">Get a custom quote</Link>
             <a href="#services" className="btn-hero-outline">Explore all services</a>

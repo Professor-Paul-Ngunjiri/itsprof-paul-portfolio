@@ -252,18 +252,23 @@ function Contact() {
                   <textarea required name="roi_goal" rows={3} className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors resize-none" placeholder="Example: generate better leads, raise brand trust, launch a premium product, win a tender, improve conversion..." />
                 </label>
 
-                <label className="block">
-                  <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Project brief</span>
-                  <textarea required name="message" rows={6} className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors resize-none" placeholder="Goals, audience, deliverables, references, competitors, decision-makers and anything I should know..." />
-                </label>
+                <details className="group rounded-2xl border border-border bg-background p-4">
+                  <summary className="cursor-pointer text-sm font-semibold">More project details (optional)</summary>
+                  <div className="mt-3 space-y-3">
+                    <label className="block">
+                      <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Project brief</span>
+                      <textarea name="message" rows={4} className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors resize-none" placeholder="Goals, audience, deliverables, references, competitors, decision-makers and anything I should know..." />
+                    </label>
 
-                <label className="block rounded-2xl border border-dashed border-primary/40 bg-primary/5 p-5">
-                  <span className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                    <FileUp className="h-4 w-4 text-primary" /> Upload brief, RFP, logo files or references
-                  </span>
-                  <input name="attachment" type="file" multiple className="mt-3 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm" />
-                  <span className="mt-2 block text-xs text-muted-foreground">PDF, DOCX, images, ZIP files or brand assets. Keep uploads concise for faster review.</span>
-                </label>
+                    <label className="block rounded-2xl border border-dashed border-primary/40 bg-primary/5 p-5">
+                      <span className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                        <FileUp className="h-4 w-4 text-primary" /> Upload brief, RFP, logo files or references
+                      </span>
+                      <input name="attachment" type="file" multiple className="mt-3 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm" />
+                      <span className="mt-2 block text-xs text-muted-foreground">PDF, DOCX, images, ZIP files or brand assets. Keep uploads concise for faster review.</span>
+                    </label>
+                  </div>
+                </details>
 
                 <div className="flex flex-col gap-4 rounded-2xl border border-border bg-muted/35 p-5 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-start gap-3">

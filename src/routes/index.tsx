@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Sparkles, Star, Linkedin, Instagram, Facebook, CheckCircle2, Gauge, Layers3, ShieldCheck } from "lucide-react";
+import { ArrowRight, Sparkles, Star, Linkedin, Instagram, Facebook, CheckCircle2, Gauge, Layers3, ShieldCheck, ExternalLink } from "lucide-react";
 import {
   Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
   Megaphone, Hash, LineChart, Package, PenTool, Printer, FileText,
@@ -46,6 +46,9 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const previewPlaceholderImages = [workImg, heroImg];
+  const getPlaceholderPreview = (index: number) => previewPlaceholderImages[index % previewPlaceholderImages.length];
+
   return (
     <>
       {/* HERO */}
@@ -112,19 +115,18 @@ function Index() {
           </div>
         </div>
 
-        {/* Stats bar — sunshine bg, blue gradient text */}
-        <div className="relative bg-gradient-sunshine border-t border-white/30">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8 py-10 grid grid-cols-2 md:grid-cols-5 gap-6">
+        {/* Stats bar — use brand primary gradient and white text for contrast */}
+        <div className="relative bg-gradient-primary border-t border-white/30">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { n: site.years, l: "Years experience" },
               { n: site.projects, l: "Projects delivered" },
               { n: site.clients, l: "Happy clients" },
               { n: site.services, l: "Creative services" },
-              { n: site.countries, l: "Countries served" },
             ].map((s, i) => (
               <div key={i} className="text-center">
-                <div className="font-display text-4xl lg:text-5xl font-extrabold text-gradient-deep-blue">{s.n}</div>
-                <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-[oklch(0.28_0.16_260)]">{s.l}</div>
+                <div className="font-display text-4xl lg:text-5xl font-extrabold text-white">{s.n}</div>
+                <div className="mt-1 text-xs font-display font-semibold uppercase tracking-widest text-white/80">{s.l}</div>
               </div>
             ))}
           </div>
@@ -136,7 +138,7 @@ function Index() {
           <div className="lg:col-span-5">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ signature system</span>
             <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">
-              Not a freelancer menu. A full creative engine.
+              Integrated creative & engineering team.
             </h2>
           </div>
           <p className="lg:col-span-5 lg:col-start-8 text-muted-foreground leading-relaxed">
@@ -166,7 +168,7 @@ function Index() {
             </h2>
           </div>
           <p className="text-muted-foreground max-w-md">
-            Tap any card to open a full breakdown — process, features, deliverables, pricing.
+            Focused specialities across four pillars: Creative · Digital · Media · Growth — tap any card for a full breakdown.
           </p>
         </div>
 
@@ -236,7 +238,7 @@ function Index() {
           </div>
           <div className="relative">
             <div className="aspect-square rounded-[2rem] border-2 border-gold/30 overflow-hidden shadow-elegant">
-              <img src={workImg} loading="lazy" decoding="async" alt="Paul Ngunjiri at work" className="h-full w-full object-cover" />
+              <img src={workImg} loading="lazy" decoding="async" alt="Paul Ngunjiri at work" className="h-full w-full object-contain" />
             </div>
             <div className="absolute -bottom-4 -right-4 bg-gold text-gold-foreground rounded-2xl p-5 shadow-elegant max-w-[220px] rotate-3">
               <div className="font-display text-2xl font-bold leading-none">∑ × ✦</div>
@@ -283,19 +285,60 @@ function Index() {
             Explore all projects <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {projects.slice(0, 8).map((p) => (
-            <Link
-              to="/portfolio"
-              key={p.slug}
-              className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-border hover:-translate-y-1 transition-transform"
-            >
-              <ProjectCover title={p.title} category={p.category} hue={p.hue} className="h-full w-full" />
-              <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                <p className="text-xs text-white/90">{p.desc}</p>
-              </div>
-            </Link>
-          ))}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {projects.slice(0, 6).map((p, index) => {
+            const previewSrc = getPlaceholderPreview(index);
+            return (
+              <article key={p.slug} className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-transform hover:-translate-y-1">
+                <div className="relative aspect-square overflow-hidden bg-muted/10">
+                  <img
+                    src={previewSrc}
+                    alt={p.previewAlt ?? `${p.title} preview`}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent" />
+
+                  <div className="absolute inset-x-0 bottom-0 p-4">
+                    <div className="rounded-3xl bg-gradient-warm p-4 text-white backdrop-blur-sm shadow-xl border border-white/15">
+                      <p className="text-[11px] uppercase tracking-[0.22em] text-white">{p.category}</p>
+                      <p className="mt-2 text-lg font-semibold leading-tight">{p.title}</p>
+                    </div>
+                  </div>
+
+                  <div className="absolute inset-0 p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out">
+                    <div className="flex h-full flex-col justify-between rounded-3xl bg-gradient-cool p-5 text-white backdrop-blur-sm shadow-2xl border border-white/10">
+                      <div className="space-y-4">
+                        <div>
+                          <p className="text-[11px] uppercase tracking-[0.22em] text-slate-400">{p.category}</p>
+                          <p className="mt-2 text-2xl font-semibold leading-tight text-white">{p.title}</p>
+                          {p.client ? <p className="mt-3 text-sm text-slate-300">Client: {p.client}</p> : null}
+                        </div>
+
+                        <div className="flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.18em] text-slate-400">
+                          {p.year ? <span className="rounded-full bg-white/10 px-2 py-1">{p.year}</span> : null}
+                          {p.metric ? <span className="rounded-full bg-white/10 px-2 py-1">{p.metric}</span> : null}
+                        </div>
+
+                        <p className="text-sm leading-relaxed text-slate-200">{p.desc}</p>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        <Link to="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-semibold text-white transition hover:border-primary hover:text-primary">
+                          View case study <ArrowRight className="h-3 w-3" />
+                        </Link>
+                        {p.liveUrl ? (
+                          <a href={p.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-semibold text-white transition hover:border-primary hover:text-primary">
+                            Visit site <ExternalLink className="h-3 w-3" />
+                          </a>
+                        ) : null}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 
