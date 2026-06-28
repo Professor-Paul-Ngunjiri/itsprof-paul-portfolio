@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, BriefcaseBusiness, ChevronDown, Menu, Moon, Send, Sun, Terminal, X } from "lucide-react";
 import { useState } from "react";
-import { services, site } from "@/lib/site";
+import { servicePillars, services, site } from "@/lib/site";
 import { useTheme } from "@/hooks/use-theme";
 import logo from "/logo.svg?url";
 
@@ -12,14 +12,16 @@ const links = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-const serviceGroups = ["Creative", "Digital", "Media", "Growth", "Editorial"] as const;
-
 export function Navigation() {
   const [open, setOpen] = useState(false);
   const { theme, toggle } = useTheme();
-  const groupedServices = serviceGroups.map((group) => ({
-    group,
-    items: services.filter((service) => service.category === group).slice(0, 4),
+  const groupedServices = servicePillars.map((pillar) => ({
+    group: pillar.title,
+    desc: pillar.desc,
+    items: pillar.services
+      .map((slug) => services.find((service) => service.slug === slug))
+      .filter(Boolean)
+      .slice(0, 5),
   }));
   const featuredServices = services.filter((service) => ["brand-identity", "web-development", "ui-ux-design", "digital-marketing"].includes(service.slug));
 
@@ -35,7 +37,7 @@ export function Navigation() {
             .
           </span>
           <div className="flex items-center gap-4">
-            <a href={`mailto:${site.quoteEmail}`} className="hover:text-primary">{site.quoteEmail}</a>
+            <a href={`mailto:${site.email}`} className="hover:text-primary">{site.email}</a>
             <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer" className="hover:text-primary">WhatsApp</a>
           </div>
         </div>
@@ -78,7 +80,7 @@ export function Navigation() {
                     <div className="inline-flex rounded-2xl bg-white/10 p-3">
                       <BriefcaseBusiness className="h-6 w-6 text-gold" />
                     </div>
-                    <h3 className="mt-4 font-display text-xl font-bold">Focused services, one coordinated team.</h3>
+                    <h3 className="mt-4 font-display text-xl font-bold">Focused service pillars, one coordinated delivery system.</h3>
                     <p className="mt-3 text-xs leading-relaxed text-white/85">
                       Start with the service you need now. The dedicated pages carry the full process, scope and pricing context.
                     </p>
@@ -86,19 +88,20 @@ export function Navigation() {
                       Start a brief <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   </div>
-                  <div className="grid grid-cols-5 gap-2 p-4 max-h-[58vh] overflow-auto scrollbar-hide">
-                    {groupedServices.map(({ group, items }) => (
+                  <div className="grid grid-cols-3 gap-3 p-4 max-h-[58vh] overflow-auto scrollbar-hide">
+                    {groupedServices.map(({ group, desc, items }) => (
                       <div key={group} className="rounded-xl border border-border bg-card p-3">
                         <div className="text-[10px] font-bold uppercase tracking-widest text-primary">{group}</div>
+                        <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">{desc}</p>
                         <div className="mt-2 space-y-1.5">
                           {items.map((service) => (
                             <Link
-                              key={service.slug}
+                              key={service!.slug}
                               to="/services/$slug"
-                              params={{ slug: service.slug }}
+                              params={{ slug: service!.slug }}
                               className="block rounded-lg px-2 py-1.5 text-xs leading-tight text-muted-foreground hover:bg-muted hover:text-foreground"
                             >
-                              {service.name}
+                              {service!.name}
                             </Link>
                           ))}
                         </div>

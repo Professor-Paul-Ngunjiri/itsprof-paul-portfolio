@@ -2,17 +2,16 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { projects, site } from "@/lib/site";
-import { ProjectCover } from "@/components/ProjectCover";
 import paulWorkPreview from "@/assets/paul-work.webp";
 import paulHeroPreview from "@/assets/paul-hero.webp";
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
     meta: [
-      { title: "Portfolio — ItsProf Paul · Brand, Web, Photo, Film, Marketing, Editorial" },
-      { name: "description", content: "Selected projects by Paul Ngunjiri across branding, web, photography, video, marketing, packaging and editorial documents." },
-      { property: "og:title", content: "Portfolio — Paul Ngunjiri" },
-      { property: "og:description", content: "100+ projects across 16 disciplines." },
+      { title: "Portfolio | Premium Brand, Web, Content & Growth Work by Paul Ngunjiri" },
+      { name: "description", content: "Selected brand, web, UI/UX, photography, video, marketing, packaging and editorial projects by Paul Ngunjiri." },
+      { property: "og:title", content: "Portfolio | Paul Ngunjiri" },
+      { property: "og:description", content: "Selected work across four connected pillars: brand, web, media and growth." },
     ],
     links: [{ rel: "canonical", href: "/portfolio" }],
   }),
@@ -334,7 +333,7 @@ function Portfolio() {
 
                         <div className="flex flex-wrap gap-2">
                           <button type="button" onClick={() => setSelectedSlug(p.slug)} className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-semibold text-white transition hover:border-primary hover:text-primary">
-                            Preview only <ArrowRight className="h-3.5 w-3.5" />
+                            Open case study <ArrowRight className="h-3.5 w-3.5" />
                           </button>
                           {p.liveUrl ? (
                             <a href={p.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-semibold text-white transition hover:border-primary hover:text-primary">

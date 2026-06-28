@@ -19,12 +19,12 @@ export const Route = createFileRoute("/services/$slug")({
   },
   head: ({ loaderData }) => {
     const s = loaderData?.service;
-    if (!s) return { meta: [{ title: "Service — ItsProf Paul" }] };
+    if (!s) return { meta: [{ title: "Service | ItsProf Paul" }] };
     return {
       meta: [
-        { title: `${s.name} — ItsProf Paul` },
-        { name: "description", content: s.tagline },
-        { property: "og:title", content: `${s.name} — Paul Ngunjiri` },
+        { title: `${s.name} | ItsProf Paul` },
+        { name: "description", content: `${s.tagline} Explore process, deliverables, pricing range and quote options for premium ${s.category.toLowerCase()} work.` },
+        { property: "og:title", content: `${s.name} | Paul Ngunjiri` },
         { property: "og:description", content: s.tagline },
       ],
       links: [{ rel: "canonical", href: `/services/${s.slug}` }],
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/services/$slug")({
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-5 py-32 text-center">
       <h1 className="font-display text-4xl font-bold">Service not found</h1>
-      <Link to="/services" className="mt-6 inline-block text-primary hover:underline">← All services</Link>
+      <Link to="/services" className="mt-6 inline-block text-primary hover:underline">Back to all services</Link>
     </div>
   ),
   component: ServiceDetail,
@@ -97,6 +97,30 @@ function ServiceDetail() {
               Get a custom quote
             </Link>
           </aside>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-16">
+        <div className="grid gap-4 md:grid-cols-3">
+          {[
+            {
+              title: "Best for",
+              desc: `Founders, marketing teams and organisations that need ${s.name.toLowerCase()} to feel premium, consistent and ready for real business use.`,
+            },
+            {
+              title: "Business problem solved",
+              desc: "This removes unclear positioning, inconsistent assets, slow execution and the hidden cost of creative work that looks nice but does not support sales.",
+            },
+            {
+              title: "Return on investment",
+              desc: "You leave with stronger market presence, clearer customer trust signals and deliverables built to improve conversion, recall and team efficiency.",
+            },
+          ].map((item) => (
+            <article key={item.title} className="rounded-3xl border border-border bg-card p-6 shadow-card">
+              <h2 className="font-display text-xl font-semibold">{item.title}</h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -214,7 +238,7 @@ function ServiceDetail() {
       {related.length > 0 && (
         <section className="mx-auto max-w-7xl px-5 lg:px-8 pb-16">
           <span className="font-mono text-xs uppercase tracking-widest text-primary">/ related services</span>
-          <h2 className="mt-2 font-display text-3xl font-bold">Often paired with…</h2>
+          <h2 className="mt-2 font-display text-3xl font-bold">Often paired with...</h2>
           <div className="mt-8 grid md:grid-cols-3 gap-4">
             {related.map((r) => {
               const RI = ICONS[r.icon as keyof typeof ICONS] ?? Sparkles;
@@ -237,7 +261,7 @@ function ServiceDetail() {
       <section className="mx-auto max-w-7xl px-5 lg:px-8 pb-20">
         <div className="rounded-[2.5rem] bg-gradient-primary text-primary-foreground p-12 lg:p-16 text-center shadow-elegant">
           <h2 className="font-display text-3xl lg:text-5xl font-bold">Ready to start your {s.name.toLowerCase()} project?</h2>
-          <p className="mt-4 max-w-xl mx-auto opacity-95">Book a free 30-minute discovery call — no pitch, just a real conversation about your project.</p>
+          <p className="mt-4 max-w-xl mx-auto opacity-95">Book a free 30-minute discovery call - no hard pitch, just a real conversation about your project.</p>
           <Link to="/contact" search={{ service: s.slug }} className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground">
             Start a project <ArrowRight className="h-4 w-4" />
           </Link>

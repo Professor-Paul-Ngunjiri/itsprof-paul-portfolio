@@ -1,45 +1,36 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Sparkles, Star, Linkedin, Instagram, Facebook, CheckCircle2, Gauge, Layers3, ShieldCheck, ExternalLink } from "lucide-react";
-import {
-  Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
-  Megaphone, Hash, LineChart, Package, PenTool, Printer, FileText,
-} from "lucide-react";
-import { site, services, processSteps, values, projects, testimonials } from "@/lib/site";
+import { ArrowRight, Sparkles, Star, Linkedin, Instagram, Facebook, Music2, CheckCircle2, Gauge, Layers3, ShieldCheck, ExternalLink } from "lucide-react";
+import { servicePillars, site, services, processSteps, values, projects, testimonials } from "@/lib/site";
 import { Typewriter } from "@/components/Typewriter";
-import { ProjectCover } from "@/components/ProjectCover";
 import heroImg from "@/assets/paul-hero.webp";
 import workImg from "@/assets/paul-work.webp";
-
-const ICONS = {
-  Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
-  Megaphone, Hash, LineChart, Package, PenTool, Printer, Sparkles, FileText,
-} as const;
 
 const signatureSystems = [
   {
     icon: Layers3,
-    title: "One Creative Operating System",
-    desc: "Strategy, identity, content, code and launch work stay connected, so the project does not lose meaning between handoffs.",
+    title: "One Calm Project Lead",
+    desc: "You get one accountable creative partner who can connect strategy, identity, web, content and launch decisions without making you manage the pieces.",
   },
   {
     icon: Gauge,
-    title: "Performance Built Into Craft",
-    desc: "Every page, campaign and visual system is shaped around speed, clarity, conversion and measurable business outcomes.",
+    title: "Beautiful Work With a Job to Do",
+    desc: "Every page, campaign and visual system is shaped around clarity, trust, speed, conversion and measurable business outcomes.",
   },
   {
     icon: ShieldCheck,
-    title: "Premium Handoff Discipline",
-    desc: "Source files, usage notes, QA checks, launch lists and post-delivery support are treated as part of the work.",
+    title: "Premium Delivery Manners",
+    desc: "Clear updates, source files, usage notes, QA checks, launch lists and post-delivery support are treated as part of the work.",
   },
 ];
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ItsProf Paul — Paul Ngunjiri · Multi-disciplinary Creative in Nairobi" },
-      { name: "description", content: "Brands, websites, films and campaigns engineered to move numbers — by Paul Ngunjiri in Nairobi." },
-      { property: "og:title", content: "ItsProf Paul — Brands, Websites, Films & Campaigns" },
-      { property: "og:description", content: "Multi-disciplinary creative engineered to move numbers." },
+      { title: "Paul Ngunjiri | Brand Strategist, Web Designer & Creative Technologist" },
+      { name: "description", content: "Premium brand strategy, web design, content production and growth systems for ambitious businesses in Kenya and international markets." },
+      { name: "keywords", content: "Paul Ngunjiri, ItsProf Paul, brand strategist Kenya, web designer Nairobi, creative technologist, digital growth partner, portfolio" },
+      { property: "og:title", content: "ItsProf Paul | Premium Brand, Web, Content & Growth Systems" },
+      { property: "og:description", content: "A Nairobi-based creative technology partner helping ambitious brands look premium, launch faster and convert better." },
     ],
   }),
   component: Index,
@@ -53,8 +44,8 @@ function Index() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden bg-hero">
-        <div className="relative mx-auto max-w-7xl px-5 lg:px-8 pt-16 pb-20 lg:pt-24 lg:pb-28 grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 animate-fade-up">
+        <div className="relative mx-auto max-w-7xl px-5 lg:px-8 pt-10 pb-10 lg:pt-14 lg:pb-14 grid lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-6 animate-fade-up">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 backdrop-blur px-3 py-1.5 text-xs font-medium">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-60 animate-ping" />
@@ -62,28 +53,35 @@ function Index() {
               </span>
               Available for new projects
             </span>
-            <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.95] tracking-tighter text-balance">
+            <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[0.98] tracking-tighter text-balance">
               Paul Ngunjiri.
               <br />
               I am a <Typewriter />
             </h1>
-            <p className="mt-7 text-lg text-white/85 max-w-xl leading-relaxed">
-              <span className="font-semibold text-white">ItsProf Paul</span> — {site.tagline} Based in Nairobi, working with brands across Africa and beyond.
+            <p className="mt-5 text-base lg:text-lg text-white/85 max-w-2xl leading-relaxed">
+              I am popularly known as <span className="font-semibold text-white">ItsProf Paul</span>. I help individuals, founders, companies, churches, NGOs, schools, government teams and international organisations turn unclear positioning, slow websites and scattered content into premium brands, fast digital experiences and growth systems that earn trust, launch faster and convert better.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/portfolio" className="btn-hero-primary group">
-                View My Work
+            <div className="mt-4 inline-flex flex-wrap items-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white/85 backdrop-blur">
+              <span>Creative direction, web strategy, content systems and growth thinking in one calm process.</span>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link to="/contact" className="btn-hero-primary group">
+                Hire Paul / Request a quote
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
-              <Link to="/contact" className="btn-hero-outline">
-                Let's Build Together
+              <Link to="/portfolio" className="btn-hero-outline">
+                See Proof of Work
               </Link>
             </div>
-            <div className="mt-8 flex items-center gap-4 text-white/70">
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/72">
+              Trusted across 100+ delivered projects by 50+ clients. To hire me, choose a service, send a brief or request a quote, and I will respond with a clear scope, timeline and investment range.
+            </p>
+            <div className="mt-5 flex items-center gap-4 text-white/70">
               {[
                 { i: Linkedin, h: site.socials.linkedin.url },
                 { i: Instagram, h: site.socials.instagram.url },
                 { i: Facebook, h: site.socials.facebook.url },
+                { i: Music2, h: site.socials.tiktok.url },
               ].map((s, i) => (
                 <a key={i} href={s.h} target="_blank" rel="noreferrer" className="hover:text-gold transition-colors">
                   <s.i className="h-5 w-5" />
@@ -93,31 +91,25 @@ function Index() {
             </div>
           </div>
 
-          <div className="lg:col-span-5 relative flex justify-center">
-            <img
-              src={heroImg}
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              alt="Paul Ngunjiri — ItsProf Paul"
-              className="relative z-10 w-full max-w-md h-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
-            />
-            <div className="absolute -bottom-2 -left-2 z-20 rounded-2xl border border-white/25 bg-white/95 backdrop-blur shadow-card p-4 max-w-[200px]">
-              <div className="font-display text-3xl font-bold text-gradient-primary">{site.years}</div>
-              <div className="text-xs text-foreground/70">years engineering creative work</div>
-            </div>
-            <div className="absolute -top-2 -right-2 z-20 rounded-2xl border border-white/25 bg-white/95 backdrop-blur shadow-card p-4">
-              <div className="flex items-center gap-1">
-                {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-gold text-gold" />)}
+          <div className="lg:col-span-6 relative flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-md lg:max-w-xl">
+              <div className="overflow-hidden rounded-[2.25rem] border border-white/20 bg-white/10 shadow-elegant backdrop-blur">
+                <img
+                  src={heroImg}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  alt="Paul Ngunjiri - ItsProf Paul"
+                  className="relative z-10 w-full h-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.35)]"
+                />
               </div>
-              <div className="mt-1 text-xs font-medium text-foreground/80">Rated by 50+ clients</div>
             </div>
           </div>
         </div>
 
-        {/* Stats bar — use brand primary gradient and white text for contrast */}
+        {/* Stats bar */}
         <div className="relative bg-gradient-primary border-t border-white/30">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8 py-5 grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { n: site.years, l: "Years experience" },
               { n: site.projects, l: "Projects delivered" },
@@ -164,67 +156,63 @@ function Index() {
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ services</span>
             <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">
-              Sixteen disciplines. <span className="text-gradient-primary">One signature.</span>
+              Three focused pillars. <span className="text-gradient-primary">One coordinated system.</span>
             </h2>
           </div>
           <p className="text-muted-foreground max-w-md">
-            Focused specialities across four pillars: Creative · Digital · Media · Growth — tap any card for a full breakdown.
+            The services are grouped into clear lanes, while every detailed service page remains available for scope, process, pricing context and next steps.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map((s, i) => {
-            const Icon = ICONS[s.icon as keyof typeof ICONS] ?? Sparkles;
+        <div className="grid lg:grid-cols-3 gap-5">
+          {servicePillars.map((pillar) => {
+            const pillarServices = pillar.services
+              .map((slug) => services.find((service) => service.slug === slug))
+              .filter(Boolean);
             return (
-              <Link
-                key={s.slug}
-                to="/services/$slug"
-                params={{ slug: s.slug }}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 hover:border-primary transition-all duration-300 hover:-translate-y-1 shadow-card"
-              >
+              <article key={pillar.title} className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 hover:border-primary transition-all duration-300 hover:-translate-y-1 shadow-card">
                 <div className="absolute top-0 right-0 h-24 w-24 rounded-full bg-gradient-primary opacity-0 group-hover:opacity-10 blur-2xl transition-opacity" />
-                <div className="flex items-start justify-between">
-                  <div className="rounded-xl bg-primary/10 p-2.5 group-hover:bg-primary/20 transition-colors">
-                    <Icon className="h-5 w-5 text-primary" />
-                  </div>
-                  <div className="font-mono text-[10px] text-muted-foreground">0{(i + 1).toString().padStart(2, "0")}</div>
-                </div>
-                <h3 className="mt-4 font-display text-xl font-semibold">{s.name}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-                <ul className="mt-3 space-y-1">
-                  {s.features.slice(0, 2).map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
-                      <CheckCircle2 className="h-3.5 w-3.5 mt-0.5 text-primary flex-shrink-0" /> {f}
-                    </li>
+                <h3 className="font-display text-2xl font-semibold">{pillar.title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{pillar.desc}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {pillarServices.map((service) => (
+                    <Link
+                      key={service!.slug}
+                      to="/services/$slug"
+                      params={{ slug: service!.slug }}
+                      className="rounded-full border border-border bg-background/70 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                    >
+                      {service!.name}
+                    </Link>
                   ))}
-                </ul>
-                <div className="mt-5 inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:gap-2 transition-all">
-                  Learn more <ArrowRight className="h-3 w-3" />
                 </div>
-              </Link>
+                <Link to="/services" className="mt-6 inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:gap-2 transition-all">
+                  Explore pillar <ArrowRight className="h-3 w-3" />
+                </Link>
+              </article>
             );
           })}
         </div>
       </section>
 
-      {/* MATHS × CREATIVITY */}
+      {/* ANALYTICAL CREATIVE SYSTEM */}
       <section className="relative overflow-hidden bg-gradient-blue text-secondary-foreground">
         <div className="absolute inset-0 bg-mesh opacity-30" aria-hidden />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8 py-24 grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-gold">/ what makes me different</span>
             <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">
-              A BSc in Mathematics & Computer Science changes how design gets made.
+              Analytical thinking. Creative execution. Measurable outcomes.
             </h2>
             <p className="mt-5 text-base lg:text-lg opacity-90 leading-relaxed">
-              Linear algebra informs my grid systems. Probability shapes my A/B tests. Algorithms drive my UX flows. Where most creatives rely on intuition alone, I bring measurable rigor to every brief — and the work is sharper for it.
+              My Mathematics and Computer Science background gives the work a practical advantage: clearer structure, stronger web performance, better reporting and decisions that can be explained to a boardroom, not just defended by taste.
             </p>
             <div className="mt-8 grid sm:grid-cols-2 gap-3">
               {[
-                "Grid systems built on mathematical ratios",
-                "Data-driven A/B testing on campaigns",
-                "Algorithmic thinking in UX architecture",
-                "Statistical reporting on every project",
+                "Strategy translated into visual systems",
+                "Fast websites built for search and conversion",
+                "Campaign decisions shaped by real data",
+                "Reporting that connects design to ROI",
               ].map((t) => (
                 <div key={t} className="flex items-start gap-2 text-sm">
                   <CheckCircle2 className="h-5 w-5 text-gold flex-shrink-0 mt-0.5" />
@@ -241,8 +229,8 @@ function Index() {
               <img src={workImg} loading="lazy" decoding="async" alt="Paul Ngunjiri at work" className="h-full w-full object-contain" />
             </div>
             <div className="absolute -bottom-4 -right-4 bg-gold text-gold-foreground rounded-2xl p-5 shadow-elegant max-w-[220px] rotate-3">
-              <div className="font-display text-2xl font-bold leading-none">∑ × ✦</div>
-              <div className="mt-2 text-xs font-medium">Where numbers become narrative.</div>
+              <div className="font-display text-2xl font-bold leading-none">ROI</div>
+              <div className="mt-2 text-xs font-medium">Where creative work proves its value.</div>
             </div>
           </div>
         </div>
@@ -252,18 +240,18 @@ function Index() {
       <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
         <div className="text-center max-w-2xl mx-auto">
           <span className="font-mono text-xs uppercase tracking-widest text-primary">/ process</span>
-          <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">Seven stages, zero surprises.</h2>
-          <p className="mt-4 text-muted-foreground">A documented workflow that the client sees from day one. You always know what's happening, why, and what's next.</p>
+          <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">A clear path from brief to launch.</h2>
+          <p className="mt-4 text-muted-foreground">Seven compact stages keep decisions visible, feedback structured and delivery calm from the first call to post-launch support.</p>
         </div>
-        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-7 gap-3">
           {processSteps.map((s) => (
-            <div key={s.n} className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-card hover:border-primary hover:-translate-y-1 transition-all">
+            <div key={s.n} className="group relative overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-card hover:border-primary hover:-translate-y-1 transition-all">
               <div className="absolute -top-6 -right-6 h-24 w-24 rounded-full bg-gradient-primary opacity-0 group-hover:opacity-10 blur-2xl transition-opacity" />
-              <div className="font-mono text-4xl font-bold text-gradient-primary">{s.n}</div>
-              <h3 className="mt-3 font-display text-lg font-semibold">{s.title}</h3>
+              <div className="font-mono text-2xl font-bold text-gradient-primary">{s.n}</div>
+              <h3 className="mt-3 font-display text-base font-semibold leading-tight">{s.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
               <ul className="mt-4 space-y-1.5 border-t border-border pt-4">
-                {s.features.map((f) => (
+                {s.features.slice(0, 2).map((f) => (
                   <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
                     <CheckCircle2 className="h-3.5 w-3.5 mt-0.5 text-primary flex-shrink-0" /> {f}
                   </li>
@@ -274,7 +262,7 @@ function Index() {
         </div>
       </section>
 
-      {/* FEATURED WORK — 4 per row */}
+      {/* FEATURED WORK */}
       <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
         <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
           <div>
@@ -402,7 +390,7 @@ function Index() {
               Ready to build something <em className="not-italic underline decoration-gold decoration-4 underline-offset-8">extraordinary</em>?
             </h2>
             <p className="mt-5 max-w-xl mx-auto opacity-95">
-              From a single logo to a full brand-and-launch system — let's get on a call and scope it out.
+              From a single identity system to a full brand-and-launch engine - let's get on a call and scope it properly.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link to="/contact" className="rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground hover:opacity-90 transition-colors">

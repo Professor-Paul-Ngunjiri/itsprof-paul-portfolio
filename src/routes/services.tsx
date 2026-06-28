@@ -4,7 +4,7 @@ import {
   Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
   Megaphone, Hash, LineChart, Package, PenTool, Printer, Sparkles, FileText,
 } from "lucide-react";
-import { getSubServices, services } from "@/lib/site";
+import { expertisePillars, getSubServices, servicePillars, services } from "@/lib/site";
 
 const ICONS = {
   Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
@@ -14,10 +14,10 @@ const ICONS = {
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — ItsProf Paul · 16 Creative Disciplines" },
-      { name: "description", content: "Branding, web, photography, video, marketing and large-document design — by Paul Ngunjiri in Nairobi." },
-      { property: "og:title", content: "Services — Paul Ngunjiri" },
-      { property: "og:description", content: "End-to-end creative solutions, delivered with precision." },
+      { title: "Services | Brand, Web, Content & Growth Systems by Paul Ngunjiri" },
+      { name: "description", content: "Premium brand strategy, web design, development, content production, marketing and editorial services delivered through three focused creative pillars." },
+      { property: "og:title", content: "Services | ItsProf Paul" },
+      { property: "og:description", content: "Brand, web, media and growth services for ambitious businesses that want premium execution and measurable return." },
     ],
     links: [{ rel: "canonical", href: "/services" }],
   }),
@@ -25,9 +25,9 @@ export const Route = createFileRoute("/services")({
 });
 
 const differentiators = [
-  { t: "Maths-powered creativity", d: "A BSc in Mathematics & CS underwriting every aesthetic decision." },
-  { t: "Multi-disciplinary expertise", d: "Branding, web, film, marketing, editorial — under one roof, one accountability." },
-  { t: "Nairobi-based, world-class standards", d: "African context, global craft — and the price tag of neither extreme." },
+  { t: "Strategic creative direction", d: "Brand, web, film, marketing and editorial decisions are connected to one commercial objective." },
+  { t: "Specialist delivery without vendor chaos", d: "I lead the system and collaborate with trusted specialists where a brief needs deeper production capacity." },
+  { t: "Nairobi-based, global standard", d: "African market fluency, international polish and async-friendly communication for serious clients." },
   { t: "Fast turnaround, no quality drop", d: "Disciplined systems mean speed without burning the brief." },
   { t: "Client-centred communication", d: "Clear updates, transparent timelines, no jargon walls." },
   { t: "Transparent pricing", d: "No hidden fees. Quotes you can hand to finance without explanation." },
@@ -49,14 +49,14 @@ function Services() {
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 text-center">
           <span className="hero-eyebrow">/ services</span>
           <h1 className="mt-3 font-display text-5xl lg:text-7xl font-bold tracking-tighter">
-            End-to-end creative,<br /> <span className="text-gradient-gold">delivered with precision.</span>
+            Brand, web, content<br /> <span className="text-gradient-gold">and growth systems.</span>
           </h1>
           <p className="mt-5 max-w-2xl mx-auto text-lg text-white/85">
-            Sixteen disciplines, one creative — engineered with the same rigor a Mathematics & Computer Science degree teaches.
+            Three focused service pillars with one accountable creative lead, built for clients who want premium execution without coordinating five separate vendors.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/80">
-            {['Creative', 'Digital', 'Media', 'Growth', 'Editorial'].map((item) => (
-              <span key={item} className="rounded-full border border-white/20 bg-white/10 px-3 py-1">{item}</span>
+            {servicePillars.map((item) => (
+              <span key={item.title} className="rounded-full border border-white/20 bg-white/10 px-3 py-1">{item.title}</span>
             ))}
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -66,13 +66,24 @@ function Services() {
         </div>
       </section>
 
-      <section id="services" className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
+      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-16">
+        <div className="grid md:grid-cols-3 gap-4">
+          {expertisePillars.map((pillar) => (
+            <article key={pillar.title} className="rounded-3xl border border-border bg-card p-6 shadow-card">
+              <h2 className="font-display text-xl font-semibold">{pillar.title}</h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{pillar.desc}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="services" className="mx-auto max-w-7xl px-5 lg:px-8 py-20">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ services</span>
-            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold">All sixteen disciplines.</h2>
+            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold">Every service, organised by outcome.</h2>
           </div>
-          <p className="text-muted-foreground max-w-md">Tap any card for a full breakdown — process, features, deliverables, FAQs and pricing.</p>
+          <p className="text-muted-foreground max-w-md">Tap any card for the detailed breakdown: process, deliverables, FAQs, investment range and quote options.</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -92,7 +103,7 @@ function Services() {
                     <Icon className="h-6 w-6 text-primary" />
                   </div>
                   <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    /{(i + 1).toString().padStart(2, "0")} · {s.category}
+                    /{(i + 1).toString().padStart(2, "0")} - {s.category}
                   </div>
                 </div>
                 <h3 className="mt-5 font-display text-2xl font-bold leading-tight">{s.name}</h3>
@@ -132,7 +143,7 @@ function Services() {
           <div className="text-center mb-12">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ pricing</span>
             <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold">Three engagement tiers.</h2>
-            <p className="mt-3 text-muted-foreground max-w-xl mx-auto">Indicative ranges. Every quote is custom — these get the conversation started.</p>
+            <p className="mt-3 text-muted-foreground max-w-xl mx-auto">Indicative ranges. Every quote is custom, but these tiers make it easy to choose the level of investment that matches your ambition.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {tiers.map((t) => (
@@ -174,7 +185,7 @@ function Services() {
       <section className="mx-auto max-w-7xl px-5 lg:px-8 pb-16">
         <div className="rounded-[2.5rem] bg-gradient-primary text-primary-foreground p-12 lg:p-20 text-center shadow-elegant">
           <h2 className="font-display text-4xl lg:text-5xl font-bold">Book a free discovery call.</h2>
-          <p className="mt-4 max-w-xl mx-auto opacity-95">Thirty minutes. No pitch. Just a real conversation about your project and whether we're a fit.</p>
+          <p className="mt-4 max-w-xl mx-auto opacity-95">Thirty minutes. No hard pitch. Just a real conversation about your goals, timeline, investment range and whether we are a strong fit.</p>
           <Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground">
             Schedule a call <ArrowRight className="h-4 w-4" />
           </Link>
