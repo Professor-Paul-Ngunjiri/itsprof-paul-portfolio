@@ -211,9 +211,48 @@
     0%   { transform: translate3d(0, 0, 0); }
     100% { transform: translate3d(-2%, 2%, 0); }
   }
+  .typewriter-stable {
+    display: inline-block;
+    min-width: min(24ch, 100%);
+    max-width: 100%;
+    min-height: 1.05em;
+    white-space: nowrap;
+    vertical-align: baseline;
+    overflow: visible;
+  }
+  .hero-title-line {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.28em;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+  .brand-marquee-track {
+    animation: brand-marquee 24s linear infinite;
+    will-change: transform;
+  }
+  .brand-marquee:has(a:hover) .brand-marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes brand-marquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+  }
   @media (max-width: 768px) {
     .bg-hero::after { filter: blur(40px); opacity: 0.45; }
     .bg-hero::before { opacity: 0.08; background-size: min(440px, 92vw) auto; }
+    .hero-title-line {
+      display: block;
+      white-space: normal;
+    }
+    .typewriter-stable {
+      display: block;
+      min-width: 100%;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      white-space: normal;
+      line-height: 1.08;
+    }
   }
   @media (prefers-reduced-motion: reduce) {
     .bg-hero::before,

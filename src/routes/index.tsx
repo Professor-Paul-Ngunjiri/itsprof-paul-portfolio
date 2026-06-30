@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles, Star, Linkedin, Instagram, Facebook, Music2, CheckCircle2, Gauge, Layers3, ShieldCheck, ExternalLink } from "lucide-react";
-import { servicePillars, site, services, processSteps, values, projects, testimonials } from "@/lib/site";
+import { clientBrands, servicePillars, site, services, processSteps, values, projects, testimonials } from "@/lib/site";
 import { Typewriter } from "@/components/Typewriter";
+import { ProcessShowcase } from "@/components/ProcessShowcase";
 import heroImg from "@/assets/paul-hero.webp";
 import workImg from "@/assets/paul-work.webp";
 
@@ -38,14 +39,44 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const previewPlaceholderImages = [workImg, heroImg];
-  const getPlaceholderPreview = (index: number) => previewPlaceholderImages[index % previewPlaceholderImages.length];
+  const getProjectPreview = (index: number, preview?: string) => preview ?? previewPlaceholderImages[index % previewPlaceholderImages.length];
+  const processStages = processSteps.map((step, index) => ({
+    step: step.n,
+    title: step.title,
+    desc: step.desc,
+    timeframe: ["Same day", "2-4 days", "3-7 days", "Project phase", "Review phase", "Launch window", "First 30 days"][index],
+    activities: step.features,
+    deliverables: step.features.map((feature) => `${feature} confirmed`),
+    caseStudy: {
+      title: [
+        "Turning a vague idea into a clear working brief",
+        "Finding the strongest market angle before design begins",
+        "Choosing one creative direction with confidence",
+        "Keeping production aligned across design, content and web",
+        "Reducing feedback loops through structured reviews",
+        "A smoother launch with fewer last-minute decisions",
+        "Using early performance signals to improve the work",
+      ][index],
+      description: [
+        "A founder came in with scattered notes, reference links and an urgent launch goal. The discovery stage turned that into a focused scope, audience map and decision checklist.",
+        "A growing organisation needed to look more premium but could not explain its difference. Research clarified the competitors, audience expectations and the positioning angle to lead with.",
+        "Instead of guessing from a single mockup, the client compared clear creative routes and selected the direction that best matched their market and revenue goal.",
+        "For a digital launch, design, web, copy and content assets moved together so the final brand experience felt consistent instead of assembled at the last minute.",
+        "A client with many stakeholders avoided scattered edits by reviewing work through one structured feedback round, grouped by priority and business impact.",
+        "For a recent digital launch, the client approved the final website, brand assets and campaign materials with a clear checklist instead of scattered feedback.",
+        "After launch, early analytics showed which messages and pages were getting attention, then the next iteration improved clarity and conversion paths.",
+      ][index],
+      client: "Scenario",
+      industry: "Brand, web and growth delivery",
+    },
+  }));
 
   return (
     <>
       {/* HERO */}
       <section className="relative overflow-hidden bg-hero">
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8 pt-10 pb-10 lg:pt-14 lg:pb-14 grid lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-6 animate-fade-up">
+          <div className="lg:col-span-7 animate-fade-up">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 backdrop-blur px-3 py-1.5 text-xs font-medium">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-60 animate-ping" />
@@ -53,10 +84,11 @@ function Index() {
               </span>
               Available for new projects
             </span>
-            <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[0.98] tracking-tighter text-balance">
-              Paul Ngunjiri.
-              <br />
-              I am a <Typewriter />
+            <h1 className="mt-5 font-display text-[2.35rem] sm:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-bold leading-[1.04] tracking-tighter text-balance">
+              <span className="block sm:whitespace-nowrap">I'M Paul Ngunjiri, a</span>
+              <span className="mt-1 block max-w-full overflow-visible">
+                <Typewriter />
+              </span>
             </h1>
             <p className="mt-5 text-base lg:text-lg text-white/85 max-w-2xl leading-relaxed">
               I am popularly known as <span className="font-semibold text-white">ItsProf Paul</span>. I help individuals, founders, companies, churches, NGOs, schools, government teams and international organisations turn unclear positioning, slow websites and scattered content into premium brands, fast digital experiences and growth systems that earn trust, launch faster and convert better.
@@ -66,11 +98,11 @@ function Index() {
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link to="/contact" className="btn-hero-primary group">
-                Hire Paul / Request a quote
+                Hire me now
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link to="/portfolio" className="btn-hero-outline">
-                See Proof of Work
+                See proof now
               </Link>
             </div>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/72">
@@ -91,8 +123,8 @@ function Index() {
             </div>
           </div>
 
-          <div className="lg:col-span-6 relative flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-md lg:max-w-xl">
+          <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl">
               <div className="overflow-hidden rounded-[2.25rem] border border-white/20 bg-white/10 shadow-elegant backdrop-blur">
                 <img
                   src={heroImg}
@@ -134,7 +166,7 @@ function Index() {
             </h2>
           </div>
           <p className="lg:col-span-5 lg:col-start-8 text-muted-foreground leading-relaxed">
-            The unique advantage here is integration: the brand strategist understands the code, the developer understands the campaign, and the filmmaker understands the conversion path.
+            You do not need to explain your vision to five different vendors. I help you shape the idea, make it look premium, build the digital touchpoints and prepare the assets your audience actually sees.
           </p>
         </div>
         <div className="mt-10 grid md:grid-cols-3 gap-5">
@@ -160,7 +192,7 @@ function Index() {
             </h2>
           </div>
           <p className="text-muted-foreground max-w-md">
-            The services are grouped into clear lanes, while every detailed service page remains available for scope, process, pricing context and next steps.
+            Choose the outcome you need most: a stronger brand and website, better visual content, or a growth system that brings in more serious enquiries.
           </p>
         </div>
 
@@ -187,7 +219,7 @@ function Index() {
                   ))}
                 </div>
                 <Link to="/services" className="mt-6 inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:gap-2 transition-all">
-                  Explore pillar <ArrowRight className="h-3 w-3" />
+                  See services now <ArrowRight className="h-3 w-3" />
                 </Link>
               </article>
             );
@@ -221,7 +253,7 @@ function Index() {
               ))}
             </div>
             <Link to="/about" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground hover:opacity-90 transition-opacity">
-              Read my full story <ArrowRight className="h-4 w-4" />
+              Read my full story now <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="relative">
@@ -236,31 +268,11 @@ function Index() {
         </div>
       </section>
 
-      {/* PROCESS */}
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
-        <div className="text-center max-w-2xl mx-auto">
-          <span className="font-mono text-xs uppercase tracking-widest text-primary">/ process</span>
-          <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">A clear path from brief to launch.</h2>
-          <p className="mt-4 text-muted-foreground">Seven compact stages keep decisions visible, feedback structured and delivery calm from the first call to post-launch support.</p>
-        </div>
-        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-7 gap-3">
-          {processSteps.map((s) => (
-            <div key={s.n} className="group relative overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-card hover:border-primary hover:-translate-y-1 transition-all">
-              <div className="absolute -top-6 -right-6 h-24 w-24 rounded-full bg-gradient-primary opacity-0 group-hover:opacity-10 blur-2xl transition-opacity" />
-              <div className="font-mono text-2xl font-bold text-gradient-primary">{s.n}</div>
-              <h3 className="mt-3 font-display text-base font-semibold leading-tight">{s.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-              <ul className="mt-4 space-y-1.5 border-t border-border pt-4">
-                {s.features.slice(0, 2).map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
-                    <CheckCircle2 className="h-3.5 w-3.5 mt-0.5 text-primary flex-shrink-0" /> {f}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ProcessShowcase
+        title="A clear path from brief to launch."
+        intro="Follow the project from first conversation to launch with a simple progress view, practical activities and clear deliverables at every stage."
+        stages={processStages}
+      />
 
       {/* FEATURED WORK */}
       <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
@@ -270,12 +282,12 @@ function Index() {
             <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">Selected projects.</h2>
           </div>
           <Link to="/portfolio" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-primary">
-            Explore all projects <ArrowRight className="h-4 w-4" />
+            See more work now <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {projects.slice(0, 6).map((p, index) => {
-            const previewSrc = getPlaceholderPreview(index);
+            const previewSrc = getProjectPreview(index, p.preview);
             return (
               <article key={p.slug} className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-transform hover:-translate-y-1">
                 <div className="relative aspect-square overflow-hidden bg-muted/10">
@@ -327,6 +339,35 @@ function Index() {
               </article>
             );
           })}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-14">
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ brands</span>
+            <h2 className="mt-2 font-display text-3xl lg:text-4xl font-bold tracking-tight">Brands and teams I have worked with.</h2>
+          </div>
+          <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+            A growing mix of founders, organisations and campaign teams that needed clearer communication and stronger digital presence.
+          </p>
+        </div>
+        <div className="brand-marquee mt-8 overflow-hidden rounded-3xl border border-border bg-card py-5 shadow-card">
+          <div className="brand-marquee-track flex w-max items-center gap-4 px-4">
+            {[...clientBrands, ...clientBrands].map((brand, index) => (
+              <a
+                key={`${brand.name}-${index}`}
+                href={brand.url}
+                target={brand.url.startsWith("http") ? "_blank" : undefined}
+                rel={brand.url.startsWith("http") ? "noreferrer" : undefined}
+                aria-label={brand.name}
+                title={brand.name}
+                className="flex h-20 min-w-[150px] items-center justify-center rounded-2xl border border-border bg-background px-5 py-4 transition-colors hover:border-primary hover:text-primary"
+              >
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-primary text-base font-bold text-primary-foreground shadow-card">{brand.mark}</span>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -394,10 +435,10 @@ function Index() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link to="/contact" className="rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground hover:opacity-90 transition-colors">
-                Start a project
+                Hire me now
               </Link>
               <Link to="/services" className="rounded-full border-2 border-primary-foreground/40 px-6 py-3.5 text-sm font-semibold hover:bg-primary-foreground/10 transition-colors">
-                Explore services
+                See services now
               </Link>
             </div>
           </div>

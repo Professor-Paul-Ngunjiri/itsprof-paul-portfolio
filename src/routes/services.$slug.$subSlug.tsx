@@ -77,7 +77,7 @@ function SubServiceDetail() {
                 Brief this project <ArrowRight className="h-4 w-4" />
               </Link>
               <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer" className="btn-hero-outline">
-                <MessageCircle className="h-4 w-4" /> WhatsApp Paul
+                <MessageCircle className="h-4 w-4" /> WhatsApp me now
               </a>
             </div>
           </div>
@@ -196,7 +196,7 @@ function SubServiceDetail() {
             Send the brief, deadline and rough budget. I will reply with the smartest scope for the outcome you need.
           </p>
           <Link to="/contact" search={{ service: service.slug, sub: subService.slug }} className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground">
-            Start the brief <ArrowRight className="h-4 w-4" />
+            Hire me now <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>

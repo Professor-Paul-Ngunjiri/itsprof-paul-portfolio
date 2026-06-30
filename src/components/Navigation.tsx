@@ -20,8 +20,7 @@ export function Navigation() {
     desc: pillar.desc,
     items: pillar.services
       .map((slug) => services.find((service) => service.slug === slug))
-      .filter(Boolean)
-      .slice(0, 5),
+      .filter(Boolean),
   }));
   const featuredServices = services.filter((service) => ["brand-identity", "web-development", "ui-ux-design", "digital-marketing"].includes(service.slug));
 
@@ -38,7 +37,7 @@ export function Navigation() {
           </span>
           <div className="flex items-center gap-4">
             <a href={`mailto:${site.email}`} className="hover:text-primary">{site.email}</a>
-            <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer" className="hover:text-primary">WhatsApp</a>
+            <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer" className="hover:text-primary">WhatsApp me now</a>
           </div>
         </div>
       </div>
@@ -82,10 +81,10 @@ export function Navigation() {
                     </div>
                     <h3 className="mt-4 font-display text-xl font-bold">Focused service pillars, one coordinated delivery system.</h3>
                     <p className="mt-3 text-xs leading-relaxed text-white/85">
-                      Start with the service you need now. The dedicated pages carry the full process, scope and pricing context.
+                      Choose the outcome you need and move quickly from interest to a clear, priced brief.
                     </p>
                     <Link to="/contact" search={{ service: "brand-identity" }} className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2.5 text-xs font-semibold text-gold-foreground">
-                      Start a brief <ArrowRight className="h-3.5 w-3.5" />
+                      Hire me now <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   </div>
                   <div className="grid grid-cols-3 gap-3 p-4 max-h-[58vh] overflow-auto scrollbar-hide">
@@ -139,7 +138,7 @@ export function Navigation() {
             to="/contact"
             className="hidden items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-gold-foreground shadow-card transition-opacity hover:opacity-90 md:inline-flex"
           >
-            <Send className="h-4 w-4" /> Request quote
+            <Send className="h-4 w-4" /> Hire me now
           </Link>
           <button
             className="rounded-full border border-border p-2 hover:bg-muted lg:hidden"
@@ -154,7 +153,7 @@ export function Navigation() {
       {open && (
         <div className="max-h-[calc(100vh-5rem)] overflow-y-auto border-t border-border bg-background lg:hidden">
           <div className="flex flex-col gap-1 p-4">
-            {[...links, { to: "/services", label: "Services" }].map((l) => (
+            {links.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
@@ -164,27 +163,68 @@ export function Navigation() {
                 {l.label}
               </Link>
             ))}
-            <div className="mt-3 rounded-2xl border border-border bg-muted/35 p-3">
-              <div className="px-2 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">Popular services</div>
-              <div className="mt-2 grid gap-1">
-                {featuredServices.slice(0, 6).map((service) => (
-                  <Link
-                    key={service.slug}
-                    to="/services/$slug"
-                    params={{ slug: service.slug }}
-                    onClick={() => setOpen(false)}
-                    className="rounded-xl px-3 py-2 text-sm hover:bg-background"
-                  >
-                    {service.name}
-                  </Link>
-                ))}
+            <details className="mt-2 overflow-hidden rounded-2xl border border-border bg-card shadow-card" open>
+              <summary className="cursor-pointer list-none px-4 py-4">
+                <span className="flex items-center justify-between gap-3">
+                  <span>
+                    <span className="block text-base font-semibold">Services</span>
+                    <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
+                      Browse by outcome, then choose the exact service you need.
+                    </span>
+                  </span>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <ChevronDown className="h-4 w-4" />
+                  </span>
+                </span>
+              </summary>
+              <div className="border-t border-border bg-muted/25 p-3">
+                <Link
+                  to="/services"
+                  onClick={() => setOpen(false)}
+                  className="mb-3 flex items-center justify-between rounded-xl bg-background px-3 py-3 text-sm font-semibold text-primary shadow-card"
+                >
+                  View all services
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <div className="space-y-3">
+                  {groupedServices.map(({ group, desc, items }) => (
+                    <details key={group} className="rounded-2xl border border-border bg-background p-3" defaultOpen={group === groupedServices[0]?.group}>
+                      <summary className="cursor-pointer list-none rounded-xl px-2 py-2 font-display text-sm font-semibold">
+                        <span className="flex items-center justify-between gap-3">
+                          <span>
+                            <span className="block">{group}</span>
+                            <span className="mt-1 block font-sans text-[11px] font-normal leading-relaxed text-muted-foreground">
+                              {items.length} services
+                            </span>
+                          </span>
+                          <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground" />
+                        </span>
+                      </summary>
+                      <p className="px-2 pb-2 text-xs leading-relaxed text-muted-foreground">{desc}</p>
+                      <div className="grid gap-1">
+                        {items.map((service) => (
+                          <Link
+                            key={service!.slug}
+                            to="/services/$slug"
+                            params={{ slug: service!.slug }}
+                            onClick={() => setOpen(false)}
+                            className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm transition-colors hover:bg-muted hover:text-primary"
+                          >
+                            {service!.name}
+                            <ArrowRight className="h-3.5 w-3.5 text-muted-foreground" />
+                          </Link>
+                        ))}
+                      </div>
+                    </details>
+                  ))}
+                </div>
               </div>
-            </div>
+            </details>
             <Link to="/terminal" onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 text-base font-mono hover:bg-muted">
               &gt; terminal
             </Link>
             <Link to="/contact" onClick={() => setOpen(false)} className="mt-2 text-center rounded-full bg-gold px-5 py-3 text-sm font-semibold text-gold-foreground">
-              Request quote
+              Hire me now
             </Link>
           </div>
         </div>

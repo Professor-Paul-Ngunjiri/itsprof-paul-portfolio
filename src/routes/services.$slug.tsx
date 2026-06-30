@@ -5,6 +5,7 @@ import {
   Megaphone, Hash, LineChart, Package, PenTool, Printer, Sparkles, FileText,
 } from "lucide-react";
 import { getSubServices, services, site } from "@/lib/site";
+import { ProcessShowcase } from "@/components/ProcessShowcase";
 
 const ICONS = {
   Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
@@ -48,6 +49,35 @@ function ServiceDetail() {
 
   const related = services.filter((x) => x.slug !== s.slug && x.category === s.category).slice(0, 3);
   const subServices = getSubServices(s.slug);
+  const processStages = s.process.map((step, index) => ({
+    step: step.step,
+    title: step.title,
+    desc: step.desc,
+    timeframe: ["Kickoff", "Strategy window", "Production phase", "Review phase", "Launch window", "Support period"][index] ?? "Confirmed after the brief",
+    activities: [
+      step.desc,
+      index === 0 ? "Confirm goals, audience and success measures" : "Review the strongest direction with you",
+      "Agree the next action before moving forward",
+    ],
+    deliverables: [
+      `${step.title} summary`,
+      "Decision checklist",
+      "Next-step recommendation",
+    ],
+    caseStudy: {
+      title: `${s.name}: ${step.title.toLowerCase()} scenario`,
+      description: [
+        `A client came in needing ${s.name.toLowerCase()} but did not yet have a clean brief. This stage clarified the goal, audience, deadline and success measure before money was wasted on production.`,
+        `The project needed a stronger direction before execution. This stage turned scattered references and opinions into one practical route the client could approve with confidence.`,
+        `The approved direction became real work here: the strongest ideas were built, refined and checked against the original business goal so the output stayed useful, not just attractive.`,
+        `The client reviewed the work through a focused decision point. Feedback was grouped, priorities were agreed and changes were handled without losing the quality of the original idea.`,
+        `This stage prepared the final files, launch notes and practical recommendations so the client could use the work immediately across the right channels.`,
+        `After delivery, the client received support on rollout, usage and next improvements, making the project easier to sustain beyond handoff.`,
+      ][Math.min(index, 5)],
+      client: "Client scenario",
+      industry: s.category,
+    },
+  }));
 
   return (
     <>
@@ -71,10 +101,10 @@ function ServiceDetail() {
             <p className="mt-5 text-base lg:text-lg max-w-2xl text-white/85 leading-relaxed">{s.hero}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/contact" search={{ service: s.slug }} className="btn-hero-primary">
-                Request a quote <ArrowRight className="h-4 w-4" />
+                Hire me now <ArrowRight className="h-4 w-4" />
               </Link>
               <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer" className="btn-hero-outline">
-                <MessageCircle className="h-4 w-4" /> WhatsApp
+                <MessageCircle className="h-4 w-4" /> WhatsApp me now
               </a>
             </div>
           </div>
@@ -94,7 +124,7 @@ function ServiceDetail() {
             </div>
             <div className="h-px bg-white/15" />
             <Link to="/contact" search={{ service: s.slug }} className="block w-full text-center rounded-full bg-gold px-5 py-3 text-sm font-semibold text-gold-foreground hover:opacity-90 transition-opacity">
-              Get a custom quote
+              Hire me now
             </Link>
           </aside>
         </div>
@@ -175,24 +205,12 @@ function ServiceDetail() {
         </div>
       </section>
 
-      {/* PROCESS */}
-      <section className="bg-muted/40">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8 py-20">
-          <div className="text-center mb-12">
-            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ process</span>
-            <h2 className="mt-2 font-display text-3xl lg:text-4xl font-bold">How we work, step by step.</h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {s.process.map((p) => (
-              <div key={p.step} className="relative rounded-2xl border border-border bg-card p-6 hover:border-primary transition-colors">
-                <div className="font-mono text-3xl font-bold text-gradient-primary">{p.step}</div>
-                <h3 className="mt-3 font-display text-lg font-semibold">{p.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProcessShowcase
+        title={`${s.name} process, step by step.`}
+        intro="See exactly how the project moves, what happens in each stage and what you can expect before we move to the next decision."
+        stages={processStages}
+        variant="muted"
+      />
 
       {/* DELIVERABLES */}
       <section className="mx-auto max-w-7xl px-5 lg:px-8 py-20">
@@ -261,9 +279,9 @@ function ServiceDetail() {
       <section className="mx-auto max-w-7xl px-5 lg:px-8 pb-20">
         <div className="rounded-[2.5rem] bg-gradient-primary text-primary-foreground p-12 lg:p-16 text-center shadow-elegant">
           <h2 className="font-display text-3xl lg:text-5xl font-bold">Ready to start your {s.name.toLowerCase()} project?</h2>
-          <p className="mt-4 max-w-xl mx-auto opacity-95">Book a free 30-minute discovery call - no hard pitch, just a real conversation about your project.</p>
+          <p className="mt-4 max-w-xl mx-auto opacity-95">Send the brief today and I will respond with the clearest next step, timeline and investment range.</p>
           <Link to="/contact" search={{ service: s.slug }} className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground">
-            Start a project <ArrowRight className="h-4 w-4" />
+            Hire me now <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>

@@ -90,14 +90,14 @@ function Portfolio() {
     paulHeroPreview,
   ];
 
-  const getPlaceholderPreview = (index: number) => previewPlaceholderImages[index % previewPlaceholderImages.length];
+  const getProjectPreview = (index: number, preview?: string) => preview ?? previewPlaceholderImages[index % previewPlaceholderImages.length];
 
   const selectedProject = useMemo(
     () => projects.find((project) => project.slug === selectedSlug) ?? projects[0],
     [selectedSlug]
   );
 
-  const selectedPreview = previewPlaceholderImages[0];
+  const selectedPreview = getProjectPreview(0, selectedProject.preview);
 
   return (
     <>
@@ -111,7 +111,7 @@ function Portfolio() {
             Browse 100+ projects across design, development, film, marketing and editorial. Each shipped, each measured, each held to a portfolio-grade bar.
           </p>
           <Link to="/contact" className="btn-hero-primary mt-8">
-            Start a project <ArrowRight className="h-4 w-4" />
+            Hire me now <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>
@@ -190,7 +190,7 @@ function Portfolio() {
                 </a>
               ) : null}
               <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground transition hover:border-primary hover:text-primary">
-                Book a discovery call <ArrowRight className="h-4 w-4" />
+                Hire me now <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -295,7 +295,7 @@ function Portfolio() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {sortedProjects.map((p, index) => {
               const isSelected = p.slug === selectedSlug;
-              const previewSrc = getPlaceholderPreview(index);
+              const previewSrc = getProjectPreview(index, p.preview);
               return (
                 <article key={p.slug} className={`group relative overflow-hidden rounded-2xl border bg-card shadow-card transition-transform ${isSelected ? "border-primary ring-1 ring-primary/20" : "border-border hover:-translate-y-1 hover:shadow-xl"}`}>
                   <div className="relative aspect-square overflow-hidden bg-muted/10">
@@ -366,8 +366,8 @@ function Portfolio() {
         <div className="rounded-[2.5rem] bg-gradient-blue text-secondary-foreground p-12 lg:p-16 text-center shadow-elegant">
           <h2 className="font-display text-4xl lg:text-5xl font-bold">Impressed? Let's create your next success story.</h2>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link to="/contact" className="rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground">Get a quote</Link>
-            <Link to="/services" className="rounded-full border-2 border-secondary-foreground/40 px-6 py-3.5 text-sm font-semibold">View services</Link>
+            <Link to="/contact" className="rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground">Hire me now</Link>
+            <Link to="/services" className="rounded-full border-2 border-secondary-foreground/40 px-6 py-3.5 text-sm font-semibold">See services now</Link>
           </div>
         </div>
       </section>

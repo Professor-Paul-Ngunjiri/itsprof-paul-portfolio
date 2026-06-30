@@ -60,8 +60,8 @@ function Services() {
             ))}
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link to="/contact" className="btn-hero-primary">Get a custom quote</Link>
-            <a href="#services" className="btn-hero-outline">Explore all services</a>
+            <Link to="/contact" className="btn-hero-primary">Hire me now</Link>
+            <a href="#services" className="btn-hero-outline">See services now</a>
           </div>
         </div>
       </section>
@@ -184,10 +184,10 @@ function Services() {
 
       <section className="mx-auto max-w-7xl px-5 lg:px-8 pb-16">
         <div className="rounded-[2.5rem] bg-gradient-primary text-primary-foreground p-12 lg:p-20 text-center shadow-elegant">
-          <h2 className="font-display text-4xl lg:text-5xl font-bold">Book a free discovery call.</h2>
+          <h2 className="font-display text-4xl lg:text-5xl font-bold">Ready to move now?</h2>
           <p className="mt-4 max-w-xl mx-auto opacity-95">Thirty minutes. No hard pitch. Just a real conversation about your goals, timeline, investment range and whether we are a strong fit.</p>
           <Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground">
-            Schedule a call <ArrowRight className="h-4 w-4" />
+            Hire me now <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>

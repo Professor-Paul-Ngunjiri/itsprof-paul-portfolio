@@ -1,14 +1,13 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, ShieldCheck, Sparkles, TrendingUp } from "lucide-react";
-import { investmentReasons, services, site } from "@/lib/site";
+import { ArrowRight, Facebook, Instagram, Linkedin, Mail, MapPin, Music2, Phone, ShieldCheck, Sparkles, TrendingUp } from "lucide-react";
+import { investmentReasons, servicePillars, services, site } from "@/lib/site";
 import logo from "/logo.svg?url";
 
 export function Footer() {
-  const serviceColumns = [
-    services.filter((service) => service.category === "Creative").slice(0, 5),
-    services.filter((service) => ["Digital", "Growth"].includes(service.category)).slice(0, 5),
-    services.filter((service) => ["Media", "Editorial"].includes(service.category)).slice(0, 5),
-  ];
+  const serviceColumns = servicePillars.map((pillar) => ({
+    ...pillar,
+    items: pillar.services.map((slug) => services.find((service) => service.slug === slug)).filter(Boolean),
+  }));
 
   return (
     <footer className="relative mt-32 overflow-hidden border-t border-border bg-gradient-to-b from-background via-muted/35 to-background">
@@ -30,10 +29,10 @@ export function Footer() {
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-semibold text-gold-foreground">
-                  Submit a brief <ArrowRight className="h-4 w-4" />
+                  Hire me now <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link to="/services" className="inline-flex items-center gap-2 rounded-full border border-white/35 px-5 py-3 text-sm font-semibold hover:bg-white/10">
-                  Explore services
+                  See services now
                 </Link>
               </div>
             </div>
@@ -65,6 +64,7 @@ export function Footer() {
                 { icon: Linkedin, href: site.socials.linkedin.url, label: "LinkedIn" },
                 { icon: Instagram, href: site.socials.instagram.url, label: "Instagram" },
                 { icon: Facebook, href: site.socials.facebook.url, label: "Facebook" },
+                { icon: Music2, href: site.socials.tiktok.url, label: "TikTok" },
               ].map((social) => (
                 <a key={social.label} href={social.href} target="_blank" rel="noreferrer" aria-label={social.label} className="rounded-full border border-border p-2 hover:border-primary hover:text-primary transition-colors">
                   <social.icon className="h-4 w-4" />
@@ -74,16 +74,17 @@ export function Footer() {
           </div>
 
           <div className="grid gap-8 sm:grid-cols-3">
-            {serviceColumns.map((column, index) => (
-              <div key={index}>
+            {serviceColumns.map((column) => (
+              <div key={column.title}>
                 <h4 className="font-display text-sm font-bold uppercase tracking-widest text-muted-foreground">
-                  {index === 0 ? "Creative" : index === 1 ? "Digital growth" : "Media & documents"}
+                  {column.title}
                 </h4>
+                <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{column.desc}</p>
                 <ul className="mt-4 space-y-2 text-sm">
-                  {column.map((service) => (
-                    <li key={service.slug}>
-                      <Link to="/services/$slug" params={{ slug: service.slug }} className="hover:text-primary">
-                        {service.name}
+                  {column.items.map((service) => (
+                    <li key={service!.slug}>
+                      <Link to="/services/$slug" params={{ slug: service!.slug }} className="hover:text-primary">
+                        {service!.name}
                       </Link>
                     </li>
                   ))}
@@ -96,8 +97,8 @@ export function Footer() {
             <h4 className="font-display text-sm font-bold uppercase tracking-widest text-muted-foreground">Start here</h4>
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex items-start gap-2"><MapPin className="h-4 w-4 mt-0.5 text-primary" /> {site.location}; remote worldwide</li>
-              <li className="flex items-start gap-2"><Mail className="h-4 w-4 mt-0.5 text-primary" /> <a href={`mailto:${site.quoteEmail}`} className="hover:text-primary break-all">{site.quoteEmail}</a></li>
-              <li className="flex items-start gap-2"><Phone className="h-4 w-4 mt-0.5 text-primary" /> <a href={`tel:${site.phone}`} className="hover:text-primary">{site.phone}</a></li>
+              <li className="flex items-start gap-2"><Mail className="h-4 w-4 mt-0.5 text-primary" /> <a href={`mailto:${site.email}`} className="hover:text-primary break-all">{site.email}</a></li>
+              <li className="flex items-start gap-2"><Phone className="h-4 w-4 mt-0.5 text-primary" /> <a href={`tel:${site.phone}`} className="hover:text-primary">Call me now: {site.phone}</a></li>
             </ul>
             <a
               href={`https://wa.me/${site.whatsapp}`}
@@ -105,7 +106,7 @@ export function Footer() {
               rel="noreferrer"
               className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2.5 text-xs font-semibold text-gold-foreground hover:opacity-90 transition-opacity"
             >
-              WhatsApp Paul <ArrowRight className="h-3.5 w-3.5" />
+              WhatsApp me now <ArrowRight className="h-3.5 w-3.5" />
             </a>
           </div>
         </div>

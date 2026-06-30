@@ -66,12 +66,30 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
   return brandedErrorResponse();
 }
 
+function withPerformanceHeaders(request: Request, response: Response): Response {
+  const url = new URL(request.url);
+  const headers = new Headers(response.headers);
+
+  if (url.pathname.startsWith("/assets/") || /\.(?:webp|png|jpg|jpeg|svg|css|js|woff2?)$/i.test(url.pathname)) {
+    headers.set("cache-control", "public, max-age=31536000, immutable");
+  } else if (response.headers.get("content-type")?.includes("text/html")) {
+    headers.set("cache-control", "public, max-age=0, must-revalidate");
+  }
+
+  headers.set("x-content-type-options", "nosniff");
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      return withPerformanceHeaders(request, await normalizeCatastrophicSsrResponse(response));
     } catch (error) {
       console.error(error);
       return brandedErrorResponse();

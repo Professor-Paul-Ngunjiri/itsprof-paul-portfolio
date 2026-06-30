@@ -8,7 +8,7 @@ export function WhatsAppFloat() {
       target="_blank"
       rel="noreferrer"
       className="fixed bottom-6 right-6 z-40 group flex items-center gap-3"
-      aria-label="WhatsApp Paul"
+      aria-label="WhatsApp me now"
     >
       <span className="hidden group-hover:inline-flex rounded-full bg-foreground text-background px-3 py-2 text-xs font-medium shadow-card">
         Usually replies within 1 hour

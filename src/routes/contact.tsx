@@ -31,6 +31,8 @@ export const Route = createFileRoute("/contact")({
 
 const timelines = ["Rush: 48 hours - 7 days", "Standard: 2 - 6 weeks", "Strategic: 6 - 12 weeks", "Long-term retainer"];
 const budgetRanges = ["KES 25k - 75k", "KES 75k - 150k", "KES 150k - 350k", "KES 350k - 750k", "KES 750k+ / international scope"];
+const contactMethods = ["Email", "WhatsApp", "Phone call", "Google Meet / Zoom"];
+const formRedirect = "https://itsprofpaul.com/contact?sent=1";
 
 function Contact() {
   const search = Route.useSearch();
@@ -39,7 +41,10 @@ function Contact() {
   const selectedService = useMemo(() => services.find((service) => service.slug === serviceSlug), [serviceSlug]);
   const packageOptions = useMemo(() => (selectedService ? getServicePackages(selectedService.slug) : []), [selectedService]);
   const [selectedPackage, setSelectedPackage] = useState(search.package ?? packageOptions[1]?.slug ?? "");
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const sent = search.sent === "1";
+  const totalUploadSize = uploadedFiles.reduce((sum, file) => sum + file.size, 0);
+  const totalUploadSizeMb = totalUploadSize ? (totalUploadSize / 1024 / 1024).toFixed(1) : "0";
 
   const faqs = [
     { q: "Can international clients work with you remotely?", a: "Yes. I work async with clear milestones, shared workspaces, recorded walkthroughs and scheduled review calls across All time zones." },
@@ -64,9 +69,9 @@ function Contact() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer" className="btn-hero-primary">
-              <MessageCircle className="h-4 w-4" /> WhatsApp Paul
+              <MessageCircle className="h-4 w-4" /> WhatsApp me now
             </a>
-            <a href={`mailto:${site.quoteEmail}`} className="btn-hero-outline">
+            <a href={`mailto:${site.email}`} className="btn-hero-outline">
               <Mail className="h-4 w-4" /> Email directly
             </a>
           </div>
@@ -80,7 +85,7 @@ function Contact() {
               <div className="rounded-full bg-primary/10 p-3"><Mail className="h-5 w-5 text-primary" /></div>
               <div>
                 <div className="text-xs uppercase tracking-widest text-muted-foreground">Project email</div>
-                <a href={`mailto:${site.quoteEmail}`} className="font-medium hover:text-primary break-all">{site.quoteEmail}</a>
+                <a href={`mailto:${site.email}`} className="font-medium hover:text-primary break-all">{site.email}</a>
               </div>
             </div>
           </div>
@@ -133,7 +138,7 @@ function Contact() {
               </div>
             ) : (
               <form
-                action={`https://formsubmit.co/${site.quoteEmail}`}
+                action={`https://formsubmit.co/${site.email}`}
                 method="POST"
                 encType="multipart/form-data"
                 className="space-y-6"
@@ -141,6 +146,9 @@ function Contact() {
                 <input type="hidden" name="_subject" value={`New portfolio brief${selectedService ? ` - ${selectedService.name}` : ""}`} />
                 <input type="hidden" name="_template" value="table" />
                 <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value={formRedirect} />
+                <input type="hidden" name="_autoresponse" value="Thank you for briefing Paul Ngunjiri. I have received your request and will review the project details before replying with the smartest next step." />
+                <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
                 <input type="hidden" name="source_page_service" value={selectedService?.name ?? "Not preselected"} />
                 <input type="hidden" name="source_page_sub_service" value={search.sub ?? ""} />
 
@@ -165,22 +173,36 @@ function Contact() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <label className="block">
                     <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Your name</span>
-                    <input required name="name" className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors" />
+                    <input required name="name" autoComplete="name" minLength={2} className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors" />
                   </label>
                   <label className="block">
                     <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Work email</span>
-                    <input required name="email" type="email" className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors" />
+                    <input required name="email" type="email" autoComplete="email" className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors" />
+                  </label>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <label className="block">
+                    <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Phone / WhatsApp</span>
+                    <input required name="phone" type="tel" autoComplete="tel" inputMode="tel" className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors" />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Preferred contact</span>
+                    <select required name="preferred_contact" className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors">
+                      <option value="">Choose method</option>
+                      {contactMethods.map((method) => <option key={method} value={method}>{method}</option>)}
+                    </select>
                   </label>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   <label className="block">
                     <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Company / brand</span>
-                    <input name="company" className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors" />
+                    <input name="company" autoComplete="organization" className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors" />
                   </label>
                   <label className="block">
                     <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Website or social link</span>
-                    <input name="website" type="url" className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors" />
+                    <input name="website" type="url" inputMode="url" placeholder="https://" className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors" />
                   </label>
                 </div>
 
@@ -257,15 +279,33 @@ function Contact() {
                   <div className="mt-3 space-y-3">
                     <label className="block">
                       <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Project brief</span>
-                      <textarea name="message" rows={4} className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors resize-none" placeholder="Goals, audience, deliverables, references, competitors, decision-makers and anything I should know..." />
+                      <textarea name="message" rows={4} minLength={20} className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors resize-none" placeholder="Goals, audience, deliverables, references, competitors, decision-makers and anything I should know..." />
                     </label>
 
                     <label className="block rounded-2xl border border-dashed border-primary/40 bg-primary/5 p-5">
                       <span className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
                         <FileUp className="h-4 w-4 text-primary" /> Upload brief, RFP, logo files or references
                       </span>
-                      <input name="attachment" type="file" multiple className="mt-3 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm" />
-                      <span className="mt-2 block text-xs text-muted-foreground">PDF, DOCX, images, ZIP files or brand assets. Keep uploads concise for faster review.</span>
+                      <input
+                        name="attachment"
+                        type="file"
+                        multiple
+                        accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.png,.jpg,.jpeg,.webp,.zip"
+                        onChange={(event) => setUploadedFiles(Array.from(event.currentTarget.files ?? []))}
+                        className="mt-3 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm"
+                      />
+                      <span className="mt-2 block text-xs text-muted-foreground">PDF, DOCX, PPTX, images, spreadsheets or ZIP files. Keep uploads concise for faster review.</span>
+                      {uploadedFiles.length > 0 && (
+                        <div className="mt-3 rounded-xl bg-background p-3 text-xs text-muted-foreground">
+                          <div className="font-semibold text-foreground">{uploadedFiles.length} file{uploadedFiles.length === 1 ? "" : "s"} selected - {totalUploadSizeMb} MB total</div>
+                          <ul className="mt-2 space-y-1">
+                            {uploadedFiles.slice(0, 5).map((file) => (
+                              <li key={`${file.name}-${file.size}`} className="truncate">{file.name}</li>
+                            ))}
+                          </ul>
+                          {uploadedFiles.length > 5 && <div className="mt-1">+ {uploadedFiles.length - 5} more</div>}
+                        </div>
+                      )}
                     </label>
                   </div>
                 </details>
@@ -274,11 +314,11 @@ function Contact() {
                   <div className="flex items-start gap-3">
                     <ShieldCheck className="mt-0.5 h-5 w-5 text-primary" />
                     <p className="text-xs leading-relaxed text-muted-foreground">
-                      Your brief goes to {site.quoteEmail}. First submission through the secure form service may require email confirmation for anti-spam protection.
+                      Your brief and attachments go to {site.email}. First submission through the secure form service may require one email confirmation for anti-spam protection.
                     </p>
                   </div>
                   <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-card hover:shadow-glow transition-shadow">
-                    <Send className="h-4 w-4" /> Send brief
+                    <Send className="h-4 w-4" /> Hire me now
                   </button>
                 </div>
               </form>
