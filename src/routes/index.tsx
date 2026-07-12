@@ -353,21 +353,32 @@ function Index() {
           </p>
         </div>
         <div className="brand-marquee mt-8 overflow-hidden rounded-3xl border border-border bg-card py-5 shadow-card">
-          <div className="brand-marquee-track flex w-max items-center gap-4 px-4">
-            {[...clientBrands, ...clientBrands].map((brand, index) => (
-              <a
-                key={`${brand.name}-${index}`}
-                href={brand.url}
-                target={brand.url.startsWith("http") ? "_blank" : undefined}
-                rel={brand.url.startsWith("http") ? "noreferrer" : undefined}
-                aria-label={brand.name}
-                title={brand.name}
-                className="flex h-20 min-w-[150px] items-center justify-center rounded-2xl border border-border bg-background px-5 py-4 transition-colors hover:border-primary hover:text-primary"
-              >
-                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-primary text-base font-bold text-primary-foreground shadow-card">{brand.mark}</span>
-              </a>
-            ))}
+          <div className="px-5 pb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+            Replace the placeholder marks with client logo URLs when ready
           </div>
+          {[clientBrands, [...clientBrands].reverse()].map((row, rowIndex) => (
+            <div key={rowIndex} className="brand-marquee-row overflow-hidden py-2">
+              <div className={`brand-marquee-track flex w-max items-center gap-4 px-4 ${rowIndex === 1 ? "brand-marquee-track-reverse" : ""}`}>
+                {[...row, ...row, ...row].map((brand, index) => (
+                  <a
+                    key={`${brand.name}-${rowIndex}-${index}`}
+                    href={brand.url}
+                    target={brand.url.startsWith("http") ? "_blank" : undefined}
+                    rel={brand.url.startsWith("http") ? "noreferrer" : undefined}
+                    aria-label={brand.name}
+                    title={brand.name}
+                    className="group flex h-20 min-w-[150px] items-center justify-center rounded-2xl border border-border bg-background px-5 py-4 transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-card"
+                  >
+                    {brand.logo ? (
+                      <img src={brand.logo} alt={`${brand.name} logo`} loading="lazy" decoding="async" className="max-h-12 max-w-[110px] object-contain transition-transform group-hover:scale-105" />
+                    ) : (
+                      <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-primary text-base font-bold text-primary-foreground shadow-card transition-transform group-hover:scale-105">{brand.mark}</span>
+                    )}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

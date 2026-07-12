@@ -20,7 +20,7 @@ const structuredData = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://itsprofpaul.com/#person",
+      "@id": "https://paul.pahwah.com/#person",
       name: site.name,
       alternateName: site.brand,
       jobTitle: site.titles,
@@ -41,10 +41,10 @@ const structuredData = {
     },
     {
       "@type": "ProfessionalService",
-      "@id": "https://itsprofpaul.com/#business",
+      "@id": "https://paul.pahwah.com/#business",
       name: site.brand,
-      founder: { "@id": "https://itsprofpaul.com/#person" },
-      url: "https://itsprofpaul.com",
+      founder: { "@id": "https://paul.pahwah.com/#person" },
+      url: "https://paul.pahwah.com",
       areaServed: ["Kenya", "East Africa", "International"],
       priceRange: "KES 25,000+",
       serviceType: services.map((service) => service.name),

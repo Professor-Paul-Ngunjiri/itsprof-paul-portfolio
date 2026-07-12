@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { processSteps, servicePillars, site, services, values, projects } from "@/lib/site";
+import { clientBrands, getServicePackages, processSteps, servicePillars, site, services, values, projects, testimonials } from "@/lib/site";
 
 export const Route = createFileRoute("/terminal")({
   head: () => ({
@@ -26,8 +26,9 @@ const BANNER = `
 const COMMANDS = [
   "help", "brief", "about", "whoami", "serve", "problems", "trust", "results",
   "services", "pillars", "service", "process", "philosophy", "portfolio", "contact",
-  "education", "certifications", "experience", "tools", "values", "pricing",
-  "socials", "quote", "hire", "clear", "exit",
+  "packages", "deliverables", "faqs", "brands", "testimonials", "education",
+  "certifications", "experience", "tools", "values", "pricing", "socials",
+  "quote", "hire", "clear", "exit",
 ];
 
 function Terminal() {
@@ -118,6 +119,31 @@ function Terminal() {
           : `Overall process:\n` + processSteps.map((p) => `  ${p.n}. ${p.title} - ${p.desc}`).join("\n");
         break;
       }
+      case "packages": {
+        const s = findService(query) ?? services[0];
+        out = `${s.name} packages:\n` + getServicePackages(s.slug).map((p) => `  - ${p.name}: ${p.price}\n    ${p.desc}`).join("\n");
+        break;
+      }
+      case "deliverables": {
+        const s = findService(query);
+        out = s
+          ? `${s.name} deliverables:\n` + s.deliverables.map((d) => `  - ${d}`).join("\n")
+          : "Type deliverables <service>. Example: deliverables document-design";
+        break;
+      }
+      case "faqs": {
+        const s = findService(query);
+        out = s
+          ? `${s.name} FAQs:\n` + s.faqs.map((faq) => `  Q: ${faq.q}\n  A: ${faq.a}`).join("\n\n")
+          : "Type faqs <service>. Example: faqs web design";
+        break;
+      }
+      case "brands":
+        out = clientBrands.map((brand) => `  - ${brand.name}: ${brand.url}`).join("\n");
+        break;
+      case "testimonials":
+        out = testimonials.map((t) => `  - ${t.name}, ${t.role} at ${t.company}\n    "${t.quote}"`).join("\n\n");
+        break;
       case "philosophy":
       case "values":
         out = values.map((v, i) => `  ${(i + 1).toString().padStart(2, "0")}. ${v.title} - ${v.desc}`).join("\n");
@@ -219,7 +245,7 @@ function Terminal() {
         </div>
       </div>
       <div className="mx-auto mt-4 flex max-w-5xl flex-wrap gap-2">
-        {["brief", "services", "pillars", "process", "philosophy", "portfolio", "hire", "clear"].map((c) => (
+        {["brief", "services", "pillars", "process", "packages", "brands", "testimonials", "hire", "clear"].map((c) => (
           <button key={c} onClick={() => { run(c); inputRef.current?.focus(); }} className="rounded-full border border-primary/40 px-3 py-1 text-xs transition-colors hover:bg-primary/20">
             {c}
           </button>
@@ -252,6 +278,11 @@ function describe(c: string): string {
     pillars: "services grouped into pillars",
     service: "service detail: service web development",
     process: "overall or service process: process brand-identity",
+    packages: "package options for a service",
+    deliverables: "deliverables for a service",
+    faqs: "FAQs for a service",
+    brands: "brands and teams showcase",
+    testimonials: "client words",
     philosophy: "work principles",
     portfolio: "selected projects",
     contact: "how to reach me",

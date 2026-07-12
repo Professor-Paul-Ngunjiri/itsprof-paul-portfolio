@@ -64,7 +64,14 @@ export const servicePillars = [
   },
 ];
 
-export const clientBrands = [
+export type ClientBrand = {
+  name: string;
+  url: string;
+  mark: string;
+  logo?: string;
+};
+
+export const clientBrands: ClientBrand[] = [
   { name: "Savanna Coffee", url: "/portfolio", mark: "SC" },
   { name: "Kazi Fintech", url: "/portfolio", mark: "KZ" },
   { name: "Tamu Restaurants", url: "/portfolio", mark: "TR" },
@@ -671,25 +678,48 @@ export function getServicePackages(serviceSlug: string) {
   if (!service) return [];
 
   const baseName = service.name.replace(/ & .*/, "").replace(/ Design$/, "");
+  const diagnosticPrice =
+    service.category === "Digital" ? "KES 35,000" :
+    service.category === "Media" ? "KES 25,000" :
+    service.category === "Growth" ? "KES 30,000" :
+    service.category === "Editorial" ? "KES 25,000" :
+    "KES 25,000";
 
   return [
     {
       slug: "diagnostic",
       name: `${baseName} Diagnostic`,
-      price: service.startingAt,
-      desc: "A focused audit, roadmap and priority action plan for teams that want clarity before committing to a larger build.",
+      price: diagnosticPrice,
+      desc: "A focused expert review, clarity session and action roadmap before you commit to a larger investment.",
+      idealFor: "Founders and teams that need direction, pricing clarity or a second opinion before production starts.",
+      includes: ["Audit or discovery call", "Priority recommendations", "Scope and next-step roadmap"],
     },
     {
       slug: "signature",
       name: `${baseName} Signature Build`,
       price: service.startingAt,
       desc: "The recommended package: strategy, execution, launch assets and a polished handoff for a premium client-facing result.",
+      idealFor: "Serious clients who want the complete professional outcome delivered with strategy, craft and handoff.",
+      includes: ["Strategy and creative direction", "Core production work", "Launch-ready handoff"],
+      recommended: true,
     },
     {
       slug: "growth-partner",
       name: `${baseName} Growth Partner`,
-      price: "Custom international quote",
+      price: "Custom budget",
       desc: "A deeper retainer or multi-phase engagement for brands that want strategy, production, iteration and ROI reporting.",
+      idealFor: "Brands, organisations and international teams that need ongoing support, iteration and measurable growth.",
+      includes: ["Monthly or multi-phase delivery", "Priority support", "Performance review and improvement plan"],
+      customBudget: true,
+    },
+    {
+      slug: "custom",
+      name: "Custom Package",
+      price: "Your budget range",
+      desc: "A flexible request for clients who already know what they want to invest or need a tailored scope.",
+      idealFor: "Clients with unusual requirements, mixed services, procurement limits or a defined internal budget.",
+      includes: ["Custom scope", "Budget-aligned recommendation", "Timeline and milestone advice"],
+      customBudget: true,
     },
   ];
 }

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowRight, CheckCircle2, Clock3, FileCheck2, Lightbulb, Search, Settings2, Sparkles, UploadCloud } from "lucide-react";
+import { ArrowRight, CheckCircle2, Clock3, FileCheck2, Lightbulb, Search, Settings2, Sparkles, UploadCloud, Target } from "lucide-react";
 
 export type ProcessCaseStudy = {
   title: string;
@@ -64,10 +64,10 @@ export function ProcessShowcase({ eyebrow = "/ process", title, intro, stages, v
 
         <div className="mx-auto mt-10 max-w-3xl">
           <div className="mb-2 flex items-center justify-between text-xs font-medium text-muted-foreground">
-            <span>Project Progress</span>
+            <span>Interactive Project Progress</span>
             <span className="font-mono text-foreground">{progress}% Complete</span>
           </div>
-          <div className="h-2 overflow-hidden rounded-full bg-muted">
+          <div className="h-2.5 overflow-hidden rounded-full bg-muted shadow-inner">
             <div className="h-full rounded-full bg-gradient-primary transition-all duration-500" style={{ width: `${progress}%` }} />
           </div>
         </div>
@@ -85,12 +85,13 @@ export function ProcessShowcase({ eyebrow = "/ process", title, intro, stages, v
                   setActiveStage(index);
                   setActiveTab("Overview");
                 }}
-                className={`group relative rounded-2xl border p-4 text-left transition-all duration-300 ${
+                className={`group relative overflow-hidden rounded-2xl border p-4 text-left transition-all duration-300 ${
                   isActive
                     ? "border-primary bg-card shadow-elegant"
                     : "border-border bg-card/70 shadow-card hover:-translate-y-1 hover:border-primary/60"
                 }`}
               >
+                <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-gradient-primary opacity-0 blur-2xl transition-opacity group-hover:opacity-10" />
                 <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full border transition-colors ${isActive ? "border-primary bg-primary text-primary-foreground" : "border-border bg-background text-muted-foreground group-hover:text-primary"}`}>
                   <StepIcon className="h-5 w-5" />
                 </div>
@@ -107,12 +108,13 @@ export function ProcessShowcase({ eyebrow = "/ process", title, intro, stages, v
         <div className="mx-auto mt-10 max-w-5xl overflow-hidden rounded-3xl border border-border bg-card shadow-elegant">
           <div className="flex flex-col gap-5 border-b border-border p-5 sm:flex-row sm:items-start sm:justify-between lg:p-7">
             <div className="flex gap-4">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-primary text-primary-foreground shadow-card">
                 <Icon className="h-6 w-6" />
               </div>
               <div>
                 <span className="font-mono text-xs uppercase tracking-widest text-primary">Step {stage.step}</span>
                 <h3 className="mt-1 font-display text-2xl font-bold">{stage.title}</h3>
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">{stage.desc}</p>
               </div>
             </div>
             <a href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full border border-primary px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground">
@@ -136,8 +138,7 @@ export function ProcessShowcase({ eyebrow = "/ process", title, intro, stages, v
 
             {activeTab === "Overview" && (
               <div className="mt-7 space-y-6">
-                <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">{stage.desc}</p>
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid gap-4 sm:grid-cols-3">
                   <div className="rounded-2xl border border-border bg-background/70 p-5">
                     <div className="flex items-center gap-2 font-display font-semibold">
                       <Clock3 className="h-5 w-5 text-primary" />
@@ -151,6 +152,13 @@ export function ProcessShowcase({ eyebrow = "/ process", title, intro, stages, v
                       Activities involved
                     </div>
                     <p className="mt-2 text-sm text-muted-foreground">{details.activities.slice(0, 2).join(", ")}</p>
+                  </div>
+                  <div className="rounded-2xl border border-border bg-background/70 p-5">
+                    <div className="flex items-center gap-2 font-display font-semibold">
+                      <Target className="h-5 w-5 text-primary" />
+                      Decision point
+                    </div>
+                    <p className="mt-2 text-sm text-muted-foreground">We confirm what moves forward before the next stage starts.</p>
                   </div>
                 </div>
                 <div>
@@ -197,9 +205,10 @@ export function ProcessShowcase({ eyebrow = "/ process", title, intro, stages, v
             )}
 
             {activeTab === "Case Study" && (
-              <div className="mt-7 rounded-2xl border border-border bg-background/70 p-6">
+              <div className="mt-7 rounded-2xl border border-border bg-background/70 p-6 shadow-card">
                 {stage.caseStudy ? (
                   <>
+                    <span className="font-mono text-xs uppercase tracking-widest text-primary">Scenario proof</span>
                     <h4 className="font-display text-xl font-semibold">{stage.caseStudy.title}</h4>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{stage.caseStudy.description}</p>
                     {(stage.caseStudy.client || stage.caseStudy.industry) && (
