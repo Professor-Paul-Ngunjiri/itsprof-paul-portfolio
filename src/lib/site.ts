@@ -12,16 +12,16 @@ export const site = {
   phone: "+254796219399",
   whatsapp: "254796219399",
   years: "4+",
-  projects: "100+",
+  projects: "60+",
   clients: "50+",
   services: "15+",
-  countries: "",
+  countries: "3+",
   socials: {
-    linkedin: { url: "https://linkedin.com/in/itsprofpaul", handle: "@itsprofpaul", count: "—" },
+    linkedin: { url: "https://www.linkedin.com/in/paul-ngunjiri-wanjohi/", handle: "@itsprofpaul", count: "—" },
     instagram: { url: "https://instagram.com/itsprofpaul", handle: "@itsprofpaul", count: "—" },
-    facebook: { url: "https://facebook.com/itsprofpaul", handle: "ItsProf Paul", count: "—" },
-    tiktok: { url: "https://tiktok.com/@itsprofpaul", handle: "@itsprofpaul", count: "—" },
-    pinterest: { url: "https://pinterest.com/itsprofpaul", handle: "@itsprofpaul", count: "—" },
+    facebook: { url: "https://www.facebook.com/ItsProfPaul/", handle: "ItsProf Paul", count: "—" },
+    tiktok: { url: "https://www.tiktok.com/@itsprofpaul", handle: "@itsprofpaul", count: "—" },
+    pinterest: { url: "https://www.pinterest.com/PahwahDigitech/_created/", handle: "@itsprofpaul", count: "—" },
   },
   titles: [
     "Brand & Web Strategist",
@@ -775,7 +775,7 @@ const cover = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=960&q=80`;
 
 export const projects: Project[] = [
-  { slug: "savanna-coffee", title: "Savanna Coffee - Brand System", category: "Branding", desc: "Identity, packaging and launch campaign for a Nairobi specialty roaster.", year: "2024", client: "Savanna Coffee", hue: 25, metric: "+38% first-quarter sales lift", preview: cover("photo-1495474472287-4d71bcdd2085"), previewAlt: "Coffee brand and packaging preview" },
+  { slug: "Savanna Coffee", title: "Savanna Coffee - Brand System", category: "Branding", desc: "Identity, packaging and launch campaign for a Nairobi specialty roaster.", year: "2024", client: "Savanna Coffee", hue: 25, metric: "+38% first-quarter sales lift", preview: cover("photo-1495474472287-4d71bcdd2085"), previewAlt: "Coffee brand and packaging preview" },
   { slug: "kazi-fintech", title: "Kazi - Fintech App UI", category: "UI/UX", desc: "Mobile-first banking experience for SMEs across East Africa.", year: "2024", client: "Kazi", hue: 250, metric: "42 core screens designed", preview: cover("photo-1551288049-bebda4e38f71"), previewAlt: "Fintech dashboard interface preview" },
   { slug: "msafiri-travel", title: "Msafiri - Travel Platform", category: "Web Dev", desc: "Full-stack booking platform built with React and a typed API.", year: "2024", client: "Msafiri", hue: 200, metric: "95+ performance target", preview: cover("photo-1507525428034-b723cf961d3e"), previewAlt: "Travel platform destination preview" },
   { slug: "tamu-restaurant", title: "Tamu - Restaurant Campaign", category: "Photography", desc: "Editorial food photography and a 360 campaign for a flagship opening.", year: "2023", client: "Tamu", hue: 35, metric: "120 launch assets", preview: cover("photo-1504674900247-0877df9cc836"), previewAlt: "Restaurant food photography preview" },
