@@ -284,10 +284,9 @@ function Contact() {
                     <Sparkles className="h-5 w-5 text-primary" />
                   </span>
                 </summary>
-                <div className="mt-4 grid gap-3 md:grid-cols-4">
+                <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
                   {packageOptions.map((option) => (
-                    <label key={option.slug} className={`relative cursor-pointer rounded-2xl border p-4 transition-all ${selectedPackage === option.slug ? "border-primary bg-primary/5 shadow-card" : "border-border hover:border-primary/60"} ${option.recommended ? "bg-gradient-to-br from-primary/10 to-gold/10" : "bg-card"}`}>
-                      {option.recommended && <span className="absolute right-3 top-3 rounded-full bg-gold px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-gold-foreground">Recommended</span>}
+                    <label key={option.slug} className={`cursor-pointer rounded-2xl border p-4 transition-all ${selectedPackage === option.slug ? "border-primary bg-primary/5 shadow-card" : "border-border hover:border-primary/60"} ${option.recommended ? "bg-gradient-to-br from-primary/10 to-gold/10 ring-1 ring-gold/30" : "bg-card"}`}>
                       <input
                         required
                         type="radio"
@@ -297,7 +296,10 @@ function Contact() {
                         onChange={() => setSelectedPackage(option.slug)}
                         className="sr-only"
                       />
-                      <div className="pr-16 font-display text-base font-semibold">{option.name}</div>
+                      <div className="flex min-h-12 flex-col gap-2">
+                        {option.recommended && <span className="w-fit rounded-full bg-gold px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-gold-foreground">Recommended</span>}
+                        <div className="font-display text-base font-semibold leading-tight">{option.name}</div>
+                      </div>
                       <div className="mt-2 text-sm font-bold text-primary">{option.price}</div>
                       <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{option.desc}</p>
                       <div className="mt-3 border-t border-border pt-3">

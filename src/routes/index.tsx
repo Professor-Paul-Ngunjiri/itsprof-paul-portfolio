@@ -353,9 +353,6 @@ function Index() {
           </p>
         </div>
         <div className="brand-marquee mt-8 overflow-hidden rounded-3xl border border-border bg-card py-5 shadow-card">
-          <div className="px-5 pb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            Replace the placeholder marks with client logo URLs when ready
-          </div>
           {[clientBrands, [...clientBrands].reverse()].map((row, rowIndex) => (
             <div key={rowIndex} className="brand-marquee-row overflow-hidden py-2">
               <div className={`brand-marquee-track flex w-max items-center gap-4 px-4 ${rowIndex === 1 ? "brand-marquee-track-reverse" : ""}`}>
@@ -366,14 +363,18 @@ function Index() {
                     target={brand.url.startsWith("http") ? "_blank" : undefined}
                     rel={brand.url.startsWith("http") ? "noreferrer" : undefined}
                     aria-label={brand.name}
-                    title={brand.name}
-                    className="group flex h-20 min-w-[150px] items-center justify-center rounded-2xl border border-border bg-background px-5 py-4 transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-card"
+                    title={`${brand.name} - ${brand.description}`}
+                    className="group relative flex h-24 min-w-[180px] items-center justify-center overflow-hidden rounded-2xl border border-border bg-background px-5 py-4 transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-card"
                   >
                     {brand.logo ? (
-                      <img src={brand.logo} alt={`${brand.name} logo`} loading="lazy" decoding="async" className="max-h-12 max-w-[110px] object-contain transition-transform group-hover:scale-105" />
+                      <img src={brand.logo} alt={`${brand.name} logo`} loading="lazy" decoding="async" className="max-h-14 max-w-[135px] object-contain transition-transform group-hover:scale-95 group-hover:opacity-20" />
                     ) : (
-                      <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-primary text-base font-bold text-primary-foreground shadow-card transition-transform group-hover:scale-105">{brand.mark}</span>
+                      <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-primary text-base font-bold text-primary-foreground shadow-card transition-transform group-hover:scale-95 group-hover:opacity-20">{brand.mark}</span>
                     )}
+                    <span className="pointer-events-none absolute inset-x-3 bottom-3 translate-y-3 rounded-xl bg-foreground/95 px-3 py-2 text-left opacity-0 shadow-card transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                      <span className="block text-xs font-semibold text-background">{brand.name}</span>
+                      <span className="mt-0.5 block line-clamp-2 text-[11px] leading-relaxed text-background/75">{brand.description}</span>
+                    </span>
                   </a>
                 ))}
               </div>
@@ -389,7 +390,7 @@ function Index() {
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ words from clients</span>
             <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">What people say.</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="grid gap-5 lg:grid-cols-[1fr_1fr_0.85fr]">
             {testimonials.map((t) => (
               <figure key={t.name} className="rounded-2xl border border-border bg-card p-7 shadow-card">
                 <div className="flex gap-1 mb-4">
@@ -407,6 +408,18 @@ function Index() {
                 </figcaption>
               </figure>
             ))}
+            <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-card to-gold/10 p-7 shadow-card">
+              <div className="inline-flex items-center gap-2 rounded-full bg-background px-3 py-1 text-xs font-semibold text-primary">
+                <Star className="h-3.5 w-3.5 fill-gold text-gold" /> Google reviews
+              </div>
+              <h3 className="mt-5 font-display text-2xl font-bold tracking-tight">Worked with me before?</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Your review helps serious founders, organisations and international clients understand the quality of the work before they book a call.
+              </p>
+              <a href={site.googleReviewUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-card transition hover:shadow-glow">
+                Leave a Google review <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
           </div>
         </div>
       </section>

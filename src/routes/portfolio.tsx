@@ -24,11 +24,7 @@ function Portfolio() {
   const [query, setQuery] = useState("");
   const [sortMode, setSortMode] = useState("Featured");
   const featuredSlugs = ["savanna-coffee", "msafiri-travel", "echo-records"];
-  const featuredProjects = useMemo(
-    () => projects.filter((project) => featuredSlugs.includes(project.slug)),
-    []
-  );
-  const [selectedSlug, setSelectedSlug] = useState(featuredProjects[0]?.slug ?? projects[0]?.slug ?? "");
+  const [selectedSlug, setSelectedSlug] = useState(projects[0]?.slug ?? "");
 
   const categories = useMemo(() => {
     const set = new Set<string>(["All"]);
@@ -92,13 +88,6 @@ function Portfolio() {
 
   const getProjectPreview = (index: number, preview?: string) => preview ?? previewPlaceholderImages[index % previewPlaceholderImages.length];
 
-  const selectedProject = useMemo(
-    () => projects.find((project) => project.slug === selectedSlug) ?? projects[0],
-    [selectedSlug]
-  );
-
-  const selectedPreview = getProjectPreview(0, selectedProject.preview);
-
   return (
     <>
       <section className="relative bg-hero overflow-hidden">
@@ -113,121 +102,6 @@ function Portfolio() {
           <Link to="/contact" className="btn-hero-primary mt-8">
             Hire me now <ArrowRight className="h-4 w-4" />
           </Link>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-16">
-        <div className="grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
-          <div className="rounded-[2.5rem] border border-border bg-card p-8 shadow-elegant">
-            <div className="mb-8 overflow-hidden rounded-[2rem] border border-border bg-muted/5">
-              <img
-                src={selectedPreview}
-                alt={selectedProject.previewAlt ?? `${selectedProject.title} preview`}
-                className="h-[360px] w-full object-cover object-center"
-              />
-            </div>
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-              <div className="max-w-2xl">
-                <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Featured case study</span>
-                <h2 className="mt-3 text-3xl font-display font-bold tracking-tight text-foreground">
-                  {selectedProject.title}
-                </h2>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  A hand-picked example chosen to show the range of systems, launch-ready work and measurable outcomes delivered for clients across brand, digital and media.
-                </p>
-              </div>
-              <div className="space-y-3 text-left lg:text-right">
-                {selectedProject.client ? (
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Client</p>
-                    <p className="mt-2 text-lg font-semibold text-foreground">{selectedProject.client}</p>
-                  </div>
-                ) : null}
-                {selectedProject.metric ? (
-                  <div className="inline-flex rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
-                    {selectedProject.metric}
-                  </div>
-                ) : null}
-              </div>
-            </div>
-
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-3xl border border-border bg-muted/30 p-5">
-                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Category</p>
-                <p className="mt-2 text-sm font-semibold text-foreground">{selectedProject.category}</p>
-              </div>
-              <div className="rounded-3xl border border-border bg-muted/30 p-5">
-                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Year</p>
-                <p className="mt-2 text-sm font-semibold text-foreground">{selectedProject.year ?? "Ongoing"}</p>
-              </div>
-              <div className="rounded-3xl border border-border bg-muted/30 p-5">
-                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Deliverable</p>
-                <p className="mt-2 text-sm font-semibold text-foreground">{selectedProject.liveUrl ? "Live site or app" : "Creative system"}</p>
-              </div>
-            </div>
-
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-3xl border border-border bg-muted/30 p-5">
-                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Why this is featured</p>
-                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                  <li>Clear business outcome, strong creative execution.</li>
-                  <li>High-value systems, launch-ready assets and measurable impact.</li>
-                </ul>
-              </div>
-              <div className="rounded-3xl border border-border bg-muted/30 p-5">
-                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">How clients use it</p>
-                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                  <li>As a benchmark for brand refreshes or product launches.</li>
-                  <li>To evaluate craftsmanship, speed and launch thinking.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              {selectedProject.liveUrl ? (
-                <a href={selectedProject.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-5 py-3 text-sm font-semibold text-primary transition hover:bg-primary/10">
-                  Visit live project <ExternalLink className="h-4 w-4" />
-                </a>
-              ) : null}
-              <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground transition hover:border-primary hover:text-primary">
-                Hire me now <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <div className="rounded-[2rem] border border-border bg-card p-5 shadow-card">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <div className="text-xs uppercase tracking-[0.24em] text-muted-foreground">Curated highlights</div>
-                  <p className="mt-2 text-sm text-foreground">Pick a case study to see why it matters.</p>
-                </div>
-                <span className="rounded-full bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-primary">Featured</span>
-              </div>
-            </div>
-            {featuredProjects.map((project) => {
-              const isActive = project.slug === selectedSlug;
-              return (
-                <button
-                  key={project.slug}
-                  type="button"
-                  onClick={() => setSelectedSlug(project.slug)}
-                  className={`w-full rounded-[2rem] border px-5 py-5 text-left transition ${
-                    isActive ? "border-primary bg-primary/10 shadow-card" : "border-border bg-card hover:border-primary"
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <h3 className="text-base font-semibold text-foreground">{project.title}</h3>
-                      <p className="mt-2 text-sm text-muted-foreground">{project.client}</p>
-                    </div>
-                    <div className="rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">{project.year}</div>
-                  </div>
-                  <div className="mt-4 text-sm leading-relaxed text-muted-foreground">{project.desc}</div>
-                </button>
-              );
-            })}
-          </div>
         </div>
       </section>
 

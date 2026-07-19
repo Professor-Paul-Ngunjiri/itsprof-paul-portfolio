@@ -33,10 +33,28 @@ const differentiators = [
   { t: "Transparent pricing", d: "No hidden fees. Quotes you can hand to finance without explanation." },
 ];
 
-const tiers = [
-  { name: "Spark", price: "From KES 25,000", popular: false, features: ["Single deliverable", "1 concept direction", "2 revision rounds", "5–7 day turnaround", "Source files delivered"] },
-  { name: "Illuminate", price: "From KES 75,000", popular: true, features: ["Multi-deliverable package", "3 concept directions", "Unlimited rounds within scope", "2–3 week turnaround", "Full source files + style guide", "30 days post-launch support"] },
-  { name: "Legacy", price: "Custom quote", popular: false, features: ["Full multi-channel system", "Strategy + design + production", "Dedicated weekly check-ins", "4–8 week engagement", "Brand book + asset library", "90 days post-launch support"] },
+const engagementPackages = [
+  {
+    name: "Diagnostic",
+    price: "From KES 25,000",
+    note: "For clarity before a bigger investment.",
+    popular: false,
+    features: ["Audit or discovery sprint", "Priority problems mapped", "Action plan and quick wins", "Best-fit scope recommendation"],
+  },
+  {
+    name: "Signature Build",
+    price: "Service-based quote",
+    note: "The main build package for serious launches.",
+    popular: true,
+    features: ["Strategy, creative direction and delivery", "Premium design or production system", "Source files and handoff assets", "Launch support and improvement notes"],
+  },
+  {
+    name: "Growth Partner",
+    price: "Custom monthly or project retainer",
+    note: "For teams that want ongoing creative momentum.",
+    popular: false,
+    features: ["Roadmap, campaign or content rhythm", "Priority execution across connected services", "Monthly reporting and recommendations", "Flexible budget range agreed upfront"],
+  },
 ];
 
 function Services() {
@@ -141,16 +159,17 @@ function Services() {
       <section className="bg-muted/40">
         <div className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
           <div className="text-center mb-12">
-            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ pricing</span>
-            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold">Three engagement tiers.</h2>
-            <p className="mt-3 text-muted-foreground max-w-xl mx-auto">Indicative ranges. Every quote is custom, but these tiers make it easy to choose the level of investment that matches your ambition.</p>
+            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ engagement</span>
+            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold">Choose the way we work.</h2>
+            <p className="mt-3 text-muted-foreground max-w-xl mx-auto">Pick a starting point that fits where you are now. The quote form will then show the right package details for the service you choose.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
-            {tiers.map((t) => (
+            {engagementPackages.map((t) => (
               <div key={t.name} className={`relative rounded-3xl border bg-card p-7 ${t.popular ? "border-primary shadow-elegant lg:scale-105" : "border-border"}`}>
-                {t.popular && <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">Most Popular</div>}
+                {t.popular && <div className="mb-4 w-fit rounded-full bg-gradient-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">Recommended</div>}
                 <h3 className="font-display text-2xl font-bold">{t.name}</h3>
                 <div className="mt-2 font-mono text-sm text-muted-foreground">{t.price}</div>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.note}</p>
                 <ul className="mt-6 space-y-3">
                   {t.features.map((f) => (
                     <li key={f} className="flex items-start gap-2 text-sm">
@@ -158,8 +177,8 @@ function Services() {
                     </li>
                   ))}
                 </ul>
-                <Link to="/contact" className={`mt-7 block text-center rounded-full px-5 py-3 text-sm font-semibold ${t.popular ? "bg-gradient-primary text-primary-foreground" : "border border-border hover:border-primary"}`}>
-                  Choose {t.name}
+                <Link to={`/contact?package=${encodeURIComponent(t.name.toLowerCase().replace(/\s+/g, "-"))}`} className={`mt-7 block text-center rounded-full px-5 py-3 text-sm font-semibold ${t.popular ? "bg-gradient-primary text-primary-foreground" : "border border-border hover:border-primary"}`}>
+                  Start with {t.name}
                 </Link>
               </div>
             ))}

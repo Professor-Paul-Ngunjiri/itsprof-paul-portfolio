@@ -1,3 +1,6 @@
+export { clientBrands } from "@/data/brandClients";
+export type { ClientBrand } from "@/data/brandClients";
+
 export const site = {
   name: "Paul Ngunjiri",
   brand: "ItsProf Paul",
@@ -5,6 +8,7 @@ export const site = {
   location: "Nairobi, Kenya",
   email: "paul@pahwah.com",
   quoteEmail: "paul@pahwah.com",
+  googleReviewUrl: "https://www.google.com/search?q=Paul+Ngunjiri+ItsProf+Paul+reviews",
   partner: {
     name: "Pahwah Digitech",
     url: "https://www.pahwah.com",
@@ -62,24 +66,6 @@ export const servicePillars = [
     desc: "For teams that need marketing, social content, analytics, print assets, proposals, RFPs and tender documents that persuade.",
     services: ["digital-marketing", "social-media", "analytics", "content-creation", "print-design", "document-design"],
   },
-];
-
-export type ClientBrand = {
-  name: string;
-  url: string;
-  mark: string;
-  logo?: string;
-};
-
-export const clientBrands: ClientBrand[] = [
-  { name: "Savanna Coffee", url: "/portfolio", mark: "SC" },
-  { name: "Kazi Fintech", url: "/portfolio", mark: "KZ" },
-  { name: "Tamu Restaurants", url: "/portfolio", mark: "TR" },
-  { name: "Asha Foundation", url: "/portfolio", mark: "AF" },
-  { name: "Jamii Bank", url: "/portfolio", mark: "JB" },
-  { name: "Safari Trust", url: "/portfolio", mark: "ST" },
-  { name: "Mlima Learn", url: "/portfolio", mark: "ML" },
-  { name: "Nuru Skincare", url: "/portfolio", mark: "NS" },
 ];
 
 export const seoKeywords = [

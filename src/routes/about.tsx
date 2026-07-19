@@ -36,11 +36,11 @@ function About() {
           <div className="animate-fade-up">
             <span className="hero-eyebrow">/ about</span>
             <h1 className="mt-3 font-display text-5xl lg:text-7xl font-bold tracking-tighter leading-[0.95]">
-              I'm Paul.<br />
-              <span className="text-gradient-gold">Strategy, systems</span> and craft.
+              I'm Paul Ngunjiri.<br />
+              <span className="text-gradient-gold">I turn ideas into trusted digital brands.</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-xl">
-              I help serious founders, teams and organisations turn their ideas into premium brands, fast websites, persuasive content and measurable growth systems. The work is creative, but the standard is business: clear positioning, cleaner execution and outcomes clients can defend.
+              Popularly known as ItsProf Paul, I help founders, companies, churches, schools, NGOs, government teams and ambitious individuals build brands, websites, content and growth systems that look premium, feel clear and create real business confidence.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="/cv.pdf" className="btn-hero-primary">
@@ -51,12 +51,9 @@ function About() {
               </Link>
             </div>
           </div>
-          <div className="relative">
-            <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden border-2 border-border bg-muted/20 shadow-elegant">
-              <div className="flex h-full w-full items-center justify-center bg-muted/10 p-6">
-                <img src={aboutImg} loading="eager" fetchPriority="high" decoding="async" alt="Paul Ngunjiri" className="max-h-full max-w-full object-contain object-center" />
-              </div>
-            </div>
+          <div className="relative min-h-[420px] lg:min-h-[560px]">
+            <div className="absolute inset-0 rounded-full bg-primary/10 blur-3xl" />
+            <img src={aboutImg} loading="eager" fetchPriority="high" decoding="async" alt="Paul Ngunjiri" className="relative mx-auto h-full max-h-[560px] w-full object-contain object-center drop-shadow-2xl" />
           </div>
         </div>
       </section>
