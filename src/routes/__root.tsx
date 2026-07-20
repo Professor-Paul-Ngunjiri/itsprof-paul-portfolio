@@ -31,7 +31,7 @@ const structuredData = {
         addressLocality: "Nairobi",
         addressCountry: "KE",
       },
-      sameAs: Object.values(site.socials).map((social) => social.url),
+      sameAs: [...Object.values(site.socials).map((social) => social.url), site.googleBusinessProfileUrl],
       knowsAbout: seoKeywords,
       worksFor: {
         "@type": "Organization",
@@ -45,6 +45,7 @@ const structuredData = {
       name: site.brand,
       founder: { "@id": "https://paul.pahwah.com/#person" },
       url: "https://paul.pahwah.com",
+      sameAs: site.googleBusinessProfileUrl,
       areaServed: ["Kenya", "East Africa", "International"],
       priceRange: "KES 25,000+",
       serviceType: services.map((service) => service.name),
