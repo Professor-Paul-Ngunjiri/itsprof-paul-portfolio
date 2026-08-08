@@ -3,6 +3,7 @@ import { ArrowRight, BriefcaseBusiness, ChevronDown, Menu, Moon, Send, Sun, Term
 import { useState } from "react";
 import { servicePillars, services, site } from "@/lib/site";
 import { useTheme } from "@/hooks/use-theme";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import logo from "/logo.svg?url";
 
 const links = [
@@ -26,6 +27,7 @@ export function Navigation() {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-border/70 bg-background/88 shadow-card backdrop-blur-xl">
+      <ScrollProgress />
       <div className="hidden border-b border-border/50 bg-muted/35 md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-2 text-[11px] font-medium text-muted-foreground lg:px-8">
           <span>
