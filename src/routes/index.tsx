@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles, Linkedin, Instagram, Facebook, Music2, CheckCircle2, Gauge, Layers3, ShieldCheck, ExternalLink } from "lucide-react";
 import { clientBrands, servicePillars, site, services, processSteps, values, projects } from "@/lib/site";
 import { Typewriter } from "@/components/Typewriter";
+import { CountUp } from "@/components/CountUp";
+import { Reveal } from "@/components/Reveal";
 import { ProcessShowcase } from "@/components/ProcessShowcase";
 import { GoogleReviews } from "@/components/GoogleReviews";
 import heroImg from "@/assets/paul-hero.webp";
@@ -150,7 +152,7 @@ function Index() {
               { n: site.services, l: "Creative services" },
             ].map((s, i) => (
               <div key={i} className="text-center">
-                <div className="font-display text-4xl lg:text-5xl font-extrabold text-white">{s.n}</div>
+                <div className="font-display text-4xl lg:text-5xl font-extrabold text-white"><CountUp value={s.n} /></div>
                 <div className="mt-1 text-xs font-display font-semibold uppercase tracking-widest text-white/80">{s.l}</div>
               </div>
             ))}
@@ -171,14 +173,14 @@ function Index() {
           </p>
         </div>
         <div className="mt-10 grid md:grid-cols-3 gap-5">
-          {signatureSystems.map((item) => (
-            <article key={item.title} className="rounded-2xl border border-border bg-card p-7 shadow-card">
+          {signatureSystems.map((item, index) => (
+            <Reveal as="article" key={item.title} delay={index * 90} className="rounded-2xl border border-border bg-card p-7 shadow-card">
               <div className="inline-flex rounded-xl bg-primary/10 p-3">
                 <item.icon className="h-6 w-6 text-primary" />
               </div>
               <h3 className="mt-5 font-display text-xl font-semibold">{item.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
-            </article>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -295,6 +297,10 @@ function Index() {
                   <img
                     src={previewSrc}
                     alt={p.previewAlt ?? `${p.title} preview`}
+                    loading="lazy"
+                    decoding="async"
+                    width={720}
+                    height={720}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
 

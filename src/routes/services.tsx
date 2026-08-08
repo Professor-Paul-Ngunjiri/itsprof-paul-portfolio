@@ -177,7 +177,7 @@ function Services() {
                     </li>
                   ))}
                 </ul>
-                <Link to={`/contact?package=${encodeURIComponent(t.name.toLowerCase().replace(/\s+/g, "-"))}`} className={`mt-7 block text-center rounded-full px-5 py-3 text-sm font-semibold ${t.popular ? "bg-gradient-primary text-primary-foreground" : "border border-border hover:border-primary"}`}>
+                <Link to="/contact" search={{ package: t.name.toLowerCase().replace(/\s+/g, "-") }} className={`mt-7 block text-center rounded-full px-5 py-3 text-sm font-semibold ${t.popular ? "bg-gradient-primary text-primary-foreground" : "border border-border hover:border-primary"}`}>
                   Start with {t.name}
                 </Link>
               </div>

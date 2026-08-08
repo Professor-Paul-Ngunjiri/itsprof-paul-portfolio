@@ -3,6 +3,7 @@ import { ArrowRight, BriefcaseBusiness, ChevronDown, Menu, Moon, Send, Sun, Term
 import { useState } from "react";
 import { servicePillars, services, site } from "@/lib/site";
 import { useTheme } from "@/hooks/use-theme";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import logo from "/logo.svg?url";
 
 const links = [
@@ -26,6 +27,7 @@ export function Navigation() {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-border/70 bg-background/88 shadow-card backdrop-blur-xl">
+      <ScrollProgress />
       <div className="hidden border-b border-border/50 bg-muted/35 md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-2 text-[11px] font-medium text-muted-foreground lg:px-8">
           <span>
@@ -188,7 +190,7 @@ export function Navigation() {
                 </Link>
                 <div className="space-y-3">
                   {groupedServices.map(({ group, desc, items }) => (
-                    <details key={group} className="rounded-2xl border border-border bg-background p-3" defaultOpen={group === groupedServices[0]?.group}>
+                    <details key={group} className="rounded-2xl border border-border bg-background p-3" open={group === groupedServices[0]?.group}>
                       <summary className="cursor-pointer list-none rounded-xl px-2 py-2 font-display text-sm font-semibold">
                         <span className="flex items-center justify-between gap-3">
                           <span>

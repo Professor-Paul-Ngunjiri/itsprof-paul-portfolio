@@ -13,7 +13,7 @@ export type Project = {
 };
 
 const cover = (id: string) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=960&q=80`;
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=720&q=60`;
 
 export const projects: Project[] = [
   { slug: "Savanna Coffee", title: "Savanna Coffee - Brand System", category: "Branding", desc: "Identity, packaging and launch campaign for a Nairobi specialty roaster.", year: "2024", client: "Savanna Coffee", hue: 25, metric: "+38% first-quarter sales lift", preview: cover("photo-1495474472287-4d71bcdd2085"), previewAlt: "Coffee brand and packaging preview" },
