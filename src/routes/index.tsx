@@ -295,6 +295,10 @@ function Index() {
                   <img
                     src={previewSrc}
                     alt={p.previewAlt ?? `${p.title} preview`}
+                    loading="lazy"
+                    decoding="async"
+                    width={720}
+                    height={720}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
 
