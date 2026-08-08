@@ -188,7 +188,7 @@ export function Navigation() {
                 </Link>
                 <div className="space-y-3">
                   {groupedServices.map(({ group, desc, items }) => (
-                    <details key={group} className="rounded-2xl border border-border bg-background p-3" defaultOpen={group === groupedServices[0]?.group}>
+                    <details key={group} className="rounded-2xl border border-border bg-background p-3" open={group === groupedServices[0]?.group}>
                       <summary className="cursor-pointer list-none rounded-xl px-2 py-2 font-display text-sm font-semibold">
                         <span className="flex items-center justify-between gap-3">
                           <span>
