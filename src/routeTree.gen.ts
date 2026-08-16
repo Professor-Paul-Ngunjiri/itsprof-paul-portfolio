@@ -13,11 +13,15 @@ import { Route as TerminalRouteImport } from './routes/terminal'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as PhilosophyRouteImport } from './routes/philosophy'
+import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as MotionCheckRouteImport } from './routes/motion-check'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as PackagesSlugRouteImport } from './routes/packages.$slug'
+import { Route as CapabilitiesSlugRouteImport } from './routes/capabilities.$slug'
 import { Route as ServicesSlugSubSlugRouteImport } from './routes/services.$slug.$subSlug'
 
 const TerminalRoute = TerminalRouteImport.update({
@@ -38,6 +42,16 @@ const ServicesRoute = ServicesRouteImport.update({
 const PortfolioRoute = PortfolioRouteImport.update({
   id: '/portfolio',
   path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PhilosophyRoute = PhilosophyRouteImport.update({
+  id: '/philosophy',
+  path: '/philosophy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PackagesRoute = PackagesRouteImport.update({
+  id: '/packages',
+  path: '/packages',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MotionCheckRoute = MotionCheckRouteImport.update({
@@ -65,6 +79,16 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => ServicesRoute,
 } as any)
+const PackagesSlugRoute = PackagesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => PackagesRoute,
+} as any)
+const CapabilitiesSlugRoute = CapabilitiesSlugRouteImport.update({
+  id: '/capabilities/$slug',
+  path: '/capabilities/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesSlugSubSlugRoute = ServicesSlugSubSlugRouteImport.update({
   id: '/$subSlug',
   path: '/$subSlug',
@@ -76,10 +100,14 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/motion-check': typeof MotionCheckRoute
+  '/packages': typeof PackagesRouteWithChildren
+  '/philosophy': typeof PhilosophyRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terminal': typeof TerminalRoute
+  '/capabilities/$slug': typeof CapabilitiesSlugRoute
+  '/packages/$slug': typeof PackagesSlugRoute
   '/services/$slug': typeof ServicesSlugRouteWithChildren
   '/services/$slug/$subSlug': typeof ServicesSlugSubSlugRoute
 }
@@ -88,10 +116,14 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/motion-check': typeof MotionCheckRoute
+  '/packages': typeof PackagesRouteWithChildren
+  '/philosophy': typeof PhilosophyRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terminal': typeof TerminalRoute
+  '/capabilities/$slug': typeof CapabilitiesSlugRoute
+  '/packages/$slug': typeof PackagesSlugRoute
   '/services/$slug': typeof ServicesSlugRouteWithChildren
   '/services/$slug/$subSlug': typeof ServicesSlugSubSlugRoute
 }
@@ -101,10 +133,14 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/motion-check': typeof MotionCheckRoute
+  '/packages': typeof PackagesRouteWithChildren
+  '/philosophy': typeof PhilosophyRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terminal': typeof TerminalRoute
+  '/capabilities/$slug': typeof CapabilitiesSlugRoute
+  '/packages/$slug': typeof PackagesSlugRoute
   '/services/$slug': typeof ServicesSlugRouteWithChildren
   '/services/$slug/$subSlug': typeof ServicesSlugSubSlugRoute
 }
@@ -115,10 +151,14 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/motion-check'
+    | '/packages'
+    | '/philosophy'
     | '/portfolio'
     | '/services'
     | '/sitemap.xml'
     | '/terminal'
+    | '/capabilities/$slug'
+    | '/packages/$slug'
     | '/services/$slug'
     | '/services/$slug/$subSlug'
   fileRoutesByTo: FileRoutesByTo
@@ -127,10 +167,14 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/motion-check'
+    | '/packages'
+    | '/philosophy'
     | '/portfolio'
     | '/services'
     | '/sitemap.xml'
     | '/terminal'
+    | '/capabilities/$slug'
+    | '/packages/$slug'
     | '/services/$slug'
     | '/services/$slug/$subSlug'
   id:
@@ -139,10 +183,14 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/motion-check'
+    | '/packages'
+    | '/philosophy'
     | '/portfolio'
     | '/services'
     | '/sitemap.xml'
     | '/terminal'
+    | '/capabilities/$slug'
+    | '/packages/$slug'
     | '/services/$slug'
     | '/services/$slug/$subSlug'
   fileRoutesById: FileRoutesById
@@ -152,10 +200,13 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   MotionCheckRoute: typeof MotionCheckRoute
+  PackagesRoute: typeof PackagesRouteWithChildren
+  PhilosophyRoute: typeof PhilosophyRoute
   PortfolioRoute: typeof PortfolioRoute
   ServicesRoute: typeof ServicesRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TerminalRoute: typeof TerminalRoute
+  CapabilitiesSlugRoute: typeof CapabilitiesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -186,6 +237,20 @@ declare module '@tanstack/react-router' {
       path: '/portfolio'
       fullPath: '/portfolio'
       preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/philosophy': {
+      id: '/philosophy'
+      path: '/philosophy'
+      fullPath: '/philosophy'
+      preLoaderRoute: typeof PhilosophyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/packages': {
+      id: '/packages'
+      path: '/packages'
+      fullPath: '/packages'
+      preLoaderRoute: typeof PackagesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/motion-check': {
@@ -223,6 +288,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSlugRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/packages/$slug': {
+      id: '/packages/$slug'
+      path: '/$slug'
+      fullPath: '/packages/$slug'
+      preLoaderRoute: typeof PackagesSlugRouteImport
+      parentRoute: typeof PackagesRoute
+    }
+    '/capabilities/$slug': {
+      id: '/capabilities/$slug'
+      path: '/capabilities/$slug'
+      fullPath: '/capabilities/$slug'
+      preLoaderRoute: typeof CapabilitiesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/$slug/$subSlug': {
       id: '/services/$slug/$subSlug'
       path: '/$subSlug'
@@ -232,6 +311,18 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface PackagesRouteChildren {
+  PackagesSlugRoute: typeof PackagesSlugRoute
+}
+
+const PackagesRouteChildren: PackagesRouteChildren = {
+  PackagesSlugRoute: PackagesSlugRoute,
+}
+
+const PackagesRouteWithChildren = PackagesRoute._addFileChildren(
+  PackagesRouteChildren,
+)
 
 interface ServicesSlugRouteChildren {
   ServicesSlugSubSlugRoute: typeof ServicesSlugSubSlugRoute
@@ -262,10 +353,13 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   MotionCheckRoute: MotionCheckRoute,
+  PackagesRoute: PackagesRouteWithChildren,
+  PhilosophyRoute: PhilosophyRoute,
   PortfolioRoute: PortfolioRoute,
   ServicesRoute: ServicesRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TerminalRoute: TerminalRoute,
+  CapabilitiesSlugRoute: CapabilitiesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

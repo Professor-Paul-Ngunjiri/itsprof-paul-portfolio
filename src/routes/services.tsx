@@ -1,15 +1,6 @@
 import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
-import {
-  Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
-  Megaphone, Hash, LineChart, Package, PenTool, Printer, Sparkles, FileText,
-} from "lucide-react";
-import { expertisePillars, getSubServices, servicePillars, services } from "@/lib/site";
-
-const ICONS = {
-  Palette, Shapes, Layout, Code2, MousePointer2, Camera, Video, Film,
-  Megaphone, Hash, LineChart, Package, PenTool, Printer, Sparkles, FileText,
-} as const;
+import { capabilityGroups, engagementPackages, expertisePillars } from "@/lib/site";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -33,30 +24,6 @@ const differentiators = [
   { t: "Transparent pricing", d: "No hidden fees. Quotes you can hand to finance without explanation." },
 ];
 
-const engagementPackages = [
-  {
-    name: "Diagnostic",
-    price: "From KES 25,000",
-    note: "For clarity before a bigger investment.",
-    popular: false,
-    features: ["Audit or discovery sprint", "Priority problems mapped", "Action plan and quick wins", "Best-fit scope recommendation"],
-  },
-  {
-    name: "Signature Build",
-    price: "Service-based quote",
-    note: "The main build package for serious launches.",
-    popular: true,
-    features: ["Strategy, creative direction and delivery", "Premium design or production system", "Source files and handoff assets", "Launch support and improvement notes"],
-  },
-  {
-    name: "Growth Partner",
-    price: "Custom monthly or project retainer",
-    note: "For teams that want ongoing creative momentum.",
-    popular: false,
-    features: ["Roadmap, campaign or content rhythm", "Priority execution across connected services", "Monthly reporting and recommendations", "Flexible budget range agreed upfront"],
-  },
-];
-
 function Services() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   if (pathname !== "/services") return <Outlet />;
@@ -67,19 +34,19 @@ function Services() {
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 text-center">
           <span className="hero-eyebrow">/ services</span>
           <h1 className="mt-3 font-display text-5xl lg:text-7xl font-bold tracking-tighter">
-            Brand, web, content<br /> <span className="text-gradient-gold">and growth systems.</span>
+            Capabilities for<br /> <span className="text-gradient-gold">digital business value.</span>
           </h1>
           <p className="mt-5 max-w-2xl mx-auto text-lg text-white/85">
-            Three focused service pillars with one accountable creative lead, built for clients who want premium execution without coordinating five separate vendors.
+            I help businesses think clearly, create stronger brands, build better digital experiences and use technology, marketing and systems with intention.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/80">
-            {servicePillars.map((item) => (
-              <span key={item.title} className="rounded-full border border-white/20 bg-white/10 px-3 py-1">{item.title}</span>
+            {capabilityGroups.map((item) => (
+              <Link key={item.title} to="/capabilities/$slug" params={{ slug: item.slug }} className="rounded-full border border-white/20 bg-white/10 px-3 py-1 hover:bg-white/20">{item.title}</Link>
             ))}
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link to="/contact" className="btn-hero-primary">Hire me now</Link>
-            <a href="#services" className="btn-hero-outline">See services now</a>
+            <Link to="/contact" className="btn-hero-primary">Work With Me</Link>
+            <a href="#services" className="btn-hero-outline">Explore Capabilities</a>
           </div>
         </div>
       </section>
@@ -99,60 +66,47 @@ function Services() {
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ services</span>
-            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold">Every service, organised by outcome.</h2>
+            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold">Every capability, organised by outcome.</h2>
           </div>
-          <p className="text-muted-foreground max-w-md">Tap any card for the detailed breakdown: process, deliverables, FAQs, investment range and quote options.</p>
+          <p className="text-muted-foreground max-w-md">Tap any card for the detailed breakdown: thinking, process, deliverables, FAQs, investment range and quote options.</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map((s, i) => {
-            const Icon = ICONS[s.icon as keyof typeof ICONS] ?? Sparkles;
-            const subServices = getSubServices(s.slug);
-            return (
+          {capabilityGroups.map((group) => (
               <Link
-                key={s.slug}
-                to="/services/$slug"
-                params={{ slug: s.slug }}
+                key={group.slug}
+                to="/capabilities/$slug"
+                params={{ slug: group.slug }}
                 className="group relative overflow-hidden rounded-3xl border border-border bg-card p-7 hover:border-primary hover:-translate-y-1 transition-all duration-300 shadow-card"
               >
-                <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-gradient-primary opacity-0 group-hover:opacity-10 blur-3xl transition-opacity" />
-                <div className="flex items-start justify-between">
-                  <div className="rounded-2xl bg-primary/10 p-3 group-hover:bg-primary/20 transition-colors">
-                    <Icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    /{(i + 1).toString().padStart(2, "0")} - {s.category}
-                  </div>
+                <img src={group.heroImage} alt={group.title} loading="lazy" className="-mx-2 -mt-2 mb-5 aspect-[16/9] w-[calc(100%+1rem)] rounded-2xl object-cover" />
+                <div className="flex items-start justify-between gap-4">
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-primary">/{group.number}</div>
+                  <div className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-semibold text-primary">{group.startingAt}</div>
                 </div>
-                <h3 className="mt-5 font-display text-2xl font-bold leading-tight">{s.name}</h3>
-                <p className="mt-2 text-sm text-gradient-primary font-display font-semibold">{s.tagline}</p>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {subServices.map((sub) => (
-                    <span key={sub.slug} className="rounded-full border border-border bg-background/70 px-3 py-1 text-[11px] font-medium text-muted-foreground">
-                      {sub.name}
-                    </span>
-                  ))}
-                </div>
+                <h3 className="mt-4 font-display text-2xl font-bold leading-tight">{group.title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{group.desc}</p>
                 <ul className="mt-4 space-y-1.5">
-                  {s.features.slice(0, 3).map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
-                      <Check className="h-3.5 w-3.5 mt-0.5 text-primary flex-shrink-0" /> {f}
+                  {group.lines.slice(0, 5).map((line) => (
+                    <li key={line.slug} className="flex items-start gap-2 text-xs text-muted-foreground">
+                      <Check className="h-3.5 w-3.5 mt-0.5 text-primary flex-shrink-0" /> {line.name}
                     </li>
                   ))}
                 </ul>
                 <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
                   <div>
-                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground">From</div>
-                    <div className="font-display font-bold text-sm">{s.startingAt}</div>
+                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Timeline</div>
+                    <div className="font-display font-bold text-sm">{group.estimatedTimeline}</div>
+                  </div>
+                  <div className="hidden max-w-[9rem] text-right text-[10px] leading-snug text-muted-foreground sm:block">
+                    {group.engagement}
                   </div>
                   <div className="inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground px-4 py-2 text-xs font-semibold group-hover:gap-3 transition-all">
-                    Learn more <ArrowRight className="h-3.5 w-3.5" />
+                    View overview <ArrowRight className="h-3.5 w-3.5" />
                   </div>
                 </div>
               </Link>
-            );
-          })}
+          ))}
         </div>
       </section>
 
@@ -165,20 +119,20 @@ function Services() {
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {engagementPackages.map((t) => (
-              <div key={t.name} className={`relative rounded-3xl border bg-card p-7 ${t.popular ? "border-primary shadow-elegant lg:scale-105" : "border-border"}`}>
-                {t.popular && <div className="mb-4 w-fit rounded-full bg-gradient-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">Recommended</div>}
+              <div key={t.name} className={`relative rounded-3xl border bg-card p-7 ${t.slug === "signature-build" ? "border-primary shadow-elegant lg:scale-105" : "border-border"}`}>
+                {t.slug === "signature-build" && <div className="mb-4 w-fit rounded-full bg-gradient-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">Recommended</div>}
                 <h3 className="font-display text-2xl font-bold">{t.name}</h3>
                 <div className="mt-2 font-mono text-sm text-muted-foreground">{t.price}</div>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.note}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.description}</p>
                 <ul className="mt-6 space-y-3">
-                  {t.features.map((f) => (
+                  {t.includes.slice(0, 4).map((f) => (
                     <li key={f} className="flex items-start gap-2 text-sm">
                       <Check className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> {f}
                     </li>
                   ))}
                 </ul>
-                <Link to="/contact" search={{ package: t.name.toLowerCase().replace(/\s+/g, "-") }} className={`mt-7 block text-center rounded-full px-5 py-3 text-sm font-semibold ${t.popular ? "bg-gradient-primary text-primary-foreground" : "border border-border hover:border-primary"}`}>
-                  Start with {t.name}
+                <Link to="/packages/$slug" params={{ slug: t.slug }} className={`mt-7 block text-center rounded-full px-5 py-3 text-sm font-semibold ${t.slug === "signature-build" ? "bg-gradient-primary text-primary-foreground" : "border border-border hover:border-primary"}`}>
+                  View {t.name}
                 </Link>
               </div>
             ))}
@@ -206,7 +160,7 @@ function Services() {
           <h2 className="font-display text-4xl lg:text-5xl font-bold">Ready to move now?</h2>
           <p className="mt-4 max-w-xl mx-auto opacity-95">Thirty minutes. No hard pitch. Just a real conversation about your goals, timeline, investment range and whether we are a strong fit.</p>
           <Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground">
-            Hire me now <ArrowRight className="h-4 w-4" />
+            Start a Conversation <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>

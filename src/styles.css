@@ -227,25 +227,6 @@
     max-width: 100%;
     white-space: nowrap;
   }
-  .brand-marquee-track {
-    animation: brand-marquee 34s linear infinite;
-    will-change: transform;
-  }
-  .brand-marquee-track-reverse {
-    animation-name: brand-marquee-reverse;
-    animation-duration: 38s;
-  }
-  .brand-marquee-row:has(a:hover) .brand-marquee-track {
-    animation-play-state: paused;
-  }
-  @keyframes brand-marquee {
-    0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(-33.333%, 0, 0); }
-  }
-  @keyframes brand-marquee-reverse {
-    0% { transform: translate3d(-33.333%, 0, 0); }
-    100% { transform: translate3d(0, 0, 0); }
-  }
   @media (max-width: 768px) {
     .bg-hero::after { filter: blur(40px); opacity: 0.45; }
     .bg-hero::before { opacity: 0.08; background-size: min(440px, 92vw) auto; }

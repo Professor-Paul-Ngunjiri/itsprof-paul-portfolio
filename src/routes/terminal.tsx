@@ -1,12 +1,12 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { clientBrands, getServicePackages, processSteps, servicePillars, site, services, values, projects, testimonials } from "@/lib/site";
+import { capabilityGroups, capabilityLines, clientBrands, engagementPackages, processSteps, site, projects, testimonials, thinkingPrinciples } from "@/lib/site";
 
 export const Route = createFileRoute("/terminal")({
   head: () => ({
     meta: [
-      { title: "Terminal - ItsProf Paul OS v2.0" },
-      { name: "description", content: "Explore Paul Ngunjiri's services, proof, process and hiring flow through an interactive command-line interface." },
+      { title: "Terminal - ItsProf Paul OS v3.0" },
+      { name: "description", content: "Explore Paul Ngunjiri's positioning, philosophy, capabilities, pricing logic, proof and hiring flow through an interactive command-line interface." },
       { property: "og:title", content: "Terminal - ItsProf Paul" },
     ],
     links: [{ rel: "canonical", href: "/terminal" }],
@@ -16,8 +16,8 @@ export const Route = createFileRoute("/terminal")({
 
 const BANNER = `
   --------------------------------------------------
-  ItsProf Paul OS v2.0
-  Premium brand, web, content and growth systems.
+  ItsProf Paul OS v3.0
+  Digital Strategist, Creator & Consultant.
   Type 'brief' for the 5-second client summary.
   Type 'help' to see every command.
   --------------------------------------------------
@@ -68,21 +68,21 @@ function Terminal() {
       case "brief":
         out = [
           "Who is Paul? Paul Ngunjiri, popularly known as ItsProf Paul.",
-          "What does he do? I create premium brand, web, visual content and growth systems.",
+          "What does he do? I think, teach, create, build and advise at the intersection of strategy, branding, technology and digital marketing.",
           "Who does he help? Individuals, founders, companies, churches, NGOs, schools, government teams and international organisations.",
           "What problems does he solve? Unclear positioning, weak visuals, slow websites, scattered content, poor trust signals and low conversion.",
-          "Why trust him? 4+ years, 100+ projects, 50+ clients, a Mathematics & Computer Science background and a structured delivery process.",
+          "Why trust him? 4+ years, 60+ projects, 50+ clients, a Mathematics & Computer Science background and a structured delivery process.",
           "How do I hire him? Type 'hire', WhatsApp me, call me or send a brief through the contact form.",
         ].join("\n");
         break;
       case "about":
-        out = "I am Paul Ngunjiri, popularly known as ItsProf Paul. I help serious clients look premium, explain their value clearly and launch digital experiences that create trust and enquiries.";
+        out = "I am Paul Ngunjiri, popularly known as ItsProf Paul. I am a Digital Strategist, Creator & Consultant helping people and organisations think clearly, create with intention and build digital systems that support real business value.";
         break;
       case "whoami":
         out = `name     : Paul Ngunjiri\nknown as : ItsProf Paul\nlocation : ${site.location}\nemail    : ${site.email}\nphone    : ${site.phone}\nyears    : ${site.years}\nprojects : ${site.projects}`;
         break;
       case "serve":
-        out = "I serve individuals, startups, established companies, churches, NGOs, schools, government teams, international organisations, product teams and campaign teams that need premium execution.";
+        out = "I serve individuals, founders, startups, established companies, churches, NGOs, schools, government teams, international organisations, product teams and campaign teams that need clarity, trust, digital capability and premium execution.";
         break;
       case "problems":
         out = "Problems I solve:\n  01. Brands that look unclear, cheap or inconsistent\n  02. Websites that load slowly, confuse visitors or fail to convert\n  03. Content that feels random instead of strategic\n  04. Campaigns without measurement or follow-up\n  05. Proposals, tenders and reports that need to look credible fast";
@@ -94,48 +94,44 @@ function Terminal() {
         out = projects.slice(0, 6).map((p) => `  - ${p.title}: ${p.metric}`).join("\n");
         break;
       case "services":
-        out = "Run: service <service name> for detail. Example: service web development\n\n" + services.map((s, i) => `  ${(i + 1).toString().padStart(2, "0")}. ${s.name}`).join("\n");
+        out = "Run: service <capability or service name> for detail, or visit /capabilities/<slug> for focused landing pages.\n\n" + capabilityGroups.map((group) => `/${group.number} ${group.title}\n  ${group.lines.map((line) => line.name).join(", ")}`).join("\n\n");
         break;
       case "pillars":
-        out = servicePillars.map((pillar) => {
-          const names = pillar.services
-            .map((slug) => services.find((service) => service.slug === slug)?.name)
-            .filter(Boolean)
-            .join(", ");
-          return `${pillar.title}\n  ${pillar.desc}\n  Services: ${names}`;
+        out = capabilityGroups.map((pillar) => {
+          const names = pillar.lines.map((line) => line.name).join(", ");
+          return `/${pillar.number} ${pillar.title}\n  ${pillar.desc}\n  Lines: ${names}`;
         }).join("\n\n");
         break;
       case "service": {
-        const s = findService(query);
+        const s = findCapability(query);
         out = s
-          ? `${s.name}\n${"-".repeat(s.name.length)}\n${s.tagline}\n\n${s.hero}\n\nStarting at: ${s.startingAt}\nTimeline: ${s.timeline}\n\nTop deliverables:\n${s.deliverables.map((d) => `  - ${d}`).join("\n")}\n\nType: process ${s.slug}`
-          : `No service matching "${query}". Try: services`;
+          ? `${s.name}\n${"-".repeat(s.name.length)}\n${s.desc}\n\nStarting investment: ${s.price}\nEstimated delivery: ${s.timeline}\n\nIncluded:\n${s.includes.map((d) => `  - ${d}`).join("\n")}\n\nOutcomes:\n${s.outcomes.map((d) => `  - ${d}`).join("\n")}\n\nOpen: /capabilities/${s.slug}`
+          : `No capability matching "${query}". Try: services`;
         break;
       }
       case "process": {
-        const s = findService(query);
+        const s = findCapability(query);
         out = s
-          ? `${s.name} process:\n` + s.process.map((p) => `  ${p.step}. ${p.title} - ${p.desc}`).join("\n")
+          ? `${s.name} process:\n` + processSteps.map((p) => `  ${p.n}. ${p.title} - ${p.desc}`).join("\n") + `\n\nFocus for this service:\n${s.includes.map((item) => `  - ${item}`).join("\n")}`
           : `Overall process:\n` + processSteps.map((p) => `  ${p.n}. ${p.title} - ${p.desc}`).join("\n");
         break;
       }
       case "packages": {
-        const s = findService(query) ?? services[0];
-        out = `${s.name} packages:\n` + getServicePackages(s.slug).map((p) => `  - ${p.name}: ${p.price}\n    ${p.desc}`).join("\n");
+        out = `Ways to work:\n` + engagementPackages.map((p) => `  - ${p.name}: ${p.price}\n    ${p.description}`).join("\n\n");
         break;
       }
       case "deliverables": {
-        const s = findService(query);
+        const s = findCapability(query);
         out = s
-          ? `${s.name} deliverables:\n` + s.deliverables.map((d) => `  - ${d}`).join("\n")
-          : "Type deliverables <service>. Example: deliverables document-design";
+          ? `${s.name} deliverables:\n` + s.includes.map((d) => `  - ${d}`).join("\n")
+          : "Type deliverables <service>. Example: deliverables logo-design";
         break;
       }
       case "faqs": {
-        const s = findService(query);
+        const s = findCapability(query);
         out = s
-          ? `${s.name} FAQs:\n` + s.faqs.map((faq) => `  Q: ${faq.q}\n  A: ${faq.a}`).join("\n\n")
-          : "Type faqs <service>. Example: faqs web design";
+          ? `${s.name} FAQs:\n  Q: What does the price mean?\n  A: ${s.price} is the starting investment for this specific service. Final cost depends on scope, complexity and timeline.\n\n  Q: How long does it take?\n  A: ${s.timeline}.\n\n  Q: How do I start?\n  A: Type hire or open /contact and send a short brief.`
+          : "Type faqs <service>. Example: faqs meta-ads";
         break;
       }
       case "brands":
@@ -146,7 +142,7 @@ function Terminal() {
         break;
       case "philosophy":
       case "values":
-        out = values.map((v, i) => `  ${(i + 1).toString().padStart(2, "0")}. ${v.title} - ${v.desc}`).join("\n");
+        out = thinkingPrinciples.map((v, i) => `  ${(i + 1).toString().padStart(2, "0")}. ${v.title}\n     ${v.desc}`).join("\n\n");
         break;
       case "portfolio":
         out = projects.slice(0, 10).map((p) => `  - ${p.title} [${p.category}]\n    ${p.desc}\n    Result: ${p.metric}`).join("\n\n");
@@ -161,13 +157,23 @@ function Terminal() {
         out = "Google Analytics, Google Ads, Meta Blueprint, HubSpot Content Marketing and Adobe Creative Suite experience.";
         break;
       case "experience":
-        out = `ItsProf Paul / creative systems practice\n  ${site.years} years, ${site.projects} projects, ${site.clients} clients.\n  Services span brand, web, visual media, growth and editorial systems.`;
+        out = `Paul Ngunjiri / Digital Strategist, Creator & Consultant\n  ${site.years} years, ${site.projects} projects, ${site.clients} clients.\n  I think, teach, create, build and advise across strategy, branding, technology and digital growth.\n  Pahwah Digitech is part of my wider ecosystem, not a replacement for working with Paul.`;
         break;
       case "tools":
         out = "Design: Figma, Adobe Suite, Affinity\nCode: React, TanStack, Next.js, TypeScript, Tailwind\nMedia: Premiere, After Effects, DaVinci Resolve\nGrowth: GA4, Meta Ads, Google Ads, Looker Studio";
         break;
       case "pricing":
-        out = services.map((s) => `  - ${s.name}: from ${s.startingAt} (${s.timeline})`).join("\n");
+        out = [
+          "Pricing hierarchy:",
+          "  Capability price = entry point into a solution area.",
+          "  Service price = authoritative starting investment for that specific service.",
+          "",
+          ...capabilityGroups.map((group) => `/${group.number} ${group.title}: ${group.startingAt} | ${group.engagement}`),
+          "",
+          "Examples:",
+          ...capabilityLines.slice(0, 12).map((line) => `  - ${line.name}: ${line.price} (${line.timeline})`),
+          "  Run: service meta-ads or service website-development for detail.",
+        ].join("\n");
         break;
       case "socials":
         out = Object.entries(site.socials).map(([k, v]) => `  ${k.padEnd(12)} ${v.url}`).join("\n");
@@ -245,7 +251,7 @@ function Terminal() {
         </div>
       </div>
       <div className="mx-auto mt-4 flex max-w-5xl flex-wrap gap-2">
-        {["brief", "services", "pillars", "process", "packages", "brands", "testimonials", "hire", "clear"].map((c) => (
+        {["brief", "services", "pricing", "philosophy", "brands", "testimonials", "hire", "clear"].map((c) => (
           <button key={c} onClick={() => { run(c); inputRef.current?.focus(); }} className="rounded-full border border-primary/40 px-3 py-1 text-xs transition-colors hover:bg-primary/20">
             {c}
           </button>
@@ -255,12 +261,12 @@ function Terminal() {
   );
 }
 
-function findService(query: string) {
+function findCapability(query: string) {
   if (!query) return undefined;
-  return services.find((service) =>
+  return capabilityLines.find((service) =>
     service.slug.includes(query) ||
     service.name.toLowerCase().includes(query) ||
-    service.category.toLowerCase().includes(query)
+    service.group.toLowerCase().includes(query)
   );
 }
 
@@ -274,11 +280,11 @@ function describe(c: string): string {
     problems: "business problems I solve",
     trust: "why clients trust me",
     results: "selected proof and outcomes",
-    services: "list every service",
-    pillars: "services grouped into pillars",
-    service: "service detail: service web development",
+    services: "list current capabilities",
+    pillars: "capabilities grouped by outcome",
+    service: "service detail: service website-development",
     process: "overall or service process: process brand-identity",
-    packages: "package options for a service",
+    packages: "ways to work",
     deliverables: "deliverables for a service",
     faqs: "FAQs for a service",
     brands: "brands and teams showcase",
@@ -291,7 +297,7 @@ function describe(c: string): string {
     experience: "work history",
     tools: "tools I use",
     values: "professional values",
-    pricing: "investment ranges",
+    pricing: "pricing hierarchy and examples",
     socials: "social media links",
     quote: "open the quote form",
     hire: "open the contact page",

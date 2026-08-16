@@ -1,6 +1,5 @@
 export { site } from "@/data/siteConfig";
 export { expertisePillars } from "@/data/expertise";
-export { servicePillars } from "@/data/servicePillars";
 export { seoKeywords } from "@/data/seo";
 export { services, getSubServices, getSubService, getServicePackages } from "@/data/services";
 export type { Service, ServiceSubService } from "@/data/services";
@@ -15,3 +14,8 @@ export { googleProfileReviews } from "@/data/googleReviews";
 export type { GoogleProfileReview } from "@/data/googleReviews";
 export { projects } from "@/data/projects";
 export type { Project } from "@/data/projects";
+export { engagementPackages, getEngagementPackage } from "@/data/packages";
+export type { EngagementPackage } from "@/data/packages";
+export { capabilityGroups, capabilityLines, getCapabilityGroup, getCapabilityImage, getCapabilityLine } from "@/data/capabilities";
+export type { CapabilityGroup, CapabilityLine } from "@/data/capabilities";
+export { beliefStatements, thinkingPrinciples } from "@/data/philosophy";

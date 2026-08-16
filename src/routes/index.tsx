@@ -1,444 +1,554 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Sparkles, Linkedin, Instagram, Facebook, Music2, CheckCircle2, Gauge, Layers3, ShieldCheck, ExternalLink } from "lucide-react";
-import { clientBrands, servicePillars, site, services, processSteps, values, projects } from "@/lib/site";
-import { Typewriter } from "@/components/Typewriter";
-import { CountUp } from "@/components/CountUp";
-import { Reveal } from "@/components/Reveal";
-import { ProcessShowcase } from "@/components/ProcessShowcase";
+import {
+  ArrowRight,
+  BookOpen,
+  Brain,
+  Building2,
+  CheckCircle2,
+  Compass,
+  ExternalLink,
+  Facebook,
+  Hammer,
+  Instagram,
+  Linkedin,
+  Mic2,
+  MonitorCog,
+  Music2,
+  PenTool,
+  Target,
+} from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { beliefStatements, capabilityGroups, clientBrands, projects, site, thinkingPrinciples } from "@/lib/site";
 import { GoogleReviews } from "@/components/GoogleReviews";
 import heroImg from "@/assets/paul-hero.webp";
 import workImg from "@/assets/paul-work.webp";
 
-const signatureSystems = [
-  {
-    icon: Layers3,
-    title: "One Calm Project Lead",
-    desc: "You get one accountable creative partner who can connect strategy, identity, web, content and launch decisions without making you manage the pieces.",
-  },
-  {
-    icon: Gauge,
-    title: "Beautiful Work With a Job to Do",
-    desc: "Every page, campaign and visual system is shaped around clarity, trust, speed, conversion and measurable business outcomes.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Premium Delivery Manners",
-    desc: "Clear updates, source files, usage notes, QA checks, launch lists and post-delivery support are treated as part of the work.",
-  },
-];
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Paul Ngunjiri | Brand Strategist, Web Designer & Creative Technologist" },
-      { name: "description", content: "Premium brand strategy, web design, content production and growth systems for ambitious businesses in Kenya and international markets." },
-      { name: "keywords", content: "Paul Ngunjiri, ItsProf Paul, brand strategist Kenya, web designer Nairobi, creative technologist, digital growth partner, portfolio" },
-      { property: "og:title", content: "ItsProf Paul | Premium Brand, Web, Content & Growth Systems" },
-      { property: "og:description", content: "A Nairobi-based creative technology partner helping ambitious brands look premium, launch faster and convert better." },
+      { title: "Paul Ngunjiri | Digital Strategist, Creator & Consultant" },
+      {
+        name: "description",
+        content:
+          "Paul Ngunjiri is a Digital Strategist, Creator and Consultant helping ambitious businesses turn ideas, brands and technology into digital experiences and growth systems.",
+      },
+      {
+        name: "keywords",
+        content:
+          "Paul Ngunjiri, ItsProf Paul, Digital Strategist Kenya, digital consultant Nairobi, brand strategy, digital transformation, websites, digital marketing, Pahwah Digitech",
+      },
+      { property: "og:title", content: "Paul Ngunjiri | Digital Strategist, Creator & Consultant" },
+      {
+        property: "og:description",
+        content:
+          "I think, build and teach at the intersection of strategy, branding, technology and digital marketing.",
+      },
     ],
   }),
   component: Index,
 });
 
+const identityPoints = [
+  "Business",
+  "Technology",
+  "Branding",
+  "Marketing",
+  "Human behaviour",
+];
+
+const signatureModes = [
+  {
+    icon: Brain,
+    title: "Think",
+    desc: "I explore business, technology, branding, marketing, psychology and digital transformation.",
+    items: ["Digital strategy", "Business systems", "Customer psychology", "AI", "Entrepreneurship"],
+  },
+  {
+    icon: BookOpen,
+    title: "Teach",
+    desc: "I share practical knowledge through content, education and frameworks that make digital decisions easier.",
+    items: ["Videos", "Articles", "Guides", "Tutorials", "Talks"],
+  },
+  {
+    icon: Hammer,
+    title: "Build",
+    desc: "I do not only discuss ideas. I apply them through brands, websites, content, systems and digital products.",
+    items: ["Brands", "Websites", "Software", "Marketing systems", "Digital products"],
+  },
+];
+
+const workModes = [
+  {
+    title: "Strategic Consulting",
+    desc: "For businesses needing clarity, direction and expert perspective before they invest.",
+  },
+  {
+    title: "Project Work",
+    desc: "For businesses needing a brand, website, campaign, system or digital experience designed and built.",
+  },
+  {
+    title: "Digital Transformation",
+    desc: "For organisations modernising how they operate, communicate, market and grow.",
+  },
+  {
+    title: "Long-Term Partnership",
+    desc: "For teams that need continuous strategic, creative and digital support.",
+  },
+];
+
+const insightCategories = [
+  { title: "Think", desc: "Business, strategy, technology and ideas." },
+  { title: "Build", desc: "Projects, experiments and creation." },
+  { title: "Learn", desc: "Tutorials and educational content." },
+  { title: "Observe", desc: "Lessons about brands, markets and human behaviour." },
+];
+
+const speakingTopics = [
+  "Digital Transformation",
+  "Branding Beyond Logos",
+  "Websites as Business Systems",
+  "Digital Marketing Strategy",
+  "AI for Business",
+  "Building Digital Systems",
+];
+
 function Index() {
-  const previewPlaceholderImages = [workImg, heroImg];
-  const getProjectPreview = (index: number, preview?: string) => preview ?? previewPlaceholderImages[index % previewPlaceholderImages.length];
-  const processStages = processSteps.map((step, index) => ({
-    step: step.n,
-    title: step.title,
-    desc: step.desc,
-    timeframe: ["Same day", "2-4 days", "3-7 days", "Project phase", "Review phase", "Launch window", "First 30 days"][index],
-    activities: step.features,
-    deliverables: step.features.map((feature) => `${feature} confirmed`),
-    caseStudy: {
-      title: [
-        "Turning a vague idea into a clear working brief",
-        "Finding the strongest market angle before design begins",
-        "Choosing one creative direction with confidence",
-        "Keeping production aligned across design, content and web",
-        "Reducing feedback loops through structured reviews",
-        "A smoother launch with fewer last-minute decisions",
-        "Using early performance signals to improve the work",
-      ][index],
-      description: [
-        "A founder came in with scattered notes, reference links and an urgent launch goal. The discovery stage turned that into a focused scope, audience map and decision checklist.",
-        "A growing organisation needed to look more premium but could not explain its difference. Research clarified the competitors, audience expectations and the positioning angle to lead with.",
-        "Instead of guessing from a single mockup, the client compared clear creative routes and selected the direction that best matched their market and revenue goal.",
-        "For a digital launch, design, web, copy and content assets moved together so the final brand experience felt consistent instead of assembled at the last minute.",
-        "A client with many stakeholders avoided scattered edits by reviewing work through one structured feedback round, grouped by priority and business impact.",
-        "For a recent digital launch, the client approved the final website, brand assets and campaign materials with a clear checklist instead of scattered feedback.",
-        "After launch, early analytics showed which messages and pages were getting attention, then the next iteration improved clarity and conversion paths.",
-      ][index],
-      client: "Scenario",
-      industry: "Brand, web and growth delivery",
-    },
-  }));
+  const previewImages = [workImg, heroImg];
+  const getProjectPreview = (index: number, preview?: string) => preview ?? previewImages[index % previewImages.length];
+  const [brandPage, setBrandPage] = useState(0);
+  const [brandPaused, setBrandPaused] = useState(false);
+  const brandsPerPage = 12;
+  const brandPages = Math.max(1, Math.ceil(clientBrands.length / brandsPerPage));
+  const visibleBrands = useMemo(() => {
+    const start = brandPage * brandsPerPage;
+    return clientBrands.slice(start, start + brandsPerPage);
+  }, [brandPage]);
+
+  useEffect(() => {
+    if (brandPaused || brandPages <= 1) return;
+    const timer = window.setInterval(() => {
+      setBrandPage((page) => (page + 1) % brandPages);
+    }, 4200);
+    return () => window.clearInterval(timer);
+  }, [brandPaused, brandPages]);
 
   return (
     <>
-      {/* HERO */}
       <section className="relative overflow-hidden bg-hero">
-        <div className="relative mx-auto max-w-7xl px-5 lg:px-8 pt-10 pb-10 lg:pt-14 lg:pb-14 grid lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-7 animate-fade-up">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 backdrop-blur px-3 py-1.5 text-xs font-medium">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-60 animate-ping" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
-              </span>
-              Available for new projects
+        <div className="absolute inset-0 bg-mesh opacity-50" />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 lg:grid-cols-12 lg:px-8 lg:py-16">
+          <div className="lg:col-span-7">
+            <span className="inline-flex rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/85 backdrop-blur">
+              Paul Ngunjiri / ItsProf Paul
             </span>
-            <h1 className="mt-5 font-display text-[2.35rem] sm:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-bold leading-[1.04] tracking-tighter text-balance">
-              <span className="block sm:whitespace-nowrap">I'M Paul Ngunjiri, a</span>
-              <span className="mt-1 block max-w-full overflow-visible">
-                <Typewriter />
-              </span>
+            <h1 className="mt-5 max-w-4xl font-display text-[2.8rem] font-bold leading-[0.98] tracking-tighter text-white sm:text-6xl lg:text-7xl">
+              Digital Strategist, Creator & Consultant
             </h1>
-            <p className="mt-5 text-base lg:text-lg text-white/85 max-w-2xl leading-relaxed">
-              I am popularly known as <span className="font-semibold text-white">ItsProf Paul</span>. I help individuals, founders, companies, churches, NGOs, schools, government teams and international organisations turn unclear positioning, slow websites and scattered content into premium brands, fast digital experiences and growth systems that earn trust, launch faster and convert better.
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/86">
+              I think, build and teach at the intersection of strategy, branding, technology and digital marketing.
             </p>
-            <div className="mt-4 inline-flex flex-wrap items-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white/85 backdrop-blur">
-              <span>Creative direction, web strategy, content systems and growth thinking in one calm process.</span>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75">
+              I help ambitious businesses turn ideas, brands and technology into digital experiences and growth systems that create real business value.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/contact" className="btn-hero-primary group">
-                Hire me now
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                Work With Me <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
               <Link to="/portfolio" className="btn-hero-outline">
-                See proof now
+                Explore My Work
               </Link>
             </div>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/72">
-              Trusted across 100+ delivered projects by 50+ clients. To hire me, choose a service, send a brief or request a quote, and I will respond with a clear scope, timeline and investment range.
-            </p>
-            <div className="mt-5 flex items-center gap-4 text-white/70">
+            <div className="mt-7 flex flex-wrap items-center gap-4 text-white/70">
               {[
                 { i: Linkedin, h: site.socials.linkedin.url },
                 { i: Instagram, h: site.socials.instagram.url },
                 { i: Facebook, h: site.socials.facebook.url },
                 { i: Music2, h: site.socials.tiktok.url },
-              ].map((s, i) => (
-                <a key={i} href={s.h} target="_blank" rel="noreferrer" className="hover:text-gold transition-colors">
-                  <s.i className="h-5 w-5" />
+              ].map((social, index) => (
+                <a key={index} href={social.h} target="_blank" rel="noreferrer" className="hover:text-gold transition-colors">
+                  <social.i className="h-5 w-5" />
                 </a>
               ))}
-              <span className="text-xs uppercase tracking-widest">Find me online</span>
+              <span className="text-xs uppercase tracking-widest">Think / Teach / Create / Build / Advise</span>
             </div>
           </div>
 
-          <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl">
-              <div className="overflow-hidden rounded-[2.25rem] border border-white/20 bg-white/10 shadow-elegant backdrop-blur">
-                <img
-                  src={heroImg}
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  alt="Paul Ngunjiri - ItsProf Paul"
-                  className="relative z-10 w-full h-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.35)]"
-                />
+          <div className="relative lg:col-span-5">
+            <div className="absolute inset-8 rounded-full bg-gold/20 blur-3xl" />
+            <img
+              src={heroImg}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              alt="Paul Ngunjiri - Digital Strategist, Creator and Consultant"
+              className="relative mx-auto max-h-[620px] w-full object-contain drop-shadow-[0_35px_80px_rgba(0,0,0,0.35)]"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
+          <div className="lg:col-span-5">
+            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ who I am</span>
+            <h2 className="mt-3 font-display text-4xl font-bold tracking-tight lg:text-5xl">
+              I work where business problems meet digital possibilities.
+            </h2>
+          </div>
+          <div className="space-y-6 lg:col-span-7">
+            <p className="text-lg leading-relaxed text-muted-foreground">
+              I am not only a designer or developer. My work sits at the intersection of business, technology, branding, marketing and human behaviour.
+            </p>
+            <p className="leading-relaxed text-muted-foreground">
+              I focus on understanding challenges, developing strategies and building practical solutions that create measurable value. Sometimes that becomes a brand. Sometimes it becomes a website, a campaign, a workflow, a digital product or a better way for a business to make decisions.
+            </p>
+            <div className="grid gap-3 sm:grid-cols-5">
+              {identityPoints.map((point) => (
+                <div key={point} className="rounded-2xl border border-border bg-card px-4 py-4 text-center text-sm font-semibold shadow-card">
+                  {point}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-i-think-before-build" className="scroll-mt-28 bg-muted/40">
+        <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-primary">/ philosophy</span>
+              <h2 className="mt-3 font-display text-4xl font-bold tracking-tight lg:text-5xl">How I think before I build.</h2>
+              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+                The full philosophy now lives on its own page. On the homepage, the point is simple: I do not start with tools, templates or random activity. I start by understanding the real business problem.
+              </p>
+              <Link to="/philosophy" className="mt-7 inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-card">
+                Read my philosophy <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {thinkingPrinciples.slice(0, 4).map((item, index) => (
+                <article key={item.title} className="rounded-2xl border border-border bg-card p-5 shadow-card">
+                  <span className="font-mono text-xs text-muted-foreground">/{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="mt-3 font-display text-lg font-semibold">{item.title}</h3>
+                  <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-muted-foreground">{item.desc}</p>
+                </article>
+              ))}
+              <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5">
+                <h3 className="font-display text-lg font-semibold">What I believe</h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {beliefStatements.slice(0, 4).map((belief) => (
+                    <span key={belief} className="rounded-full bg-background px-3 py-1 text-[11px] font-semibold text-muted-foreground">
+                      {belief}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Stats bar */}
-        <div className="relative bg-gradient-primary border-t border-white/30">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8 py-5 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+        <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ signature</span>
+            <h2 className="mt-3 font-display text-4xl font-bold tracking-tight lg:text-5xl">Think. Teach. Build.</h2>
+          </div>
+          <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
+            This is the centre of the personal brand: ideas are studied, explained and then applied in real business contexts.
+          </p>
+        </div>
+        <div className="grid gap-5 lg:grid-cols-3">
+          {signatureModes.map((mode) => (
+            <article key={mode.title} className="rounded-2xl border border-border bg-card p-7 shadow-card">
+              <div className="inline-flex rounded-2xl bg-primary/10 p-3">
+                <mode.icon className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="mt-5 font-display text-2xl font-bold">{mode.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{mode.desc}</p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {mode.items.map((item) => (
+                  <span key={item} className="rounded-full bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-muted/40">
+        <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+          <div className="mb-10 max-w-3xl">
+            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ capabilities</span>
+            <h2 className="mt-3 font-display text-4xl font-bold tracking-tight lg:text-5xl">What I Can Help You Build</h2>
+            <p className="mt-4 text-muted-foreground">
+              These are areas where I help businesses create value. They are capabilities, not a disconnected menu of tasks.
+            </p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {capabilityGroups.map((group, index) => (
+              <article key={group.title} className="rounded-2xl border border-border bg-card p-6 shadow-card">
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="font-mono text-xs text-muted-foreground">/{group.number ?? String(index + 1).padStart(2, "0")}</span>
+                  <Target className="h-5 w-5 text-primary" />
+                </div>
+                <Link to="/capabilities/$slug" params={{ slug: group.slug }} className="font-display text-xl font-semibold hover:text-primary">
+                  {group.title}
+                </Link>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{group.desc}</p>
+                <Link to="/capabilities/$slug" params={{ slug: group.slug }} className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-primary">
+                  View capability overview <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+                <div className="mt-5 grid gap-2">
+                  {group.lines.slice(0, 6).map((line) => (
+                    <Link key={line.slug} to="/capabilities/$slug" params={{ slug: line.slug }} className="flex items-start gap-2 rounded-xl px-2 py-1.5 text-sm text-muted-foreground transition hover:bg-muted hover:text-primary">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>{line.name}</span>
+                    </Link>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link to="/services" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-card">
+              Explore Capabilities <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+          <div className="rounded-[2rem] border border-border bg-card p-8 shadow-elegant">
+            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ work with me</span>
+            <h2 className="mt-3 font-display text-4xl font-bold tracking-tight">Let's Build Something Meaningful</h2>
+            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+              Whether you need strategic direction, a stronger digital presence, a new brand, a marketing system or technology solution, I approach every project from the same starting point:
+            </p>
+            <div className="mt-6 space-y-3 font-display text-xl font-semibold">
+              <div>Understand the problem.</div>
+              <div>Define the opportunity.</div>
+              <div>Build the right solution.</div>
+            </div>
+            <Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-card">
+              Start a Conversation <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {workModes.map((mode) => (
+              <article key={mode.title} className="rounded-2xl border border-border bg-card p-6 shadow-card">
+                <Compass className="h-5 w-5 text-primary" />
+                <h3 className="mt-4 font-display text-xl font-semibold">{mode.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{mode.desc}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-gradient-blue text-secondary-foreground">
+        <div className="absolute inset-0 bg-mesh opacity-25" />
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2 lg:items-center lg:px-8">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-widest text-gold">/ ecosystem</span>
+            <h2 className="mt-3 font-display text-4xl font-bold tracking-tight lg:text-5xl">Building Through Pahwah Digitech</h2>
+            <p className="mt-5 text-sm leading-relaxed text-white/80">
+              Pahwah Digitech is the digital company I founded to bring together strategy, creativity, technology and digital marketing under one ecosystem.
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-white/80">
+              While I work as a strategist, creator and consultant, Pahwah allows me to collaborate with a wider team and deliver larger multidisciplinary solutions. When working through Pahwah, clients still benefit from my strategic involvement while gaining access to broader company capabilities.
+            </p>
+            <a href={site.partner.url} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground">
+              Learn About Pahwah Digitech <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
             {[
-              { n: site.years, l: "Years experience" },
-              { n: site.projects, l: "Projects delivered" },
-              { n: site.clients, l: "Happy clients" },
-              { n: site.services, l: "Creative services" },
-            ].map((s, i) => (
-              <div key={i} className="text-center">
-                <div className="font-display text-4xl lg:text-5xl font-extrabold text-white"><CountUp value={s.n} /></div>
-                <div className="mt-1 text-xs font-display font-semibold uppercase tracking-widest text-white/80">{s.l}</div>
+              { title: "Paul", desc: "The individual: think, teach, create, advise, build and lead." },
+              { title: "Pahwah", desc: "The company: think, build, deliver systems and solutions." },
+              { title: "Shared Philosophy", desc: "Strategy, creativity and technology should create business value." },
+              { title: "Client Experience", desc: "Work with Paul, with access to Pahwah capability when a larger solution is needed." },
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl border border-white/10 bg-white/10 p-5 backdrop-blur">
+                <Building2 className="h-5 w-5 text-gold" />
+                <h3 className="mt-4 font-display text-xl font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/72">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-20">
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-5">
-            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ signature system</span>
-            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">
-              Integrated creative & engineering team.
-            </h2>
+      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+        <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ work</span>
+            <h2 className="mt-3 font-display text-4xl font-bold tracking-tight lg:text-5xl">Selected work with thinking behind it.</h2>
           </div>
-          <p className="lg:col-span-5 lg:col-start-8 text-muted-foreground leading-relaxed">
-            You do not need to explain your vision to five different vendors. I help you shape the idea, make it look premium, build the digital touchpoints and prepare the assets your audience actually sees.
-          </p>
+          <Link to="/portfolio" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-primary">
+            View Portfolio <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
-        <div className="mt-10 grid md:grid-cols-3 gap-5">
-          {signatureSystems.map((item, index) => (
-            <Reveal as="article" key={item.title} delay={index * 90} className="rounded-2xl border border-border bg-card p-7 shadow-card">
-              <div className="inline-flex rounded-xl bg-primary/10 p-3">
-                <item.icon className="h-6 w-6 text-primary" />
+        <div className="grid gap-5 md:grid-cols-3">
+          {projects.slice(0, 3).map((project, index) => (
+            <article key={project.slug} className="group overflow-hidden rounded-2xl border border-border bg-card shadow-card">
+              <div className="aspect-[4/3] overflow-hidden bg-muted">
+                <img
+                  src={getProjectPreview(index, project.preview)}
+                  alt={project.previewAlt ?? `${project.title} preview`}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
-              <h3 className="mt-5 font-display text-xl font-semibold">{item.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
-            </Reveal>
+              <div className="p-6">
+                <div className="text-xs font-semibold uppercase tracking-widest text-primary">{project.category}</div>
+                <h3 className="mt-2 font-display text-xl font-semibold">{project.title}</h3>
+                <div className="mt-4 grid gap-3 text-sm text-muted-foreground">
+                  <p><span className="font-semibold text-foreground">Challenge:</span> Create a stronger digital signal for the audience.</p>
+                  <p><span className="font-semibold text-foreground">Solution:</span> {project.desc}</p>
+                  {project.metric ? <p><span className="font-semibold text-foreground">Outcome:</span> {project.metric}</p> : null}
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* SERVICES OVERVIEW */}
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
+      <section className="bg-muted/40">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2 lg:px-8">
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ services</span>
-            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">
-              Three focused pillars. <span className="text-gradient-primary">One coordinated system.</span>
-            </h2>
-          </div>
-          <p className="text-muted-foreground max-w-md">
-            Choose the outcome you need most: a stronger brand and website, better visual content, or a growth system that brings in more serious enquiries.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-3 gap-5">
-          {servicePillars.map((pillar) => {
-            const pillarServices = pillar.services
-              .map((slug) => services.find((service) => service.slug === slug))
-              .filter(Boolean);
-            return (
-              <article key={pillar.title} className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 hover:border-primary transition-all duration-300 hover:-translate-y-1 shadow-card">
-                <div className="absolute top-0 right-0 h-24 w-24 rounded-full bg-gradient-primary opacity-0 group-hover:opacity-10 blur-2xl transition-opacity" />
-                <h3 className="font-display text-2xl font-semibold">{pillar.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{pillar.desc}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {pillarServices.map((service) => (
-                    <Link
-                      key={service!.slug}
-                      to="/services/$slug"
-                      params={{ slug: service!.slug }}
-                      className="rounded-full border border-border bg-background/70 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-                    >
-                      {service!.name}
-                    </Link>
-                  ))}
-                </div>
-                <Link to="/services" className="mt-6 inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:gap-2 transition-all">
-                  See services now <ArrowRight className="h-3 w-3" />
-                </Link>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ANALYTICAL CREATIVE SYSTEM */}
-      <section className="relative overflow-hidden bg-gradient-blue text-secondary-foreground">
-        <div className="absolute inset-0 bg-mesh opacity-30" aria-hidden />
-        <div className="relative mx-auto max-w-7xl px-5 lg:px-8 py-24 grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-gold">/ what makes me different</span>
-            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">
-              Analytical thinking. Creative execution. Measurable outcomes.
-            </h2>
-            <p className="mt-5 text-base lg:text-lg opacity-90 leading-relaxed">
-              My Mathematics and Computer Science background gives the work a practical advantage: clearer structure, stronger web performance, better reporting and decisions that can be explained to a boardroom, not just defended by taste.
+            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ insights</span>
+            <h2 className="mt-3 font-display text-4xl font-bold tracking-tight">Insights</h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              A thought leadership space for practical ideas about strategy, technology, branding, digital growth and creation.
             </p>
-            <div className="mt-8 grid sm:grid-cols-2 gap-3">
-              {[
-                "Strategy translated into visual systems",
-                "Fast websites built for search and conversion",
-                "Campaign decisions shaped by real data",
-                "Reporting that connects design to ROI",
-              ].map((t) => (
-                <div key={t} className="flex items-start gap-2 text-sm">
-                  <CheckCircle2 className="h-5 w-5 text-gold flex-shrink-0 mt-0.5" />
-                  <span>{t}</span>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {insightCategories.map((item) => (
+                <div key={item.title} className="rounded-2xl border border-border bg-card p-5 shadow-card">
+                  <PenTool className="h-5 w-5 text-primary" />
+                  <h3 className="mt-4 font-display text-lg font-semibold">{item.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
                 </div>
               ))}
             </div>
-            <Link to="/about" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground hover:opacity-90 transition-opacity">
-              Read my full story now <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
-          <div className="relative">
-            <div className="aspect-square rounded-[2rem] border-2 border-gold/30 overflow-hidden shadow-elegant">
-              <img src={workImg} loading="lazy" decoding="async" alt="Paul Ngunjiri at work" className="h-full w-full object-contain" />
-            </div>
-            <div className="absolute -bottom-4 -right-4 bg-gold text-gold-foreground rounded-2xl p-5 shadow-elegant max-w-[220px] rotate-3">
-              <div className="font-display text-2xl font-bold leading-none">ROI</div>
-              <div className="mt-2 text-xs font-medium">Where creative work proves its value.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <ProcessShowcase
-        title="A clear path from brief to launch."
-        intro="Follow the project from first conversation to launch with a simple progress view, practical activities and clear deliverables at every stage."
-        stages={processStages}
-      />
-
-      {/* FEATURED WORK */}
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
-        <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ recent work</span>
-            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">Selected projects.</h2>
-          </div>
-          <Link to="/portfolio" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-primary">
-            See more work now <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.slice(0, 6).map((p, index) => {
-            const previewSrc = getProjectPreview(index, p.preview);
-            return (
-              <article key={p.slug} className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-transform hover:-translate-y-1">
-                <div className="relative aspect-square overflow-hidden bg-muted/10">
-                  <img
-                    src={previewSrc}
-                    alt={p.previewAlt ?? `${p.title} preview`}
-                    loading="lazy"
-                    decoding="async"
-                    width={720}
-                    height={720}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent" />
-
-                  <div className="absolute inset-x-0 bottom-0 p-4">
-                    <div className="rounded-3xl bg-gradient-warm p-4 text-white backdrop-blur-sm shadow-xl border border-white/15">
-                      <p className="text-[11px] uppercase tracking-[0.22em] text-white">{p.category}</p>
-                      <p className="mt-2 text-lg font-semibold leading-tight">{p.title}</p>
-                    </div>
-                  </div>
-
-                  <div className="absolute inset-0 p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out">
-                    <div className="flex h-full flex-col justify-between rounded-3xl bg-gradient-cool p-5 text-white backdrop-blur-sm shadow-2xl border border-white/10">
-                      <div className="space-y-4">
-                        <div>
-                          <p className="text-[11px] uppercase tracking-[0.22em] text-slate-400">{p.category}</p>
-                          <p className="mt-2 text-2xl font-semibold leading-tight text-white">{p.title}</p>
-                          {p.client ? <p className="mt-3 text-sm text-slate-300">Client: {p.client}</p> : null}
-                        </div>
-
-                        <div className="flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.18em] text-slate-400">
-                          {p.year ? <span className="rounded-full bg-white/10 px-2 py-1">{p.year}</span> : null}
-                          {p.metric ? <span className="rounded-full bg-white/10 px-2 py-1">{p.metric}</span> : null}
-                        </div>
-
-                        <p className="text-sm leading-relaxed text-slate-200">{p.desc}</p>
-                      </div>
-
-                      <div className="flex flex-wrap gap-2">
-                        <Link to="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-semibold text-white transition hover:border-primary hover:text-primary">
-                          View case study <ArrowRight className="h-3 w-3" />
-                        </Link>
-                        {p.liveUrl ? (
-                          <a href={p.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-semibold text-white transition hover:border-primary hover:text-primary">
-                            Visit site <ExternalLink className="h-3 w-3" />
-                          </a>
-                        ) : null}
-                      </div>
-                    </div>
-                  </div>
+            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ education</span>
+            <h2 className="mt-3 font-display text-4xl font-bold tracking-tight">Speaking & Workshops</h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              I also educate teams, founders and communities on how to think better about digital growth, technology and brand decisions.
+            </p>
+            <div className="mt-6 grid gap-3">
+              {speakingTopics.map((topic) => (
+                <div key={topic} className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 shadow-card">
+                  <Mic2 className="h-5 w-5 text-primary" />
+                  <span className="text-sm font-semibold">{topic}</span>
                 </div>
-              </article>
-            );
-          })}
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-14">
+      <section id="brands" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-14 lg:px-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ brands</span>
-            <h2 className="mt-2 font-display text-3xl lg:text-4xl font-bold tracking-tight">Brands and teams I have worked with.</h2>
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight lg:text-4xl">Brands and teams I have worked with.</h2>
           </div>
           <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-            A growing mix of founders, organisations and campaign teams that needed clearer communication and stronger digital presence.
+            A growing mix of founders, organisations and teams that needed clearer communication, stronger digital presence and better execution.
           </p>
         </div>
-        <div className="brand-marquee mt-8 overflow-hidden rounded-3xl border border-border bg-card py-5 shadow-card">
-          {[clientBrands, [...clientBrands].reverse()].map((row, rowIndex) => (
-            <div key={rowIndex} className="brand-marquee-row overflow-hidden py-2">
-              <div className={`brand-marquee-track flex w-max items-center gap-4 px-4 ${rowIndex === 1 ? "brand-marquee-track-reverse" : ""}`}>
-                {[...row, ...row, ...row].map((brand, index) => (
-                  <a
-                    key={`${brand.name}-${rowIndex}-${index}`}
-                    href={brand.url}
-                    target={brand.url.startsWith("http") ? "_blank" : undefined}
-                    rel={brand.url.startsWith("http") ? "noreferrer" : undefined}
-                    aria-label={brand.name}
-                    title={`${brand.name} - ${brand.description}`}
-                    className="group relative flex h-32 min-w-[230px] items-center justify-center overflow-hidden rounded-2xl border border-border bg-white px-6 py-5 transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-card"
-                  >
-                    {brand.logo ? (
-                      <span className="flex h-24 w-full items-center justify-center transition-transform duration-300 group-hover:-translate-y-3">
-                        <img
-                          src={brand.logo}
-                          alt={`${brand.name} logo`}
-                          loading="lazy"
-                          decoding="async"
-                          style={{ transform: `scale(${brand.logoScale ?? 1.12})` }}
-                          className="max-h-24 max-w-[190px] object-contain"
-                        />
-                      </span>
-                    ) : (
-                      <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-primary text-lg font-bold text-primary-foreground shadow-card transition-transform duration-300 group-hover:-translate-y-3 group-hover:scale-105">{brand.mark}</span>
-                    )}
-                    <span className="pointer-events-none absolute inset-x-3 bottom-2 translate-y-2 text-center opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                      <span className="block truncate text-xs font-semibold text-slate-700">{brand.name}</span>
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
+        <div
+          className="mt-8 rounded-3xl border border-border bg-card p-4 shadow-card"
+          onMouseEnter={() => setBrandPaused(true)}
+          onMouseLeave={() => setBrandPaused(false)}
+        >
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          {visibleBrands.map((brand) => (
+            <a
+              key={brand.name}
+              href={brand.url}
+              target={brand.url.startsWith("http") ? "_blank" : undefined}
+              rel={brand.url.startsWith("http") ? "noreferrer" : undefined}
+              aria-label={brand.name}
+              title={brand.name}
+              className="group flex h-28 flex-col items-center justify-center rounded-2xl border border-border bg-white px-4 py-3 text-center transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-card"
+            >
+              <span className="flex h-16 w-full items-center justify-center">
+                {brand.logo ? (
+                  <img
+                    src={brand.logo}
+                    alt={`${brand.name} logo`}
+                    loading="lazy"
+                    decoding="async"
+                    style={{ transform: `scale(${brand.logoScale ?? 1.05})` }}
+                    className="max-h-16 max-w-[125px] object-contain"
+                  />
+                ) : (
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-primary text-sm font-bold text-primary-foreground shadow-card">{brand.mark}</span>
+                )}
+              </span>
+              <span className="mt-2 line-clamp-1 text-[11px] font-semibold text-slate-700">{brand.name}</span>
+            </a>
           ))}
+          </div>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex justify-center gap-2">
+              {Array.from({ length: brandPages }).map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  aria-label={`Show brand group ${index + 1}`}
+                  onClick={() => setBrandPage(index)}
+                  className={`h-2.5 rounded-full transition-all ${index === brandPage ? "w-8 bg-primary" : "w-2.5 bg-muted-foreground/30"}`}
+                />
+              ))}
+            </div>
+            <div className="text-center text-xs text-muted-foreground sm:text-right">
+              Showing {brandPage * brandsPerPage + 1}-{Math.min((brandPage + 1) * brandsPerPage, clientBrands.length)} of {clientBrands.length}. Share: <a href="#brands" className="font-semibold text-primary hover:underline">#brands</a>
+            </div>
+          </div>
         </div>
+        <details className="mt-4 rounded-2xl border border-border bg-muted/30 p-4">
+          <summary className="cursor-pointer list-none text-sm font-semibold text-primary">View all brands in one compact list</summary>
+          <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-muted-foreground sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {clientBrands.map((brand) => (
+              <a key={brand.name} href={brand.url} target={brand.url.startsWith("http") ? "_blank" : undefined} rel={brand.url.startsWith("http") ? "noreferrer" : undefined} className="rounded-xl border border-border bg-background px-3 py-2 hover:text-primary">
+                {brand.name}
+              </a>
+            ))}
+          </div>
+        </details>
       </section>
 
-      <GoogleReviews />
-
-      {/* VALUES */}
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
-        <div className="text-center mb-12">
-          <span className="font-mono text-xs uppercase tracking-widest text-primary">/ principles</span>
-          <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">
-            The principles I build <span className="text-gradient-primary">everything</span> on.
-          </h2>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {values.map((v, i) => (
-            <div key={v.title} className="rounded-2xl border border-border bg-card p-5 hover:border-primary transition-colors">
-              <div className="flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-primary" />
-                <span className="font-mono text-xs text-muted-foreground">/{(i+1).toString().padStart(2,"0")}</span>
-              </div>
-              <h3 className="mt-3 font-display text-base font-semibold">{v.title}</h3>
-              <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">{v.desc}</p>
-            </div>
-          ))}
-        </div>
+      <section id="reviews" className="scroll-mt-28">
+        <GoogleReviews />
       </section>
 
-      {/* CLOSING CTA */}
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-16">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-primary p-12 lg:p-20 text-center text-primary-foreground shadow-elegant">
+      <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-primary p-10 text-center text-primary-foreground shadow-elegant lg:p-16">
           <div className="absolute inset-0 bg-mesh opacity-30" />
           <div className="relative">
-            <h2 className="font-display text-4xl lg:text-6xl font-bold tracking-tight">
-              Ready to build something <em className="not-italic underline decoration-gold decoration-4 underline-offset-8">extraordinary</em>?
+            <MonitorCog className="mx-auto h-9 w-9 text-gold" />
+            <h2 className="mx-auto mt-5 max-w-3xl font-display text-4xl font-bold tracking-tight lg:text-6xl">
+              Ready to turn a serious idea into a meaningful digital system?
             </h2>
-            <p className="mt-5 max-w-xl mx-auto opacity-95">
-              From a single identity system to a full brand-and-launch engine - let's get on a call and scope it properly.
+            <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/85">
+              Start with a conversation. I will help you clarify the problem, define the opportunity and choose the right way to build.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link to="/contact" className="rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground hover:opacity-90 transition-colors">
-                Hire me now
+              <Link to="/contact" className="rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-gold-foreground">
+                Work With Me
               </Link>
-              <Link to="/services" className="rounded-full border-2 border-primary-foreground/40 px-6 py-3.5 text-sm font-semibold hover:bg-primary-foreground/10 transition-colors">
-                See services now
+              <Link to="/services" className="rounded-full border-2 border-primary-foreground/40 px-6 py-3.5 text-sm font-semibold">
+                Explore Capabilities
               </Link>
             </div>
           </div>

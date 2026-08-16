@@ -1,7 +1,7 @@
 export const site = {
   name: "Paul Ngunjiri",
   brand: "ItsProf Paul",
-  tagline: "Premium brand, web, content and growth systems for ambitious businesses.",
+  tagline: "Digital Strategist, Creator & Consultant thinking, building and teaching at the intersection of strategy, branding, technology and digital marketing.",
   location: "Nairobi, Kenya",
   email: "paul@pahwah.com",
   quoteEmail: "paul@pahwah.com",
@@ -26,9 +26,9 @@ export const site = {
     pinterest: { url: "https://www.pinterest.com/PahwahDigitech/_created/", handle: "@itsprofpaul", count: "—" },
   },
   titles: [
-    "Brand & Web Strategist",
-    "Creative Technologist",
-    "Digital Growth Partner",
-    "Visual Content Director",
+    "Digital Strategist",
+    "Creator",
+    "Consultant",
+    "Technology Educator",
   ],
 };

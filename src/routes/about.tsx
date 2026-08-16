@@ -1,14 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, GraduationCap, Download } from "lucide-react";
-import { expertisePillars, values } from "@/lib/site";
+import { ArrowRight, Award, Brain, Compass, Download, GraduationCap, Lightbulb, Sparkles } from "lucide-react";
+import { values } from "@/lib/site";
 import aboutImg from "@/assets/paul-about.webp";
 import portraitImg from "@/assets/paul-portrait.webp";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Paul Ngunjiri | Brand, Web & Creative Technology Partner" },
-      { name: "description", content: "Meet Paul Ngunjiri, a Nairobi-based brand and web strategist helping ambitious teams build premium identities, websites, content and growth systems." },
+      { title: "About Paul Ngunjiri | Digital Strategist, Creator & Consultant" },
+      { name: "description", content: "Meet Paul Ngunjiri, popularly known as ItsProf Paul: a Nairobi-based digital strategist, creator and consultant thinking, teaching and building across strategy, branding, technology and digital growth." },
       { property: "og:title", content: "About Paul Ngunjiri | ItsProf Paul" },
       { property: "og:description", content: "The values, process and professional standards behind ItsProf Paul." },
     ],
@@ -26,6 +26,13 @@ const certs = [
   { name: "BSc Mathematics & CS", org: "University", year: "2021" },
 ];
 
+const identityModes = [
+  { title: "Digital strategist", desc: "I help clients understand the business problem, audience, opportunity and digital path before investing in execution." },
+  { title: "Creator", desc: "I shape brands, content, visuals, websites and experiences that make ideas easier to trust, remember and act on." },
+  { title: "Consultant", desc: "I advise businesses on digital transformation, marketing systems, technology choices and growth decisions." },
+  { title: "Builder", desc: "I turn strategy into practical assets, working websites, workflows, documents, campaigns and systems." },
+];
+
 function About() {
   return (
     <>
@@ -37,10 +44,10 @@ function About() {
             <span className="hero-eyebrow">/ about</span>
             <h1 className="mt-3 font-display text-5xl lg:text-7xl font-bold tracking-tighter leading-[0.95]">
               I'm Paul Ngunjiri.<br />
-              <span className="text-gradient-gold">I turn ideas into trusted digital brands.</span>
+              <span className="text-gradient-gold">Digital Strategist, Creator & Consultant.</span>
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-xl">
-              Popularly known as ItsProf Paul, I help founders, companies, churches, schools, NGOs, government teams and ambitious individuals build brands, websites, content and growth systems that look premium, feel clear and create real business confidence.
+            <p className="mt-6 text-lg text-white/85 leading-relaxed max-w-xl">
+              Popularly known as ItsProf Paul, I work at the intersection of business, branding, technology, marketing and human behaviour. I help individuals, founders, companies, churches, schools, NGOs, government teams and international organisations turn unclear digital challenges into practical systems that create value.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="/cv.pdf" className="btn-hero-primary">
@@ -63,28 +70,28 @@ function About() {
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-start">
           <div className="space-y-6">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ story</span>
-            <h2 className="font-display text-4xl lg:text-5xl font-bold">Built for clients who need more than good-looking design.</h2>
+            <h2 className="font-display text-4xl lg:text-5xl font-bold">I am not only here to make things look good.</h2>
             <p className="text-muted-foreground leading-relaxed text-lg">
-              My work sits where strategy, design, technology and marketing meet. That means a logo is judged by how well it positions the brand, a website by how clearly it converts, and a campaign by the commercial signal it creates.
+              My work sits where business problems meet digital possibilities. That means a logo is judged by what it helps people understand, a website by how clearly it builds trust, and a campaign by whether it moves the right audience toward action.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              In the last four years, I have worked with ambitious brands across Kenya, East Africa and international markets. The services vary - identity, digital products, film, marketing systems and proposal design - but the promise stays consistent: premium thinking, careful execution and professional communication from start to finish.
+              I think, teach, create, build and advise. Through Pahwah Digitech, the company I founded, I can bring in broader creative, technology and marketing capability when a project needs a wider team, while clients still benefit from my strategic involvement.
             </p>
           </div>
 
           <div className="grid gap-5">
             {[
               {
-                title: "Strategy before styling",
-                text: "The brief starts with audience, positioning, offer clarity and the business result the work must support.",
+                title: "Understand before building",
+                text: "The brief starts with the business, audience, constraints, desired outcome and the deeper problem beneath the request.",
               },
               {
-                title: "Execution with a team mindset",
-                text: "I can lead the creative direction and collaborate with specialist partners when a project needs production depth.",
+                title: "Strategy before tools",
+                text: "Websites, campaigns, brands, AI and automation should serve the objective, not distract from it.",
               },
               {
-                title: "Handoff without friction",
-                text: "Deliverables are built for real teams: source files, usage notes, launch guides and clarity at every step.",
+                title: "Execution with ownership",
+                text: "I keep the thinking, creative direction, technical decisions and communication connected from brief to handoff.",
               },
             ].map((card) => (
               <div key={card.title} className="rounded-3xl border border-border bg-card p-6 shadow-card">
@@ -101,10 +108,13 @@ function About() {
         <div className="mx-auto max-w-6xl px-5 lg:px-8 py-24">
           <div className="text-center">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ positioning</span>
-            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">Four roles clients understand immediately.</h2>
+            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight">The role I play for serious clients.</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              The services are many because business needs are connected. The positioning is simple: I help you think clearly, create with intention and build digital systems that support growth.
+            </p>
           </div>
           <div className="mt-14 grid md:grid-cols-2 gap-5">
-            {expertisePillars.map((pillar, index) => (
+            {identityModes.map((pillar, index) => (
               <div key={pillar.title} className="rounded-3xl border border-border bg-card p-7 shadow-card">
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-primary text-sm font-bold text-primary-foreground">
                   {index + 1}
@@ -112,6 +122,35 @@ function About() {
                 <h3 className="mt-5 font-display text-2xl font-bold">{pillar.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{pillar.desc}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="how-i-think" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-24 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-widest text-primary">/ how I think</span>
+            <h2 className="mt-3 font-display text-4xl font-bold tracking-tight lg:text-5xl">Clarity first. Then creation.</h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              The best digital work is not random activity. It is a connected sequence of understanding, deciding, creating, testing and improving.
+            </p>
+            <Link to="/philosophy" className="mt-7 inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-card">
+              Read my philosophy <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              { icon: Brain, title: "Business", desc: "What result should the work unlock?" },
+              { icon: Lightbulb, title: "Behaviour", desc: "What does the audience need to understand, feel or do?" },
+              { icon: Sparkles, title: "Brand", desc: "What perception should the experience create?" },
+              { icon: Compass, title: "Systems", desc: "How does the work keep creating value after launch?" },
+            ].map((item) => (
+              <article key={item.title} className="rounded-3xl border border-border bg-card p-6 shadow-card">
+                <item.icon className="h-5 w-5 text-primary" />
+                <h3 className="mt-4 font-display text-xl font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
+              </article>
             ))}
           </div>
         </div>
@@ -127,7 +166,7 @@ function About() {
               <div className="text-xs font-mono text-muted-foreground">2017 - 2021</div>
               <h3 className="mt-1 font-display text-xl font-semibold">BSc Mathematics & Computer Science</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                Core modules: algorithms, data structures, probability and statistics, computational mathematics and systems programming. I use that training to make the creative process structured, measurable and technically sound.
+                Core modules: algorithms, data structures, probability and statistics, computational mathematics and systems programming. I use that training to bring structure, measurement, systems thinking and technical judgement into creative and strategic work.
               </p>
             </div>
             <div className="border-l-2 border-border pl-5">
@@ -183,7 +222,7 @@ function About() {
           <span className="font-mono text-xs uppercase tracking-widest text-primary">/ off-screen</span>
           <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold">The human behind the work.</h2>
           <p className="mt-5 text-muted-foreground leading-relaxed">
-            Outside the studio I study design systems, product strategy, visual culture and the businesses behind memorable brands. I think best in calm conversations, which is why the best projects usually begin with a clear brief, honest constraints and a shared ambition to build something that lasts.
+            Outside the studio I study digital transformation, design systems, product strategy, visual culture, AI, business models and the psychology behind memorable brands. I think best in calm conversations, which is why the best projects usually begin with a clear brief, honest constraints and a shared ambition to build something useful.
           </p>
           <p className="mt-4 font-display italic text-xl text-foreground">
             "Premium work is not noise. It is clarity, taste and discipline working together."

@@ -28,7 +28,7 @@ export const clientBrandGroups: ClientBrandGroup[] = [
       { name: "Wazi Internet", category: "Technology & Digital", description: "Internet and connectivity services brand.", url: "/portfolio", mark: "WI", logo: `${logoBase}/WAZI INTERNET logo 2-01.png`, logoScale: 1.28 },
       { name: "Africa Electronics", category: "Technology & Digital", description: "Electronics and technology product brand.", url: "/portfolio", mark: "AE", logo: `${logoBase}/Africa-Electronics.svg`, logoScale: 1.2 },
       { name: "MKSU HackFest", category: "Technology & Digital", description: "Student innovation, hackathon and technology event.", url: "/portfolio", mark: "MH" },
-      { name: "Pahwah Digitech", category: "Technology & Digital", description: "Digital technology, creative systems and commerce partner.", url: "https://www.pahwah.com", mark: "PD", logo: `${logoBase}/Pahwah Digitech.svg`, logoScale: 1.22 },
+      { name: "Pahwah Digitech", category: "Technology & Digital", description: "Digital company for strategy, technology, creative and growth solutions.", url: "https://www.pahwah.com", mark: "PD", logo: `${logoBase}/Pahwah Digitech.svg`, logoScale: 1.22 },
     ],
   },
   {

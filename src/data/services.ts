@@ -81,7 +81,7 @@ export const services: Service[] = [
       { q: "Do you do logos only?", a: "Yes — see the Spark tier on the pricing page. Logo-only engagements are 7–10 days." },
       { q: "Do I own the final files?", a: "Fully. You receive editable source files and full IP transfer on final payment." },
     ],
-    startingAt: "KES 75,000",
+    startingAt: "From KES 75,000 / project",
     timeline: "4–6 weeks",
   },
   {
@@ -112,7 +112,7 @@ export const services: Service[] = [
       { q: "Can you work to my existing brand?", a: "Absolutely. Share the brand book and I'll design strictly within it." },
       { q: "How fast can you turn a social pack around?", a: "Most 10-asset packs ship within 3–5 working days." },
     ],
-    startingAt: "KES 15,000",
+    startingAt: "From KES 15,000 / project",
     timeline: "3–10 days",
   },
   {
@@ -145,7 +145,7 @@ export const services: Service[] = [
       { q: "Do you also build the site?", a: "Yes — see Web Development. Or hand off cleanly to your dev team." },
       { q: "How many pages does a typical project include?", a: "5–8 unique templates covers most marketing sites." },
     ],
-    startingAt: "KES 95,000",
+    startingAt: "From KES 95,000 / project",
     timeline: "3–5 weeks",
   },
   {
@@ -179,7 +179,7 @@ export const services: Service[] = [
       { q: "Do you do WordPress?", a: "Only when there's a real reason. My default stack is React-based for performance, type-safety and DX." },
       { q: "Can you take over an existing codebase?", a: "Yes — I do code audits and rescue projects regularly." },
     ],
-    startingAt: "KES 150,000",
+    startingAt: "From KES 150,000 / project",
     timeline: "4–8 weeks",
   },
   {
@@ -211,7 +211,7 @@ export const services: Service[] = [
     faqs: [
       { q: "Do you specialise in a sector?", a: "Fintech, edtech and creative SaaS are most of my work — but the process applies anywhere." },
     ],
-    startingAt: "KES 120,000",
+    startingAt: "From KES 120,000 / project",
     timeline: "4–8 weeks",
   },
   {
@@ -242,7 +242,7 @@ export const services: Service[] = [
     faqs: [
       { q: "Do you travel for shoots?", a: "Across East Africa regularly, and internationally for the right brief." },
     ],
-    startingAt: "KES 35,000 / day",
+    startingAt: "From KES 35,000 / day",
     timeline: "1–3 weeks",
   },
   {
@@ -272,7 +272,7 @@ export const services: Service[] = [
     faqs: [
       { q: "Do you handle paid distribution too?", a: "Yes, via my Digital Marketing service." },
     ],
-    startingAt: "KES 180,000",
+    startingAt: "From KES 180,000 / project",
     timeline: "3–6 weeks",
   },
   {
@@ -302,7 +302,7 @@ export const services: Service[] = [
     faqs: [
       { q: "Per-minute or per-project pricing?", a: "Per project — depends on footage volume and complexity." },
     ],
-    startingAt: "KES 25,000",
+    startingAt: "From KES 25,000 / project",
     timeline: "5–14 days",
   },
   {
@@ -333,7 +333,7 @@ export const services: Service[] = [
     faqs: [
       { q: "Minimum monthly ad spend?", a: "I take clients from KES 50k/month upwards." },
     ],
-    startingAt: "KES 60,000 / month",
+    startingAt: "From KES 60,000 / month",
     timeline: "3-month minimum",
   },
   {
@@ -362,7 +362,7 @@ export const services: Service[] = [
     faqs: [
       { q: "Do you also shoot the content?", a: "Yes — full production is built into the retainer." },
     ],
-    startingAt: "KES 80,000 / month",
+    startingAt: "From KES 80,000 / month",
     timeline: "Ongoing retainer",
   },
   {
@@ -392,7 +392,7 @@ export const services: Service[] = [
     faqs: [
       { q: "GA4 only?", a: "Anything with an API — Mixpanel, Amplitude, Plausible, custom." },
     ],
-    startingAt: "KES 45,000",
+    startingAt: "From KES 45,000 / project",
     timeline: "2–3 weeks setup",
   },
   {
@@ -420,7 +420,7 @@ export const services: Service[] = [
     faqs: [
       { q: "Do you work with our printer?", a: "Yes — I'll liaise directly to spec everything." },
     ],
-    startingAt: "KES 50,000",
+    startingAt: "From KES 50,000 / project",
     timeline: "3–5 weeks",
   },
   {
@@ -448,7 +448,7 @@ export const services: Service[] = [
     faqs: [
       { q: "Do you write in Swahili too?", a: "Yes — and translation is built in for East African campaigns." },
     ],
-    startingAt: "KES 40,000 / month",
+    startingAt: "From KES 40,000 / month",
     timeline: "Monthly retainer",
   },
   {
@@ -476,7 +476,7 @@ export const services: Service[] = [
     faqs: [
       { q: "Can you handle 200+ page books?", a: "Yes — annual reports and books are some of my favourite work." },
     ],
-    startingAt: "KES 60,000",
+    startingAt: "From KES 60,000 / project",
     timeline: "3–6 weeks",
   },
   {
@@ -504,7 +504,7 @@ export const services: Service[] = [
     faqs: [
       { q: "Can you match an existing illustration style?", a: "Yes — both extending and rebuilding existing visual systems." },
     ],
-    startingAt: "KES 55,000",
+    startingAt: "From KES 55,000 / project",
     timeline: "3–5 weeks",
   },
   {
@@ -537,7 +537,7 @@ export const services: Service[] = [
       { q: "How fast can you turn a tender around?", a: "Standard turnaround is 5–10 days; rush 48-hour turnarounds are possible with surcharge." },
       { q: "Do you write the content too?", a: "I can co-write key sections with your subject-matter experts, or design from your draft." },
     ],
-    startingAt: "KES 45,000",
+    startingAt: "From KES 45,000 / project",
     timeline: "5–14 days",
   },
 ];
