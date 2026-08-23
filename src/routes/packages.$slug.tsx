@@ -22,7 +22,7 @@ function PackagePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-hero">
+      <section id="package-hero" className="relative scroll-mt-28 overflow-hidden bg-hero">
         <div className="absolute inset-0 bg-mesh opacity-50" />
         <div className="relative mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
           <div className="max-w-4xl">
@@ -39,7 +39,7 @@ function PackagePage() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-6 px-5 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+      <section id="package-details" className="mx-auto grid max-w-7xl scroll-mt-28 gap-6 px-5 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
         <aside className="rounded-3xl border border-border bg-card p-7 shadow-card">
           <div className="font-display text-3xl font-bold text-primary">{pkg.price}</div>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{pkg.marketNote}</p>
@@ -80,7 +80,7 @@ function PackagePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 pb-20 lg:px-8">
+      <section id="package-cta" className="mx-auto max-w-7xl scroll-mt-28 px-5 pb-20 lg:px-8">
         <div className="rounded-[2rem] bg-gradient-primary p-8 text-center text-primary-foreground shadow-elegant lg:p-12">
           <h2 className="font-display text-4xl font-bold">Ready to discuss {pkg.name}?</h2>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/85">

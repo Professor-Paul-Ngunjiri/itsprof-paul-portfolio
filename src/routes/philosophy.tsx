@@ -65,7 +65,7 @@ function Philosophy() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <section id="operating-principles" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-20 lg:px-8">
         <div className="mb-10 max-w-3xl">
           <span className="font-mono text-xs uppercase tracking-widest text-primary">/ operating principles</span>
           <h2 className="mt-3 font-display text-4xl font-bold tracking-tight">The thinking system behind the work.</h2>
@@ -89,7 +89,7 @@ function Philosophy() {
         </div>
       </section>
 
-      <section className="bg-muted/40">
+      <section id="beliefs" className="scroll-mt-28 bg-muted/40">
         <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
           <div className="mb-10 max-w-3xl">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ beliefs</span>
@@ -109,7 +109,7 @@ function Philosophy() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+      <section id="philosophy-cta" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-16 lg:px-8">
         <div className="rounded-[2rem] bg-gradient-primary p-10 text-center text-primary-foreground shadow-elegant">
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10">
             <Brain className="h-8 w-8 text-gold" />

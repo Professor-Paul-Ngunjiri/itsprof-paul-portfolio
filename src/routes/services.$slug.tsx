@@ -82,7 +82,7 @@ function ServiceDetail() {
   return (
     <>
       {/* HERO */}
-      <section className="relative bg-hero overflow-hidden">
+      <section id="service-hero" className="relative scroll-mt-28 bg-hero overflow-hidden">
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-8">
             <Link to="/services" className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-gold hover:opacity-80">
@@ -130,7 +130,7 @@ function ServiceDetail() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-16">
+      <section id="service-value" className="mx-auto max-w-7xl scroll-mt-28 px-5 lg:px-8 py-16">
         <div className="grid gap-4 md:grid-cols-3">
           {[
             {
@@ -155,7 +155,7 @@ function ServiceDetail() {
       </section>
 
       {subServices.length > 0 && (
-        <section className="mx-auto max-w-7xl px-5 lg:px-8 py-20">
+        <section id="specialist-pages" className="mx-auto max-w-7xl scroll-mt-28 px-5 lg:px-8 py-20">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-primary">/ specialist pages</span>
@@ -187,7 +187,7 @@ function ServiceDetail() {
       )}
 
       {/* FEATURES */}
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-20">
+      <section id="whats-included" className="mx-auto max-w-7xl scroll-mt-28 px-5 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ what's included</span>
@@ -206,6 +206,7 @@ function ServiceDetail() {
       </section>
 
       <ProcessShowcase
+        id="process"
         title={`${s.name} process, step by step.`}
         intro="See exactly how the project moves, what happens in each stage and what you can expect before we move to the next decision."
         stages={processStages}
@@ -213,7 +214,7 @@ function ServiceDetail() {
       />
 
       {/* DELIVERABLES */}
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-20">
+      <section id="deliverables" className="mx-auto max-w-7xl scroll-mt-28 px-5 lg:px-8 py-20">
         <div className="rounded-3xl bg-gradient-blue text-secondary-foreground p-10 lg:p-14">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div>
@@ -234,7 +235,7 @@ function ServiceDetail() {
       </section>
 
       {/* FAQ */}
-      <section className="mx-auto max-w-4xl px-5 lg:px-8 py-20">
+      <section id="faq" className="mx-auto max-w-4xl scroll-mt-28 px-5 lg:px-8 py-20">
         <div className="text-center mb-10">
           <span className="font-mono text-xs uppercase tracking-widest text-primary">/ faq</span>
           <h2 className="mt-2 font-display text-3xl lg:text-4xl font-bold">Common questions.</h2>
@@ -254,7 +255,7 @@ function ServiceDetail() {
 
       {/* RELATED */}
       {related.length > 0 && (
-        <section className="mx-auto max-w-7xl px-5 lg:px-8 pb-16">
+        <section id="related-services" className="mx-auto max-w-7xl scroll-mt-28 px-5 lg:px-8 pb-16">
           <span className="font-mono text-xs uppercase tracking-widest text-primary">/ related services</span>
           <h2 className="mt-2 font-display text-3xl font-bold">Often paired with...</h2>
           <div className="mt-8 grid md:grid-cols-3 gap-4">
@@ -276,7 +277,7 @@ function ServiceDetail() {
       )}
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 pb-20">
+      <section id="start-service-project" className="mx-auto max-w-7xl scroll-mt-28 px-5 lg:px-8 pb-20">
         <div className="rounded-[2.5rem] bg-gradient-primary text-primary-foreground p-12 lg:p-16 text-center shadow-elegant">
           <h2 className="font-display text-3xl lg:text-5xl font-bold">Ready to start your {s.name.toLowerCase()} project?</h2>
           <p className="mt-4 max-w-xl mx-auto opacity-95">Send the brief today and I will respond with the clearest next step, timeline and investment range.</p>

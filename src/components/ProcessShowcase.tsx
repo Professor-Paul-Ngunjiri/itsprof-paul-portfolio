@@ -20,6 +20,7 @@ export type ProcessStage = {
 };
 
 type ProcessShowcaseProps = {
+  id?: string;
   eyebrow?: string;
   title: string;
   intro: string;
@@ -32,7 +33,7 @@ type ProcessTab = (typeof tabs)[number];
 
 const stageIcons = [Search, Lightbulb, Sparkles, Settings2, FileCheck2, UploadCloud, CheckCircle2];
 
-export function ProcessShowcase({ eyebrow = "/ process", title, intro, stages, variant = "default" }: ProcessShowcaseProps) {
+export function ProcessShowcase({ id, eyebrow = "/ process", title, intro, stages, variant = "default" }: ProcessShowcaseProps) {
   const [activeStage, setActiveStage] = useState(0);
   const [activeTab, setActiveTab] = useState<ProcessTab>("Overview");
 
@@ -54,7 +55,7 @@ export function ProcessShowcase({ eyebrow = "/ process", title, intro, stages, v
   if (!stage) return null;
 
   return (
-    <section className={variant === "muted" ? "bg-muted/40" : ""}>
+    <section id={id} className={`${variant === "muted" ? "bg-muted/40" : ""} ${id ? "scroll-mt-28" : ""}`}>
       <div className="mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <span className="font-mono text-xs uppercase tracking-widest text-primary">{eyebrow}</span>

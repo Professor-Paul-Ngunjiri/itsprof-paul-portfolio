@@ -40,7 +40,7 @@ function CapabilityPage() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-hero">
+      <section id="capability-hero" className="relative scroll-mt-28 overflow-hidden bg-hero">
         <div className="absolute inset-0 bg-mesh opacity-50" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-20 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:py-28">
           <div>
@@ -85,7 +85,7 @@ function CapabilityPage() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-6 px-5 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+      <section id="capability-overview" className="mx-auto grid max-w-7xl scroll-mt-28 gap-6 px-5 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
         <aside className="rounded-3xl border border-border bg-card p-7 shadow-card">
           <div className="font-mono text-xs uppercase tracking-widest text-primary">Best for</div>
           <p className="mt-3 text-lg leading-relaxed">{bestFor}</p>
@@ -173,7 +173,7 @@ function CapabilityPage() {
         )}
       </section>
 
-      <section className="bg-muted/35">
+      <section id="problem-solution-process" className="scroll-mt-28 bg-muted/35">
         <div className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
           <div className="grid gap-5 lg:grid-cols-3">
             {[
@@ -191,7 +191,7 @@ function CapabilityPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+      <section id="capability-faq" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-16 lg:px-8">
         <div className="grid gap-5 lg:grid-cols-3">
           {[
             ["What determines the final investment?", "Scope, complexity, number of deliverables, integrations, production requirements, timeline, revisions and support level."],
@@ -206,7 +206,7 @@ function CapabilityPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+      <section id="capability-cta" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-16 lg:px-8">
         <div className="rounded-[2rem] bg-gradient-primary p-8 text-center text-primary-foreground shadow-elegant lg:p-12">
           <h2 className="font-display text-4xl font-bold">Ready to discuss {title}?</h2>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/85">

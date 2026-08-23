@@ -25,11 +25,11 @@ export function Footer() {
   const capabilityColumns = capabilityGroups;
 
   return (
-    <footer className="relative mt-32 overflow-hidden border-t border-border bg-gradient-to-b from-background via-muted/30 to-background">
+    <footer id="footer" className="relative mt-32 scroll-mt-28 overflow-hidden border-t border-border bg-gradient-to-b from-background via-muted/30 to-background">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
 
       <div className="mx-auto max-w-7xl px-5 pt-16 lg:px-8">
-        <section className="overflow-hidden rounded-[2rem] border border-border bg-card shadow-elegant">
+        <section id="footer-roi" className="scroll-mt-28 overflow-hidden rounded-[2rem] border border-border bg-card shadow-elegant">
           <div className="grid gap-0 lg:grid-cols-[1.05fr_1.25fr]">
             <div className="bg-gradient-blue p-8 text-secondary-foreground lg:p-10">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-xs font-semibold">

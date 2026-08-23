@@ -90,7 +90,7 @@ function Portfolio() {
 
   return (
     <>
-      <section className="relative bg-hero overflow-hidden">
+      <section id="portfolio-hero" className="relative scroll-mt-28 bg-hero overflow-hidden">
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 text-center">
           <span className="hero-eyebrow">/ portfolio</span>
           <h1 className="mt-3 font-display text-5xl lg:text-7xl font-bold tracking-tighter">
@@ -105,7 +105,7 @@ function Portfolio() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-16">
+      <section id="portfolio-projects" className="mx-auto max-w-7xl scroll-mt-28 px-5 lg:px-8 py-16">
         <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
           <div>
             <div className="text-sm font-semibold text-muted-foreground">Portfolio filters</div>
@@ -240,7 +240,7 @@ function Portfolio() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-16">
+      <section id="portfolio-cta" className="mx-auto max-w-7xl scroll-mt-28 px-5 lg:px-8 py-16">
         <div className="rounded-[2.5rem] bg-gradient-blue text-secondary-foreground p-12 lg:p-16 text-center shadow-elegant">
           <h2 className="font-display text-4xl lg:text-5xl font-bold">Impressed? Let's create your next success story.</h2>
           <div className="mt-8 flex flex-wrap justify-center gap-3">

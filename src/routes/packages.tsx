@@ -15,7 +15,7 @@ export const Route = createFileRoute("/packages")({
 function Packages() {
   return (
     <>
-      <section className="relative overflow-hidden bg-hero">
+      <section id="packages-hero" className="relative scroll-mt-28 overflow-hidden bg-hero">
         <div className="absolute inset-0 bg-mesh opacity-50" />
         <div className="relative mx-auto max-w-7xl px-5 py-20 text-center lg:px-8 lg:py-28">
           <span className="hero-eyebrow">/ ways to work</span>
@@ -28,7 +28,7 @@ function Packages() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <section id="packages-list" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-20 lg:px-8">
         <div className="grid gap-5 lg:grid-cols-3">
           {engagementPackages.map((pkg) => (
             <article key={pkg.slug} className="flex flex-col rounded-3xl border border-border bg-card p-7 shadow-card">

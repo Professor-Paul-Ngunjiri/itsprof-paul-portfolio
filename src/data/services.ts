@@ -582,11 +582,11 @@ export function getServicePackages(serviceSlug: string) {
 
   const baseName = service.name.replace(/ & .*/, "").replace(/ Design$/, "");
   const diagnosticPrice =
-    service.category === "Digital" ? "KES 35,000" :
-    service.category === "Media" ? "KES 25,000" :
-    service.category === "Growth" ? "KES 30,000" :
-    service.category === "Editorial" ? "KES 25,000" :
-    "KES 25,000";
+    service.category === "Digital" ? "From KES 35,000 / diagnostic project" :
+    service.category === "Media" ? "From KES 25,000 / diagnostic project" :
+    service.category === "Growth" ? "From KES 30,000 / diagnostic project" :
+    service.category === "Editorial" ? "From KES 25,000 / diagnostic project" :
+    "From KES 25,000 / diagnostic project";
 
   return [
     {

@@ -134,7 +134,7 @@ function Index() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-hero">
+      <section id="hero" className="relative scroll-mt-28 overflow-hidden bg-hero">
         <div className="absolute inset-0 bg-mesh opacity-50" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 lg:grid-cols-12 lg:px-8 lg:py-16">
           <div className="lg:col-span-7">
@@ -187,7 +187,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <section id="who-is-paul" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-20 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
           <div className="lg:col-span-5">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ who I am</span>
@@ -249,7 +249,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <section id="what-i-believe" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-20 lg:px-8">
         <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ signature</span>
@@ -279,7 +279,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-muted/40">
+      <section id="capabilities" className="scroll-mt-28 bg-muted/40">
         <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
           <div className="mb-10 max-w-3xl">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ capabilities</span>
@@ -321,7 +321,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <section id="work-with-me" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-20 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
           <div className="rounded-[2rem] border border-border bg-card p-8 shadow-elegant">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ work with me</span>
@@ -350,7 +350,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-gradient-blue text-secondary-foreground">
+      <section id="pahwah-ecosystem" className="relative scroll-mt-28 overflow-hidden bg-gradient-blue text-secondary-foreground">
         <div className="absolute inset-0 bg-mesh opacity-25" />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2 lg:items-center lg:px-8">
           <div>
@@ -383,7 +383,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <section id="portfolio-preview" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-20 lg:px-8">
         <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ work</span>
@@ -419,7 +419,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-muted/40">
+      <section id="insights-and-workshops" className="scroll-mt-28 bg-muted/40">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2 lg:px-8">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ insights</span>
@@ -532,7 +532,7 @@ function Index() {
         <GoogleReviews />
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+      <section id="start-project" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-16 lg:px-8">
         <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-primary p-10 text-center text-primary-foreground shadow-elegant lg:p-16">
           <div className="absolute inset-0 bg-mesh opacity-30" />
           <div className="relative">

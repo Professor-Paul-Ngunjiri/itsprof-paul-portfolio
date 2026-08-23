@@ -51,7 +51,7 @@ function SubServiceDetail() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-hero">
+      <section id="sub-service-hero" className="relative scroll-mt-28 overflow-hidden bg-hero">
         <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-12 lg:px-8 lg:py-28">
           <div className="lg:col-span-8">
             <Link
@@ -101,7 +101,7 @@ function SubServiceDetail() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <section id="sub-service-fit" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-20 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-3">
           <article className="rounded-2xl border border-border bg-card p-7 shadow-card">
             <Target className="h-6 w-6 text-primary" />
@@ -123,7 +123,7 @@ function SubServiceDetail() {
         </div>
       </section>
 
-      <section className="bg-muted/40">
+      <section id="sub-service-outcomes" className="scroll-mt-28 bg-muted/40">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 lg:grid-cols-2 lg:px-8">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ outcomes</span>
@@ -143,7 +143,7 @@ function SubServiceDetail() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <section id="sub-service-scope" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-20 lg:px-8">
         <div className="rounded-3xl bg-gradient-blue p-10 text-secondary-foreground lg:p-14">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
@@ -166,7 +166,7 @@ function SubServiceDetail() {
       </section>
 
       {siblingSubServices.length > 0 && (
-        <section className="mx-auto max-w-7xl px-5 pb-16 lg:px-8">
+        <section id="related-sub-services" className="mx-auto max-w-7xl scroll-mt-28 px-5 pb-16 lg:px-8">
           <span className="font-mono text-xs uppercase tracking-widest text-primary">/ related sub-services</span>
           <h2 className="mt-2 font-display text-3xl font-bold">Other lanes inside {service.name}.</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -189,7 +189,7 @@ function SubServiceDetail() {
         </section>
       )}
 
-      <section className="mx-auto max-w-7xl px-5 pb-20 lg:px-8">
+      <section id="start-sub-service-project" className="mx-auto max-w-7xl scroll-mt-28 px-5 pb-20 lg:px-8">
         <div className="rounded-[2.5rem] bg-gradient-primary p-12 text-center text-primary-foreground shadow-elegant lg:p-16">
           <h2 className="font-display text-3xl font-bold lg:text-5xl">Want {subService.name.toLowerCase()} done properly?</h2>
           <p className="mx-auto mt-4 max-w-xl opacity-95">

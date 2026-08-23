@@ -219,7 +219,7 @@ function Terminal() {
   };
 
   return (
-    <section className="min-h-[calc(100vh-4rem)] bg-[oklch(0.14_0.012_264)] p-3 font-mono text-xs text-[oklch(0.85_0.05_140)] sm:p-4 sm:text-sm lg:p-8" onClick={() => inputRef.current?.focus()}>
+    <section id="terminal" className="min-h-[calc(100vh-4rem)] scroll-mt-28 bg-[oklch(0.14_0.012_264)] p-3 font-mono text-xs text-[oklch(0.85_0.05_140)] sm:p-4 sm:text-sm lg:p-8" onClick={() => inputRef.current?.focus()}>
       <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-primary/40 bg-black/40 shadow-elegant backdrop-blur">
         <div className="flex items-center gap-2 border-b border-primary/30 bg-black/40 px-4 py-2.5">
           <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />

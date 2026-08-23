@@ -107,7 +107,7 @@ export function GoogleReviews() {
   };
 
   return (
-    <section className="bg-muted/50">
+    <section id="client-reviews" className="scroll-mt-28 bg-muted/50">
       <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
         <div className="mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>

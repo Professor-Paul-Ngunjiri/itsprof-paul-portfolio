@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, BriefcaseBusiness, ChevronDown, Menu, Moon, Send, Sun, Terminal, X } from "lucide-react";
 import { useState } from "react";
-import { capabilityGroups, engagementPackages, site } from "@/lib/site";
+import { capabilityGroups, site } from "@/lib/site";
 import { useTheme } from "@/hooks/use-theme";
 import logo from "/logo.svg?url";
 
@@ -73,39 +73,42 @@ export function Navigation() {
             >
               Services <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
             </Link>
-            <div className="pointer-events-none absolute left-1/2 top-full w-[1120px] max-w-[94vw] -translate-x-1/2 translate-y-3 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
-              <div className="mt-4 overflow-hidden rounded-[1.75rem] border border-border bg-background shadow-elegant">
-                <div className="grid grid-cols-[0.9fr_2fr_0.9fr]">
-                  <div className="bg-gradient-blue p-7 text-secondary-foreground">
-                    <div className="inline-flex rounded-2xl bg-white/10 p-3">
-                      <BriefcaseBusiness className="h-6 w-6 text-gold" />
+            <div className="pointer-events-none absolute left-1/2 top-full w-[980px] max-w-[92vw] -translate-x-1/2 translate-y-3 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+              <div className="mt-4 overflow-hidden rounded-[1.5rem] border border-border bg-background shadow-elegant">
+                <div className="grid grid-cols-[240px_1fr]">
+                  <div className="bg-gradient-blue p-5 text-secondary-foreground">
+                    <div className="inline-flex rounded-xl bg-white/10 p-2.5">
+                      <BriefcaseBusiness className="h-5 w-5 text-gold" />
                     </div>
-                    <h3 className="mt-4 font-display text-2xl font-bold leading-tight">Capabilities for digital business value.</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-white/80">
-                      Strategy, creation, technology, marketing and systems organised around the outcome you need.
+                    <h3 className="mt-4 font-display text-xl font-bold leading-tight">Capabilities for digital business value.</h3>
+                    <p className="mt-3 text-xs leading-relaxed text-white/80">
+                      Browse by outcome, then open the exact service line that matches your brief.
                     </p>
-                    <Link to="/services" className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2.5 text-xs font-semibold text-gold-foreground">
+                    <Link to="/services" className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2.5 text-xs font-semibold text-gold-foreground">
                       Explore capabilities <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
+                    <Link to="/contact" className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/35 px-4 py-2.5 text-xs font-semibold hover:bg-white/10">
+                      Start a brief <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
                   </div>
-                  <div className="grid max-h-[68vh] grid-cols-2 gap-3 overflow-auto p-5 xl:grid-cols-3">
+                  <div className="grid grid-cols-3 gap-2.5 p-4">
                     {groupedServices.map(({ group, slug, number, desc, items }) => (
-                      <div key={group} className="rounded-2xl border border-border bg-card p-4">
+                      <div key={group} className="rounded-2xl border border-border bg-card p-3.5">
                         <Link
                           to="/capabilities/$slug"
                           params={{ slug }}
-                          className="text-[10px] font-bold uppercase tracking-widest text-primary hover:underline"
+                          className="block text-[10px] font-bold uppercase tracking-[0.14em] text-primary hover:underline"
                         >
                           /{number} {group}
                         </Link>
-                        <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-muted-foreground">{desc}</p>
-                        <div className="mt-3 space-y-1">
-                          {items.slice(0, 5).map((service) => (
+                        <p className="mt-1.5 line-clamp-1 text-[10.5px] leading-relaxed text-muted-foreground">{desc}</p>
+                        <div className="mt-2 grid gap-0.5">
+                          {items.map((service) => (
                             <Link
                               key={service.slug}
                               to="/capabilities/$slug"
                               params={{ slug: service.slug }}
-                              className="block rounded-lg px-2 py-1.5 text-xs leading-tight text-muted-foreground hover:bg-muted hover:text-foreground"
+                              className="block rounded-md px-2 py-1 text-[11px] leading-tight text-muted-foreground hover:bg-muted hover:text-foreground"
                             >
                               {service.name}
                             </Link>
@@ -113,21 +116,6 @@ export function Navigation() {
                         </div>
                       </div>
                     ))}
-                  </div>
-                  <div className="border-l border-border bg-muted/30 p-5">
-                    <div className="text-[10px] font-bold uppercase tracking-widest text-primary">Ways to work</div>
-                    <div className="mt-4 space-y-3">
-                      {engagementPackages.map((pkg) => (
-                        <Link key={pkg.slug} to="/packages/$slug" params={{ slug: pkg.slug }} className="block rounded-2xl border border-border bg-background p-4 transition-colors hover:border-primary">
-                          <span className="block font-display text-sm font-semibold">{pkg.name}</span>
-                          <span className="mt-1 block text-xs text-primary">{pkg.price}</span>
-                          <span className="mt-2 block line-clamp-2 text-[11px] leading-relaxed text-muted-foreground">{pkg.idealFor}</span>
-                        </Link>
-                      ))}
-                    </div>
-                    <Link to="/packages" className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-primary">
-                      Compare packages <ArrowRight className="h-3.5 w-3.5" />
-                    </Link>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 border-t border-border bg-muted/35 px-5 py-3">
@@ -249,25 +237,6 @@ export function Navigation() {
                     </details>
                   ))}
                 </div>
-              </div>
-            </details>
-            <details className="overflow-hidden rounded-2xl border border-border bg-card shadow-card">
-              <summary className="cursor-pointer list-none px-4 py-4">
-                <span className="flex items-center justify-between gap-3">
-                  <span>
-                    <span className="block text-base font-semibold">Ways to work</span>
-                    <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">Diagnostic, Signature Build or Growth Partner.</span>
-                  </span>
-                  <ChevronDown className="h-4 w-4" />
-                </span>
-              </summary>
-              <div className="grid gap-2 border-t border-border bg-muted/25 p-3">
-                {engagementPackages.map((pkg) => (
-                  <Link key={pkg.slug} to="/packages/$slug" params={{ slug: pkg.slug }} onClick={() => setOpen(false)} className="rounded-xl bg-background px-3 py-3 text-sm">
-                    <span className="block font-semibold">{pkg.name}</span>
-                    <span className="mt-1 block text-xs text-muted-foreground">{pkg.price}</span>
-                  </Link>
-                ))}
               </div>
             </details>
             <Link to="/terminal" onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 text-base font-mono hover:bg-muted">

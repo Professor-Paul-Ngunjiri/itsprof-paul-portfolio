@@ -3,6 +3,7 @@ import { ArrowRight, Award, Brain, Compass, Download, GraduationCap, Lightbulb, 
 import { values } from "@/lib/site";
 import aboutImg from "@/assets/paul-about.webp";
 import portraitImg from "@/assets/paul-portrait.webp";
+import cvPdf from "@/assets/Cvs/Paul  ngunjiri`s cv (BRAND & DIGITAL MARKETING SPECIALIST).pdf";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -37,7 +38,7 @@ function About() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-hero">
+      <section id="about-hero" className="relative scroll-mt-28 overflow-hidden bg-hero">
         <div className="absolute inset-0 bg-mesh opacity-60 pointer-events-none" />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-up">
@@ -50,7 +51,7 @@ function About() {
               Popularly known as ItsProf Paul, I work at the intersection of business, branding, technology, marketing and human behaviour. I help individuals, founders, companies, churches, schools, NGOs, government teams and international organisations turn unclear digital challenges into practical systems that create value.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="/cv.pdf" className="btn-hero-primary">
+              <a href={cvPdf} download="Paul-Ngunjiri-ItsProf-Paul-CV.pdf" className="btn-hero-primary">
                 <Download className="h-4 w-4" /> Download my CV
               </a>
               <Link to="/contact" className="btn-hero-outline">
@@ -66,7 +67,7 @@ function About() {
       </section>
 
       {/* STORY */}
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
+      <section id="story" className="mx-auto max-w-7xl scroll-mt-28 px-5 lg:px-8 py-24">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-start">
           <div className="space-y-6">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ story</span>
@@ -104,7 +105,7 @@ function About() {
       </section>
 
       {/* POSITIONING PILLARS */}
-      <section className="bg-muted/50">
+      <section id="positioning" className="scroll-mt-28 bg-muted/50">
         <div className="mx-auto max-w-6xl px-5 lg:px-8 py-24">
           <div className="text-center">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ positioning</span>
@@ -157,7 +158,7 @@ function About() {
       </section>
 
       {/* EDUCATION + CERTS */}
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24 grid lg:grid-cols-2 gap-12">
+      <section id="education" className="mx-auto grid max-w-7xl scroll-mt-28 gap-12 px-5 py-24 lg:grid-cols-2 lg:px-8">
         <div>
           <span className="font-mono text-xs uppercase tracking-widest text-primary">/ education</span>
           <h2 className="mt-2 font-display text-4xl font-bold">Academic foundation.</h2>
@@ -192,7 +193,7 @@ function About() {
       </section>
 
       {/* VALUES */}
-      <section className="bg-muted/40">
+      <section id="values" className="scroll-mt-28 bg-muted/40">
         <div className="mx-auto max-w-7xl px-5 lg:px-8 py-24">
           <div className="text-center mb-12">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">/ values</span>
@@ -214,7 +215,7 @@ function About() {
       </section>
 
       {/* HUMAN SIDE */}
-      <section className="mx-auto max-w-7xl px-5 lg:px-8 py-24 grid lg:grid-cols-2 gap-12 items-center">
+      <section id="human-side" className="mx-auto grid max-w-7xl scroll-mt-28 items-center gap-12 px-5 py-24 lg:grid-cols-2 lg:px-8">
         <div className="aspect-square rounded-[2rem] overflow-hidden border border-border shadow-elegant">
           <img src={portraitImg} loading="lazy" decoding="async" alt="Paul Ngunjiri portrait" className="h-full w-full object-contain" />
         </div>

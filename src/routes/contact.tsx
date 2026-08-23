@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { ArrowRight, BriefcaseBusiness, Check, Clock, FileUp, Mail, MapPin, MessageCircle, Phone, Send, ShieldCheck, Sparkles, TrendingUp } from "lucide-react";
+import { ArrowRight, Check, FileUp, Mail, MapPin, Phone, Send, ShieldCheck, Sparkles, TrendingUp } from "lucide-react";
 import { getServicePackages, services, site } from "@/lib/site";
 
 type ContactSearch = {
@@ -93,7 +93,7 @@ function Contact() {
     const service = services.find((item) => item.slug === storedBrief.serviceSlug);
     const canViewService = !!service && storedBrief.serviceSlug !== "other";
     return (
-      <section className="relative min-h-[calc(100vh-5rem)] overflow-hidden bg-hero">
+      <section id="brief-submitted" className="relative min-h-[calc(100vh-5rem)] scroll-mt-28 overflow-hidden bg-hero">
         <div className="absolute inset-0 bg-mesh opacity-50" />
         <div className="relative mx-auto flex min-h-[calc(100vh-5rem)] max-w-5xl items-center px-5 py-20 lg:px-8">
           <div className="w-full rounded-[2rem] border border-white/20 bg-white/10 p-7 text-center shadow-elegant backdrop-blur lg:p-12">
@@ -133,7 +133,7 @@ function Contact() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-hero">
+      <section id="contact-hero" className="relative scroll-mt-28 overflow-hidden bg-hero">
         <div className="absolute inset-0 bg-mesh opacity-50" />
         <div className="relative mx-auto max-w-7xl px-5 py-16 text-center lg:px-8 lg:py-20">
           <span className="hero-eyebrow">/ request a quote</span>
@@ -146,8 +146,8 @@ function Contact() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-8 lg:px-8 lg:py-10">
-        <div className="mb-5 grid gap-3 md:grid-cols-4">
+      <section id="request-brief" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-8 lg:px-8 lg:py-10">
+        <div id="quick-contact" className="mb-5 grid scroll-mt-28 gap-3 md:grid-cols-3">
           {[
             { icon: Mail, label: "Project email", value: site.email, href: `mailto:${site.email}` },
             { icon: Phone, label: "Call / WhatsApp", value: site.phone, href: `tel:${site.phone}` },
@@ -161,7 +161,7 @@ function Contact() {
           ))}
         </div>
 
-        <div className="mb-5 overflow-hidden rounded-3xl bg-gradient-blue p-5 text-secondary-foreground shadow-elegant lg:p-6">
+        <div id="roi-lens" className="mb-5 scroll-mt-28 overflow-hidden rounded-3xl bg-gradient-blue p-5 text-secondary-foreground shadow-elegant lg:p-6">
           <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div>
               <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-gold">
@@ -183,7 +183,7 @@ function Contact() {
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-border bg-card p-5 shadow-elegant lg:p-7">
+        <div id="brief-form" className="scroll-mt-28 rounded-[2rem] border border-border bg-card p-5 shadow-elegant lg:p-7">
           <form
             action={`https://formsubmit.co/${site.email}`}
             method="POST"
@@ -377,7 +377,7 @@ function Contact() {
 
             <div className="flex flex-col gap-3 rounded-2xl border border-border bg-muted/35 p-4 sm:flex-row sm:items-center sm:justify-between lg:col-span-12">
               <p className="max-w-2xl text-xs leading-relaxed text-muted-foreground">
-                You receive a professional response from Paul Ngunjiri, a.k.a ItsProf Paul. FormSubmit may still show its sending address unless a custom email provider is connected, but the brief content, subject and autoresponse are branded for ItsProf Paul.
+                Your brief is sent to {site.email}. I review the context, attachments, preferred package and timeline before replying with the clearest next step.
               </p>
               <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-card transition-shadow hover:shadow-glow">
                 <Send className="h-4 w-4" /> Submit brief
@@ -420,9 +420,6 @@ function Contact() {
                   Close message
                 </button>
               </div>
-              <p className="mx-auto mt-5 max-w-xl text-xs leading-relaxed text-white/65">
-                If your browser or FormSubmit asks for verification, please complete it once. This branded confirmation means the website has captured your submission action.
-              </p>
             </div>
           </div>
         </div>
